@@ -1,0 +1,6 @@
+mutation AddToLiveMeeting($meeting_link: String!, $title: String, $meeting_password: String, $duration: Int, $language: String, $attendees: [AttendeeInput!]) {
+  addToLiveMeeting(meeting_link: $meeting_link, title: $title, meeting_password: $meeting_password, duration: $duration, language: $language, attendees: $attendees) {
+    message
+    success
+  }
+}

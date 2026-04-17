@@ -10,5 +10,8 @@ func NewLiveCmd() *cobra.Command {
 		Short: "Query and interact with live meetings",
 	}
 	c.AddCommand(newItemsCmd())
+	c.AddCommand(newAddCmd())
+	c.AddCommand(newSoundbiteCmd())
+	c.AddCommand(newActionItemCmd())
 	return c
 }

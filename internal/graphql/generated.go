@@ -56,6 +56,28 @@ func (v *ActiveMeetingsResponse) GetActive_meetings() []*ActiveMeetingsActive_me
 	return v.Active_meetings
 }
 
+// AddToLiveMeetingAddToLiveMeeting includes the requested fields of the GraphQL type AddToLiveMeeting.
+type AddToLiveMeetingAddToLiveMeeting struct {
+	Message string `json:"message"`
+	Success bool   `json:"success"`
+}
+
+// GetMessage returns AddToLiveMeetingAddToLiveMeeting.Message, and is useful for accessing the field via an interface.
+func (v *AddToLiveMeetingAddToLiveMeeting) GetMessage() string { return v.Message }
+
+// GetSuccess returns AddToLiveMeetingAddToLiveMeeting.Success, and is useful for accessing the field via an interface.
+func (v *AddToLiveMeetingAddToLiveMeeting) GetSuccess() bool { return v.Success }
+
+// AddToLiveMeetingResponse is returned by AddToLiveMeeting on success.
+type AddToLiveMeetingResponse struct {
+	AddToLiveMeeting *AddToLiveMeetingAddToLiveMeeting `json:"addToLiveMeeting"`
+}
+
+// GetAddToLiveMeeting returns AddToLiveMeetingResponse.AddToLiveMeeting, and is useful for accessing the field via an interface.
+func (v *AddToLiveMeetingResponse) GetAddToLiveMeeting() *AddToLiveMeetingAddToLiveMeeting {
+	return v.AddToLiveMeeting
+}
+
 // AnalyticsAnalytics includes the requested fields of the GraphQL type Analytics.
 type AnalyticsAnalytics struct {
 	Team  *AnalyticsAnalyticsTeamTeamAnalytics    `json:"team"`
@@ -1387,6 +1409,72 @@ type CreateBiteResponse struct {
 // GetCreateBite returns CreateBiteResponse.CreateBite, and is useful for accessing the field via an interface.
 func (v *CreateBiteResponse) GetCreateBite() *CreateBiteCreateBite { return v.CreateBite }
 
+// CreateLiveActionItemCreateLiveActionItemCreateLiveActionItemResult includes the requested fields of the GraphQL type CreateLiveActionItemResult.
+type CreateLiveActionItemCreateLiveActionItemCreateLiveActionItemResult struct {
+	// Whether the action item was created successfully
+	Success bool `json:"success"`
+}
+
+// GetSuccess returns CreateLiveActionItemCreateLiveActionItemCreateLiveActionItemResult.Success, and is useful for accessing the field via an interface.
+func (v *CreateLiveActionItemCreateLiveActionItemCreateLiveActionItemResult) GetSuccess() bool {
+	return v.Success
+}
+
+type CreateLiveActionItemInput struct {
+	Meeting_id string `json:"meeting_id"`
+	Prompt     string `json:"prompt"`
+}
+
+// GetMeeting_id returns CreateLiveActionItemInput.Meeting_id, and is useful for accessing the field via an interface.
+func (v *CreateLiveActionItemInput) GetMeeting_id() string { return v.Meeting_id }
+
+// GetPrompt returns CreateLiveActionItemInput.Prompt, and is useful for accessing the field via an interface.
+func (v *CreateLiveActionItemInput) GetPrompt() string { return v.Prompt }
+
+// CreateLiveActionItemResponse is returned by CreateLiveActionItem on success.
+type CreateLiveActionItemResponse struct {
+	// Create a live action item for a meeting
+	CreateLiveActionItem *CreateLiveActionItemCreateLiveActionItemCreateLiveActionItemResult `json:"createLiveActionItem"`
+}
+
+// GetCreateLiveActionItem returns CreateLiveActionItemResponse.CreateLiveActionItem, and is useful for accessing the field via an interface.
+func (v *CreateLiveActionItemResponse) GetCreateLiveActionItem() *CreateLiveActionItemCreateLiveActionItemCreateLiveActionItemResult {
+	return v.CreateLiveActionItem
+}
+
+// CreateLiveSoundbiteCreateLiveSoundbiteCreateLiveSoundbiteResult includes the requested fields of the GraphQL type CreateLiveSoundbiteResult.
+type CreateLiveSoundbiteCreateLiveSoundbiteCreateLiveSoundbiteResult struct {
+	// Whether the soundbite was created successfully
+	Success bool `json:"success"`
+}
+
+// GetSuccess returns CreateLiveSoundbiteCreateLiveSoundbiteCreateLiveSoundbiteResult.Success, and is useful for accessing the field via an interface.
+func (v *CreateLiveSoundbiteCreateLiveSoundbiteCreateLiveSoundbiteResult) GetSuccess() bool {
+	return v.Success
+}
+
+type CreateLiveSoundbiteInput struct {
+	Meeting_id string `json:"meeting_id"`
+	Prompt     string `json:"prompt"`
+}
+
+// GetMeeting_id returns CreateLiveSoundbiteInput.Meeting_id, and is useful for accessing the field via an interface.
+func (v *CreateLiveSoundbiteInput) GetMeeting_id() string { return v.Meeting_id }
+
+// GetPrompt returns CreateLiveSoundbiteInput.Prompt, and is useful for accessing the field via an interface.
+func (v *CreateLiveSoundbiteInput) GetPrompt() string { return v.Prompt }
+
+// CreateLiveSoundbiteResponse is returned by CreateLiveSoundbite on success.
+type CreateLiveSoundbiteResponse struct {
+	// Create a live soundbite for a meeting
+	CreateLiveSoundbite *CreateLiveSoundbiteCreateLiveSoundbiteCreateLiveSoundbiteResult `json:"createLiveSoundbite"`
+}
+
+// GetCreateLiveSoundbite returns CreateLiveSoundbiteResponse.CreateLiveSoundbite, and is useful for accessing the field via an interface.
+func (v *CreateLiveSoundbiteResponse) GetCreateLiveSoundbite() *CreateLiveSoundbiteCreateLiveSoundbiteCreateLiveSoundbiteResult {
+	return v.CreateLiveSoundbite
+}
+
 // CreateUploadUrlCreateUploadUrlUploadUrlResponse includes the requested fields of the GraphQL type UploadUrlResponse.
 type CreateUploadUrlCreateUploadUrlUploadUrlResponse struct {
 	Upload_url string `json:"upload_url"`
@@ -2170,6 +2258,34 @@ type __ActiveMeetingsInput struct {
 // GetStates returns __ActiveMeetingsInput.States, and is useful for accessing the field via an interface.
 func (v *__ActiveMeetingsInput) GetStates() []MeetingState { return v.States }
 
+// __AddToLiveMeetingInput is used internally by genqlient
+type __AddToLiveMeetingInput struct {
+	Meeting_link     string           `json:"meeting_link"`
+	Title            *string          `json:"title"`
+	Meeting_password *string          `json:"meeting_password"`
+	Duration         *int             `json:"duration"`
+	Language         *string          `json:"language"`
+	Attendees        []*AttendeeInput `json:"attendees,omitempty"`
+}
+
+// GetMeeting_link returns __AddToLiveMeetingInput.Meeting_link, and is useful for accessing the field via an interface.
+func (v *__AddToLiveMeetingInput) GetMeeting_link() string { return v.Meeting_link }
+
+// GetTitle returns __AddToLiveMeetingInput.Title, and is useful for accessing the field via an interface.
+func (v *__AddToLiveMeetingInput) GetTitle() *string { return v.Title }
+
+// GetMeeting_password returns __AddToLiveMeetingInput.Meeting_password, and is useful for accessing the field via an interface.
+func (v *__AddToLiveMeetingInput) GetMeeting_password() *string { return v.Meeting_password }
+
+// GetDuration returns __AddToLiveMeetingInput.Duration, and is useful for accessing the field via an interface.
+func (v *__AddToLiveMeetingInput) GetDuration() *int { return v.Duration }
+
+// GetLanguage returns __AddToLiveMeetingInput.Language, and is useful for accessing the field via an interface.
+func (v *__AddToLiveMeetingInput) GetLanguage() *string { return v.Language }
+
+// GetAttendees returns __AddToLiveMeetingInput.Attendees, and is useful for accessing the field via an interface.
+func (v *__AddToLiveMeetingInput) GetAttendees() []*AttendeeInput { return v.Attendees }
+
 // __AnalyticsInput is used internally by genqlient
 type __AnalyticsInput struct {
 	Start_time *string `json:"start_time"`
@@ -2301,6 +2417,22 @@ func (v *__CreateBiteInput) GetEnd_time() float64 { return v.End_time }
 
 // GetMedia_type returns __CreateBiteInput.Media_type, and is useful for accessing the field via an interface.
 func (v *__CreateBiteInput) GetMedia_type() *string { return v.Media_type }
+
+// __CreateLiveActionItemInput is used internally by genqlient
+type __CreateLiveActionItemInput struct {
+	Input *CreateLiveActionItemInput `json:"input,omitempty"`
+}
+
+// GetInput returns __CreateLiveActionItemInput.Input, and is useful for accessing the field via an interface.
+func (v *__CreateLiveActionItemInput) GetInput() *CreateLiveActionItemInput { return v.Input }
+
+// __CreateLiveSoundbiteInput is used internally by genqlient
+type __CreateLiveSoundbiteInput struct {
+	Input *CreateLiveSoundbiteInput `json:"input,omitempty"`
+}
+
+// GetInput returns __CreateLiveSoundbiteInput.Input, and is useful for accessing the field via an interface.
+func (v *__CreateLiveSoundbiteInput) GetInput() *CreateLiveSoundbiteInput { return v.Input }
 
 // __CreateUploadUrlInput is used internally by genqlient
 type __CreateUploadUrlInput struct {
@@ -2460,6 +2592,51 @@ func ActiveMeetings(
 	}
 
 	data_ = &ActiveMeetingsResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by AddToLiveMeeting.
+const AddToLiveMeeting_Operation = `
+mutation AddToLiveMeeting ($meeting_link: String!, $title: String, $meeting_password: String, $duration: Int, $language: String, $attendees: [AttendeeInput!]) {
+	addToLiveMeeting(meeting_link: $meeting_link, title: $title, meeting_password: $meeting_password, duration: $duration, language: $language, attendees: $attendees) {
+		message
+		success
+	}
+}
+`
+
+func AddToLiveMeeting(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	meeting_link string,
+	title *string,
+	meeting_password *string,
+	duration *int,
+	language *string,
+	attendees []*AttendeeInput,
+) (data_ *AddToLiveMeetingResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "AddToLiveMeeting",
+		Query:  AddToLiveMeeting_Operation,
+		Variables: &__AddToLiveMeetingInput{
+			Meeting_link:     meeting_link,
+			Title:            title,
+			Meeting_password: meeting_password,
+			Duration:         duration,
+			Language:         language,
+			Attendees:        attendees,
+		},
+	}
+
+	data_ = &AddToLiveMeetingResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
@@ -3105,6 +3282,74 @@ func CreateBite(
 	}
 
 	data_ = &CreateBiteResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by CreateLiveActionItem.
+const CreateLiveActionItem_Operation = `
+mutation CreateLiveActionItem ($input: CreateLiveActionItemInput!) {
+	createLiveActionItem(input: $input) {
+		success
+	}
+}
+`
+
+func CreateLiveActionItem(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	input *CreateLiveActionItemInput,
+) (data_ *CreateLiveActionItemResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "CreateLiveActionItem",
+		Query:  CreateLiveActionItem_Operation,
+		Variables: &__CreateLiveActionItemInput{
+			Input: input,
+		},
+	}
+
+	data_ = &CreateLiveActionItemResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by CreateLiveSoundbite.
+const CreateLiveSoundbite_Operation = `
+mutation CreateLiveSoundbite ($input: CreateLiveSoundbiteInput!) {
+	createLiveSoundbite(input: $input) {
+		success
+	}
+}
+`
+
+func CreateLiveSoundbite(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	input *CreateLiveSoundbiteInput,
+) (data_ *CreateLiveSoundbiteResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "CreateLiveSoundbite",
+		Query:  CreateLiveSoundbite_Operation,
+		Variables: &__CreateLiveSoundbiteInput{
+			Input: input,
+		},
+	}
+
+	data_ = &CreateLiveSoundbiteResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(

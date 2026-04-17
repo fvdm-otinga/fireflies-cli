@@ -13,11 +13,13 @@ import (
 	contactscmd "github.com/fvdm-otinga/fireflies-cli/cmd/contacts"
 	livecmd "github.com/fvdm-otinga/fireflies-cli/cmd/live"
 	meetingscmd "github.com/fvdm-otinga/fireflies-cli/cmd/meetings"
+	realtimecmd "github.com/fvdm-otinga/fireflies-cli/cmd/realtime"
 	rulescmd "github.com/fvdm-otinga/fireflies-cli/cmd/rules"
 	soundbitescmd "github.com/fvdm-otinga/fireflies-cli/cmd/soundbites"
 	transcriptcmd "github.com/fvdm-otinga/fireflies-cli/cmd/transcript"
 	usercmd "github.com/fvdm-otinga/fireflies-cli/cmd/users"
 	vercmd "github.com/fvdm-otinga/fireflies-cli/cmd/version"
+	webhookscmd "github.com/fvdm-otinga/fireflies-cli/cmd/webhooks"
 	"github.com/fvdm-otinga/fireflies-cli/internal/flags"
 )
 
@@ -53,5 +55,7 @@ All commands accept --fields (field projection), --jq (post-filter),
 	root.AddCommand(rulescmd.NewRulesCmd())
 	root.AddCommand(contactscmd.NewContactsCmd())
 	root.AddCommand(livecmd.NewLiveCmd())
+	root.AddCommand(realtimecmd.NewRealtimeCmd())
+	root.AddCommand(webhookscmd.NewWebhooksCmd())
 	return root
 }

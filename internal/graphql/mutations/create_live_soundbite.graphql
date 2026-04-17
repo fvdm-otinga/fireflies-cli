@@ -1,0 +1,5 @@
+mutation CreateLiveSoundbite($input: CreateLiveSoundbiteInput!) {
+  createLiveSoundbite(input: $input) {
+    success
+  }
+}

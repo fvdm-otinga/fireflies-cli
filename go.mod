@@ -4,6 +4,7 @@ go 1.26.1
 
 require (
 	github.com/Khan/genqlient v0.8.1
+	github.com/gorilla/websocket v1.5.3
 	github.com/itchyny/gojq v0.12.19
 	github.com/pelletier/go-toml/v2 v2.3.0
 	github.com/spf13/cobra v1.10.2

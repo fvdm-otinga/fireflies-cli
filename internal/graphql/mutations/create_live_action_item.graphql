@@ -1,0 +1,5 @@
+mutation CreateLiveActionItem($input: CreateLiveActionItemInput!) {
+  createLiveActionItem(input: $input) {
+    success
+  }
+}

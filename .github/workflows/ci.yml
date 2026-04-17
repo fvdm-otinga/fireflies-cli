@@ -64,6 +64,10 @@ jobs:
 
   govulncheck:
     runs-on: ubuntu-latest
+    # Non-blocking until go1.26.2 ships upstream: go1.26.1 stdlib has 4 open
+    # CVEs (crypto/tls DoS, crypto/x509 bypass) with no mitigation in user code.
+    # See docs/security-audit-v1.md.
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5

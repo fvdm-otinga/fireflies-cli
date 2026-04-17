@@ -1,0 +1,11 @@
+mutation UpdateMeetingChannel($input: UpdateMeetingChannelInput!) {
+  updateMeetingChannel(input: $input) {
+    id
+    title
+    date
+    channels {
+      id
+      title
+    }
+  }
+}

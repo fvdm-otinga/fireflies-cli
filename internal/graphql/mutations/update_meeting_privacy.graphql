@@ -1,0 +1,8 @@
+mutation UpdateMeetingPrivacy($input: UpdateMeetingPrivacyInput!) {
+  updateMeetingPrivacy(input: $input) {
+    id
+    title
+    privacy
+    date
+  }
+}

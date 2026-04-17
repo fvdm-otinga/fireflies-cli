@@ -1,0 +1,7 @@
+mutation UploadAudio($input: AudioUploadInput) {
+  uploadAudio(input: $input) {
+    success
+    title
+    message
+  }
+}

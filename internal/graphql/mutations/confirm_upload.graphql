@@ -1,0 +1,7 @@
+mutation ConfirmUpload($input: ConfirmUploadInput!) {
+  confirmUpload(input: $input) {
+    success
+    meeting_id
+    message
+  }
+}

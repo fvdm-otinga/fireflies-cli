@@ -1,0 +1,9 @@
+mutation UpdateMeetingTitle($input: UpdateMeetingTitleInput!) {
+  updateMeetingTitle(input: $input) {
+    id
+    title
+    date
+    duration
+    organizer_email
+  }
+}

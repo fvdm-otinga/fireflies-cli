@@ -1,0 +1,8 @@
+mutation SetUserRole($user_id: String!, $role: Role!) {
+  setUserRole(user_id: $user_id, role: $role) {
+    user_id
+    email
+    name
+    is_admin
+  }
+}

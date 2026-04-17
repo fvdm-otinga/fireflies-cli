@@ -1,0 +1,6 @@
+mutation UpdateMeetingState($input: UpdateMeetingStateInput!) {
+  updateMeetingState(input: $input) {
+    success
+    action
+  }
+}

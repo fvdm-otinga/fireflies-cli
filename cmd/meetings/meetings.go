@@ -12,5 +12,11 @@ func NewMeetingsCmd() *cobra.Command {
 	c.AddCommand(newListCmd())
 	c.AddCommand(newGetCmd())
 	c.AddCommand(newActiveCmd())
+	c.AddCommand(newUploadCmd())
+	c.AddCommand(newUpdateCmd())
+	c.AddCommand(newMoveCmd())
+	c.AddCommand(newShareCmd())
+	c.AddCommand(newRevokeCmd())
+	c.AddCommand(newDeleteCmd())
 	return c
 }

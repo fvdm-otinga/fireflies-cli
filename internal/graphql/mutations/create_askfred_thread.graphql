@@ -1,0 +1,12 @@
+mutation CreateAskFredThread($input: CreateAskFredThreadInput!) {
+  createAskFredThread(input: $input) {
+    message {
+      id
+      thread_id
+      query
+      answer
+      status
+      created_at
+    }
+  }
+}

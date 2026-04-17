@@ -1,0 +1,7 @@
+mutation CreateUploadUrl($input: CreateUploadUrlInput!) {
+  createUploadUrl(input: $input) {
+    upload_url
+    meeting_id
+    expires_at
+  }
+}

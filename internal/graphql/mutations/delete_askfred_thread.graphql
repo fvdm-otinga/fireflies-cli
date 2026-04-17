@@ -1,0 +1,7 @@
+mutation DeleteAskFredThread($id: String!) {
+  deleteAskFredThread(id: $id) {
+    id
+    title
+    created_at
+  }
+}

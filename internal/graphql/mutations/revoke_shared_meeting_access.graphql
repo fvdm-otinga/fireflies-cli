@@ -1,0 +1,6 @@
+mutation RevokeSharedMeetingAccess($input: RevokeSharedMeetingAccessInput!) {
+  revokeSharedMeetingAccess(input: $input) {
+    success
+    message
+  }
+}

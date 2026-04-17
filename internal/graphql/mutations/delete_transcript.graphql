@@ -1,0 +1,6 @@
+mutation DeleteTranscript($id: String!) {
+  deleteTranscript(id: $id) {
+    id
+    title
+  }
+}

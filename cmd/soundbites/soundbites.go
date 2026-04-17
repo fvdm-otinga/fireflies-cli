@@ -11,5 +11,6 @@ func NewSoundbitesCmd() *cobra.Command {
 	}
 	c.AddCommand(newListCmd())
 	c.AddCommand(newGetCmd())
+	c.AddCommand(newCreateCmd())
 	return c
 }

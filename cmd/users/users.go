@@ -12,5 +12,6 @@ func NewUsersCmd() *cobra.Command {
 	c.AddCommand(newWhoamiCmd())
 	c.AddCommand(newListCmd())
 	c.AddCommand(newGroupsCmd())
+	c.AddCommand(newSetRoleCmd())
 	return c
 }

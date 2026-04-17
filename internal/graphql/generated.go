@@ -514,6 +514,33 @@ type AppsResponse struct {
 // GetApps returns AppsResponse.Apps, and is useful for accessing the field via an interface.
 func (v *AppsResponse) GetApps() *AppsApps { return v.Apps }
 
+type AskFredMeetingFiltersInput struct {
+	Start_time     *string  `json:"start_time"`
+	End_time       *string  `json:"end_time"`
+	Channel_ids    []string `json:"channel_ids"`
+	Organizers     []string `json:"organizers"`
+	Participants   []string `json:"participants"`
+	Transcript_ids []string `json:"transcript_ids"`
+}
+
+// GetStart_time returns AskFredMeetingFiltersInput.Start_time, and is useful for accessing the field via an interface.
+func (v *AskFredMeetingFiltersInput) GetStart_time() *string { return v.Start_time }
+
+// GetEnd_time returns AskFredMeetingFiltersInput.End_time, and is useful for accessing the field via an interface.
+func (v *AskFredMeetingFiltersInput) GetEnd_time() *string { return v.End_time }
+
+// GetChannel_ids returns AskFredMeetingFiltersInput.Channel_ids, and is useful for accessing the field via an interface.
+func (v *AskFredMeetingFiltersInput) GetChannel_ids() []string { return v.Channel_ids }
+
+// GetOrganizers returns AskFredMeetingFiltersInput.Organizers, and is useful for accessing the field via an interface.
+func (v *AskFredMeetingFiltersInput) GetOrganizers() []string { return v.Organizers }
+
+// GetParticipants returns AskFredMeetingFiltersInput.Participants, and is useful for accessing the field via an interface.
+func (v *AskFredMeetingFiltersInput) GetParticipants() []string { return v.Participants }
+
+// GetTranscript_ids returns AskFredMeetingFiltersInput.Transcript_ids, and is useful for accessing the field via an interface.
+func (v *AskFredMeetingFiltersInput) GetTranscript_ids() []string { return v.Transcript_ids }
+
 // The status of an AskFred message
 type AskFredMessageStatus string
 
@@ -658,6 +685,78 @@ type AskFredThreadsResponse struct {
 func (v *AskFredThreadsResponse) GetAskfred_threads() []*AskFredThreadsAskfred_threadsAskFredThreadSummary {
 	return v.Askfred_threads
 }
+
+type AttendeeInput struct {
+	Email       *string `json:"email"`
+	PhoneNumber *string `json:"phoneNumber"`
+	DisplayName *string `json:"displayName"`
+}
+
+// GetEmail returns AttendeeInput.Email, and is useful for accessing the field via an interface.
+func (v *AttendeeInput) GetEmail() *string { return v.Email }
+
+// GetPhoneNumber returns AttendeeInput.PhoneNumber, and is useful for accessing the field via an interface.
+func (v *AttendeeInput) GetPhoneNumber() *string { return v.PhoneNumber }
+
+// GetDisplayName returns AttendeeInput.DisplayName, and is useful for accessing the field via an interface.
+func (v *AttendeeInput) GetDisplayName() *string { return v.DisplayName }
+
+type AudioUploadInput struct {
+	Url                 string             `json:"url"`
+	Webhook             *string            `json:"webhook"`
+	Title               *string            `json:"title"`
+	Attendees           []*AttendeeInput   `json:"attendees,omitempty"`
+	Custom_language     *string            `json:"custom_language"`
+	Client_reference_id *string            `json:"client_reference_id"`
+	Save_video          *bool              `json:"save_video"`
+	Bypass_size_check   *bool              `json:"bypass_size_check"`
+	Download_auth       *DownloadAuthInput `json:"download_auth,omitempty"`
+}
+
+// GetUrl returns AudioUploadInput.Url, and is useful for accessing the field via an interface.
+func (v *AudioUploadInput) GetUrl() string { return v.Url }
+
+// GetWebhook returns AudioUploadInput.Webhook, and is useful for accessing the field via an interface.
+func (v *AudioUploadInput) GetWebhook() *string { return v.Webhook }
+
+// GetTitle returns AudioUploadInput.Title, and is useful for accessing the field via an interface.
+func (v *AudioUploadInput) GetTitle() *string { return v.Title }
+
+// GetAttendees returns AudioUploadInput.Attendees, and is useful for accessing the field via an interface.
+func (v *AudioUploadInput) GetAttendees() []*AttendeeInput { return v.Attendees }
+
+// GetCustom_language returns AudioUploadInput.Custom_language, and is useful for accessing the field via an interface.
+func (v *AudioUploadInput) GetCustom_language() *string { return v.Custom_language }
+
+// GetClient_reference_id returns AudioUploadInput.Client_reference_id, and is useful for accessing the field via an interface.
+func (v *AudioUploadInput) GetClient_reference_id() *string { return v.Client_reference_id }
+
+// GetSave_video returns AudioUploadInput.Save_video, and is useful for accessing the field via an interface.
+func (v *AudioUploadInput) GetSave_video() *bool { return v.Save_video }
+
+// GetBypass_size_check returns AudioUploadInput.Bypass_size_check, and is useful for accessing the field via an interface.
+func (v *AudioUploadInput) GetBypass_size_check() *bool { return v.Bypass_size_check }
+
+// GetDownload_auth returns AudioUploadInput.Download_auth, and is useful for accessing the field via an interface.
+func (v *AudioUploadInput) GetDownload_auth() *DownloadAuthInput { return v.Download_auth }
+
+type BasicAuthInput struct {
+	Username *string `json:"username"`
+	Password string  `json:"password"`
+}
+
+// GetUsername returns BasicAuthInput.Username, and is useful for accessing the field via an interface.
+func (v *BasicAuthInput) GetUsername() *string { return v.Username }
+
+// GetPassword returns BasicAuthInput.Password, and is useful for accessing the field via an interface.
+func (v *BasicAuthInput) GetPassword() string { return v.Password }
+
+type BearerTokenAuthInput struct {
+	Token string `json:"token"`
+}
+
+// GetToken returns BearerTokenAuthInput.Token, and is useful for accessing the field via an interface.
+func (v *BearerTokenAuthInput) GetToken() string { return v.Token }
 
 // BiteBite includes the requested fields of the GraphQL type Bite.
 type BiteBite struct {
@@ -1017,6 +1116,39 @@ type ChannelsResponse struct {
 // GetChannels returns ChannelsResponse.Channels, and is useful for accessing the field via an interface.
 func (v *ChannelsResponse) GetChannels() []*ChannelsChannelsChannel { return v.Channels }
 
+// ConfirmUploadConfirmUploadConfirmUploadResponse includes the requested fields of the GraphQL type ConfirmUploadResponse.
+type ConfirmUploadConfirmUploadConfirmUploadResponse struct {
+	Success    bool   `json:"success"`
+	Meeting_id string `json:"meeting_id"`
+	Message    string `json:"message"`
+}
+
+// GetSuccess returns ConfirmUploadConfirmUploadConfirmUploadResponse.Success, and is useful for accessing the field via an interface.
+func (v *ConfirmUploadConfirmUploadConfirmUploadResponse) GetSuccess() bool { return v.Success }
+
+// GetMeeting_id returns ConfirmUploadConfirmUploadConfirmUploadResponse.Meeting_id, and is useful for accessing the field via an interface.
+func (v *ConfirmUploadConfirmUploadConfirmUploadResponse) GetMeeting_id() string { return v.Meeting_id }
+
+// GetMessage returns ConfirmUploadConfirmUploadConfirmUploadResponse.Message, and is useful for accessing the field via an interface.
+func (v *ConfirmUploadConfirmUploadConfirmUploadResponse) GetMessage() string { return v.Message }
+
+type ConfirmUploadInput struct {
+	Meeting_id string `json:"meeting_id"`
+}
+
+// GetMeeting_id returns ConfirmUploadInput.Meeting_id, and is useful for accessing the field via an interface.
+func (v *ConfirmUploadInput) GetMeeting_id() string { return v.Meeting_id }
+
+// ConfirmUploadResponse is returned by ConfirmUpload on success.
+type ConfirmUploadResponse struct {
+	ConfirmUpload *ConfirmUploadConfirmUploadConfirmUploadResponse `json:"confirmUpload"`
+}
+
+// GetConfirmUpload returns ConfirmUploadResponse.ConfirmUpload, and is useful for accessing the field via an interface.
+func (v *ConfirmUploadResponse) GetConfirmUpload() *ConfirmUploadConfirmUploadConfirmUploadResponse {
+	return v.ConfirmUpload
+}
+
 // ContactsContactsContact includes the requested fields of the GraphQL type Contact.
 type ContactsContactsContact struct {
 	Email             string  `json:"email"`
@@ -1044,6 +1176,357 @@ type ContactsResponse struct {
 
 // GetContacts returns ContactsResponse.Contacts, and is useful for accessing the field via an interface.
 func (v *ContactsResponse) GetContacts() []*ContactsContactsContact { return v.Contacts }
+
+// ContinueAskFredThreadContinueAskFredThreadAskFredResponse includes the requested fields of the GraphQL type AskFredResponse.
+type ContinueAskFredThreadContinueAskFredThreadAskFredResponse struct {
+	// The generated message response
+	Message *ContinueAskFredThreadContinueAskFredThreadAskFredResponseMessageAskFredMessage `json:"message"`
+}
+
+// GetMessage returns ContinueAskFredThreadContinueAskFredThreadAskFredResponse.Message, and is useful for accessing the field via an interface.
+func (v *ContinueAskFredThreadContinueAskFredThreadAskFredResponse) GetMessage() *ContinueAskFredThreadContinueAskFredThreadAskFredResponseMessageAskFredMessage {
+	return v.Message
+}
+
+// ContinueAskFredThreadContinueAskFredThreadAskFredResponseMessageAskFredMessage includes the requested fields of the GraphQL type AskFredMessage.
+type ContinueAskFredThreadContinueAskFredThreadAskFredResponseMessageAskFredMessage struct {
+	Id         string               `json:"id"`
+	Thread_id  string               `json:"thread_id"`
+	Query      string               `json:"query"`
+	Answer     string               `json:"answer"`
+	Status     AskFredMessageStatus `json:"status"`
+	Created_at string               `json:"created_at"`
+}
+
+// GetId returns ContinueAskFredThreadContinueAskFredThreadAskFredResponseMessageAskFredMessage.Id, and is useful for accessing the field via an interface.
+func (v *ContinueAskFredThreadContinueAskFredThreadAskFredResponseMessageAskFredMessage) GetId() string {
+	return v.Id
+}
+
+// GetThread_id returns ContinueAskFredThreadContinueAskFredThreadAskFredResponseMessageAskFredMessage.Thread_id, and is useful for accessing the field via an interface.
+func (v *ContinueAskFredThreadContinueAskFredThreadAskFredResponseMessageAskFredMessage) GetThread_id() string {
+	return v.Thread_id
+}
+
+// GetQuery returns ContinueAskFredThreadContinueAskFredThreadAskFredResponseMessageAskFredMessage.Query, and is useful for accessing the field via an interface.
+func (v *ContinueAskFredThreadContinueAskFredThreadAskFredResponseMessageAskFredMessage) GetQuery() string {
+	return v.Query
+}
+
+// GetAnswer returns ContinueAskFredThreadContinueAskFredThreadAskFredResponseMessageAskFredMessage.Answer, and is useful for accessing the field via an interface.
+func (v *ContinueAskFredThreadContinueAskFredThreadAskFredResponseMessageAskFredMessage) GetAnswer() string {
+	return v.Answer
+}
+
+// GetStatus returns ContinueAskFredThreadContinueAskFredThreadAskFredResponseMessageAskFredMessage.Status, and is useful for accessing the field via an interface.
+func (v *ContinueAskFredThreadContinueAskFredThreadAskFredResponseMessageAskFredMessage) GetStatus() AskFredMessageStatus {
+	return v.Status
+}
+
+// GetCreated_at returns ContinueAskFredThreadContinueAskFredThreadAskFredResponseMessageAskFredMessage.Created_at, and is useful for accessing the field via an interface.
+func (v *ContinueAskFredThreadContinueAskFredThreadAskFredResponseMessageAskFredMessage) GetCreated_at() string {
+	return v.Created_at
+}
+
+type ContinueAskFredThreadInput struct {
+	Thread_id         string      `json:"thread_id"`
+	Query             string      `json:"query"`
+	Response_language *string     `json:"response_language"`
+	Format_mode       *FormatMode `json:"format_mode"`
+}
+
+// GetThread_id returns ContinueAskFredThreadInput.Thread_id, and is useful for accessing the field via an interface.
+func (v *ContinueAskFredThreadInput) GetThread_id() string { return v.Thread_id }
+
+// GetQuery returns ContinueAskFredThreadInput.Query, and is useful for accessing the field via an interface.
+func (v *ContinueAskFredThreadInput) GetQuery() string { return v.Query }
+
+// GetResponse_language returns ContinueAskFredThreadInput.Response_language, and is useful for accessing the field via an interface.
+func (v *ContinueAskFredThreadInput) GetResponse_language() *string { return v.Response_language }
+
+// GetFormat_mode returns ContinueAskFredThreadInput.Format_mode, and is useful for accessing the field via an interface.
+func (v *ContinueAskFredThreadInput) GetFormat_mode() *FormatMode { return v.Format_mode }
+
+// ContinueAskFredThreadResponse is returned by ContinueAskFredThread on success.
+type ContinueAskFredThreadResponse struct {
+	// Continue an existing AskFred conversation thread
+	ContinueAskFredThread *ContinueAskFredThreadContinueAskFredThreadAskFredResponse `json:"continueAskFredThread"`
+}
+
+// GetContinueAskFredThread returns ContinueAskFredThreadResponse.ContinueAskFredThread, and is useful for accessing the field via an interface.
+func (v *ContinueAskFredThreadResponse) GetContinueAskFredThread() *ContinueAskFredThreadContinueAskFredThreadAskFredResponse {
+	return v.ContinueAskFredThread
+}
+
+// CreateAskFredThreadCreateAskFredThreadAskFredResponse includes the requested fields of the GraphQL type AskFredResponse.
+type CreateAskFredThreadCreateAskFredThreadAskFredResponse struct {
+	// The generated message response
+	Message *CreateAskFredThreadCreateAskFredThreadAskFredResponseMessageAskFredMessage `json:"message"`
+}
+
+// GetMessage returns CreateAskFredThreadCreateAskFredThreadAskFredResponse.Message, and is useful for accessing the field via an interface.
+func (v *CreateAskFredThreadCreateAskFredThreadAskFredResponse) GetMessage() *CreateAskFredThreadCreateAskFredThreadAskFredResponseMessageAskFredMessage {
+	return v.Message
+}
+
+// CreateAskFredThreadCreateAskFredThreadAskFredResponseMessageAskFredMessage includes the requested fields of the GraphQL type AskFredMessage.
+type CreateAskFredThreadCreateAskFredThreadAskFredResponseMessageAskFredMessage struct {
+	Id         string               `json:"id"`
+	Thread_id  string               `json:"thread_id"`
+	Query      string               `json:"query"`
+	Answer     string               `json:"answer"`
+	Status     AskFredMessageStatus `json:"status"`
+	Created_at string               `json:"created_at"`
+}
+
+// GetId returns CreateAskFredThreadCreateAskFredThreadAskFredResponseMessageAskFredMessage.Id, and is useful for accessing the field via an interface.
+func (v *CreateAskFredThreadCreateAskFredThreadAskFredResponseMessageAskFredMessage) GetId() string {
+	return v.Id
+}
+
+// GetThread_id returns CreateAskFredThreadCreateAskFredThreadAskFredResponseMessageAskFredMessage.Thread_id, and is useful for accessing the field via an interface.
+func (v *CreateAskFredThreadCreateAskFredThreadAskFredResponseMessageAskFredMessage) GetThread_id() string {
+	return v.Thread_id
+}
+
+// GetQuery returns CreateAskFredThreadCreateAskFredThreadAskFredResponseMessageAskFredMessage.Query, and is useful for accessing the field via an interface.
+func (v *CreateAskFredThreadCreateAskFredThreadAskFredResponseMessageAskFredMessage) GetQuery() string {
+	return v.Query
+}
+
+// GetAnswer returns CreateAskFredThreadCreateAskFredThreadAskFredResponseMessageAskFredMessage.Answer, and is useful for accessing the field via an interface.
+func (v *CreateAskFredThreadCreateAskFredThreadAskFredResponseMessageAskFredMessage) GetAnswer() string {
+	return v.Answer
+}
+
+// GetStatus returns CreateAskFredThreadCreateAskFredThreadAskFredResponseMessageAskFredMessage.Status, and is useful for accessing the field via an interface.
+func (v *CreateAskFredThreadCreateAskFredThreadAskFredResponseMessageAskFredMessage) GetStatus() AskFredMessageStatus {
+	return v.Status
+}
+
+// GetCreated_at returns CreateAskFredThreadCreateAskFredThreadAskFredResponseMessageAskFredMessage.Created_at, and is useful for accessing the field via an interface.
+func (v *CreateAskFredThreadCreateAskFredThreadAskFredResponseMessageAskFredMessage) GetCreated_at() string {
+	return v.Created_at
+}
+
+type CreateAskFredThreadInput struct {
+	Query             string                      `json:"query"`
+	Transcript_id     *string                     `json:"transcript_id"`
+	Filters           *AskFredMeetingFiltersInput `json:"filters,omitempty"`
+	Response_language *string                     `json:"response_language"`
+	Format_mode       *FormatMode                 `json:"format_mode"`
+}
+
+// GetQuery returns CreateAskFredThreadInput.Query, and is useful for accessing the field via an interface.
+func (v *CreateAskFredThreadInput) GetQuery() string { return v.Query }
+
+// GetTranscript_id returns CreateAskFredThreadInput.Transcript_id, and is useful for accessing the field via an interface.
+func (v *CreateAskFredThreadInput) GetTranscript_id() *string { return v.Transcript_id }
+
+// GetFilters returns CreateAskFredThreadInput.Filters, and is useful for accessing the field via an interface.
+func (v *CreateAskFredThreadInput) GetFilters() *AskFredMeetingFiltersInput { return v.Filters }
+
+// GetResponse_language returns CreateAskFredThreadInput.Response_language, and is useful for accessing the field via an interface.
+func (v *CreateAskFredThreadInput) GetResponse_language() *string { return v.Response_language }
+
+// GetFormat_mode returns CreateAskFredThreadInput.Format_mode, and is useful for accessing the field via an interface.
+func (v *CreateAskFredThreadInput) GetFormat_mode() *FormatMode { return v.Format_mode }
+
+// CreateAskFredThreadResponse is returned by CreateAskFredThread on success.
+type CreateAskFredThreadResponse struct {
+	// Create a new AskFred thread with a question. Can be about a specific meeting or across multiple meetings with filters.
+	CreateAskFredThread *CreateAskFredThreadCreateAskFredThreadAskFredResponse `json:"createAskFredThread"`
+}
+
+// GetCreateAskFredThread returns CreateAskFredThreadResponse.CreateAskFredThread, and is useful for accessing the field via an interface.
+func (v *CreateAskFredThreadResponse) GetCreateAskFredThread() *CreateAskFredThreadCreateAskFredThreadAskFredResponse {
+	return v.CreateAskFredThread
+}
+
+// CreateBiteCreateBite includes the requested fields of the GraphQL type Bite.
+type CreateBiteCreateBite struct {
+	Id            string  `json:"id"`
+	Name          string  `json:"name"`
+	Transcript_id string  `json:"transcript_id"`
+	Start_time    float64 `json:"start_time"`
+	End_time      float64 `json:"end_time"`
+	Status        *string `json:"status"`
+	Media_type    *string `json:"media_type"`
+	Created_at    *string `json:"created_at"`
+}
+
+// GetId returns CreateBiteCreateBite.Id, and is useful for accessing the field via an interface.
+func (v *CreateBiteCreateBite) GetId() string { return v.Id }
+
+// GetName returns CreateBiteCreateBite.Name, and is useful for accessing the field via an interface.
+func (v *CreateBiteCreateBite) GetName() string { return v.Name }
+
+// GetTranscript_id returns CreateBiteCreateBite.Transcript_id, and is useful for accessing the field via an interface.
+func (v *CreateBiteCreateBite) GetTranscript_id() string { return v.Transcript_id }
+
+// GetStart_time returns CreateBiteCreateBite.Start_time, and is useful for accessing the field via an interface.
+func (v *CreateBiteCreateBite) GetStart_time() float64 { return v.Start_time }
+
+// GetEnd_time returns CreateBiteCreateBite.End_time, and is useful for accessing the field via an interface.
+func (v *CreateBiteCreateBite) GetEnd_time() float64 { return v.End_time }
+
+// GetStatus returns CreateBiteCreateBite.Status, and is useful for accessing the field via an interface.
+func (v *CreateBiteCreateBite) GetStatus() *string { return v.Status }
+
+// GetMedia_type returns CreateBiteCreateBite.Media_type, and is useful for accessing the field via an interface.
+func (v *CreateBiteCreateBite) GetMedia_type() *string { return v.Media_type }
+
+// GetCreated_at returns CreateBiteCreateBite.Created_at, and is useful for accessing the field via an interface.
+func (v *CreateBiteCreateBite) GetCreated_at() *string { return v.Created_at }
+
+// CreateBiteResponse is returned by CreateBite on success.
+type CreateBiteResponse struct {
+	CreateBite *CreateBiteCreateBite `json:"createBite"`
+}
+
+// GetCreateBite returns CreateBiteResponse.CreateBite, and is useful for accessing the field via an interface.
+func (v *CreateBiteResponse) GetCreateBite() *CreateBiteCreateBite { return v.CreateBite }
+
+// CreateUploadUrlCreateUploadUrlUploadUrlResponse includes the requested fields of the GraphQL type UploadUrlResponse.
+type CreateUploadUrlCreateUploadUrlUploadUrlResponse struct {
+	Upload_url string `json:"upload_url"`
+	Meeting_id string `json:"meeting_id"`
+	Expires_at string `json:"expires_at"`
+}
+
+// GetUpload_url returns CreateUploadUrlCreateUploadUrlUploadUrlResponse.Upload_url, and is useful for accessing the field via an interface.
+func (v *CreateUploadUrlCreateUploadUrlUploadUrlResponse) GetUpload_url() string { return v.Upload_url }
+
+// GetMeeting_id returns CreateUploadUrlCreateUploadUrlUploadUrlResponse.Meeting_id, and is useful for accessing the field via an interface.
+func (v *CreateUploadUrlCreateUploadUrlUploadUrlResponse) GetMeeting_id() string { return v.Meeting_id }
+
+// GetExpires_at returns CreateUploadUrlCreateUploadUrlUploadUrlResponse.Expires_at, and is useful for accessing the field via an interface.
+func (v *CreateUploadUrlCreateUploadUrlUploadUrlResponse) GetExpires_at() string { return v.Expires_at }
+
+type CreateUploadUrlInput struct {
+	Title           *string          `json:"title"`
+	Content_type    string           `json:"content_type"`
+	File_size       int              `json:"file_size"`
+	Custom_language *string          `json:"custom_language"`
+	Attendees       []*AttendeeInput `json:"attendees,omitempty"`
+}
+
+// GetTitle returns CreateUploadUrlInput.Title, and is useful for accessing the field via an interface.
+func (v *CreateUploadUrlInput) GetTitle() *string { return v.Title }
+
+// GetContent_type returns CreateUploadUrlInput.Content_type, and is useful for accessing the field via an interface.
+func (v *CreateUploadUrlInput) GetContent_type() string { return v.Content_type }
+
+// GetFile_size returns CreateUploadUrlInput.File_size, and is useful for accessing the field via an interface.
+func (v *CreateUploadUrlInput) GetFile_size() int { return v.File_size }
+
+// GetCustom_language returns CreateUploadUrlInput.Custom_language, and is useful for accessing the field via an interface.
+func (v *CreateUploadUrlInput) GetCustom_language() *string { return v.Custom_language }
+
+// GetAttendees returns CreateUploadUrlInput.Attendees, and is useful for accessing the field via an interface.
+func (v *CreateUploadUrlInput) GetAttendees() []*AttendeeInput { return v.Attendees }
+
+// CreateUploadUrlResponse is returned by CreateUploadUrl on success.
+type CreateUploadUrlResponse struct {
+	CreateUploadUrl *CreateUploadUrlCreateUploadUrlUploadUrlResponse `json:"createUploadUrl"`
+}
+
+// GetCreateUploadUrl returns CreateUploadUrlResponse.CreateUploadUrl, and is useful for accessing the field via an interface.
+func (v *CreateUploadUrlResponse) GetCreateUploadUrl() *CreateUploadUrlCreateUploadUrlUploadUrlResponse {
+	return v.CreateUploadUrl
+}
+
+// DeleteAskFredThreadDeleteAskFredThread includes the requested fields of the GraphQL type AskFredThread.
+type DeleteAskFredThreadDeleteAskFredThread struct {
+	Id         string `json:"id"`
+	Title      string `json:"title"`
+	Created_at string `json:"created_at"`
+}
+
+// GetId returns DeleteAskFredThreadDeleteAskFredThread.Id, and is useful for accessing the field via an interface.
+func (v *DeleteAskFredThreadDeleteAskFredThread) GetId() string { return v.Id }
+
+// GetTitle returns DeleteAskFredThreadDeleteAskFredThread.Title, and is useful for accessing the field via an interface.
+func (v *DeleteAskFredThreadDeleteAskFredThread) GetTitle() string { return v.Title }
+
+// GetCreated_at returns DeleteAskFredThreadDeleteAskFredThread.Created_at, and is useful for accessing the field via an interface.
+func (v *DeleteAskFredThreadDeleteAskFredThread) GetCreated_at() string { return v.Created_at }
+
+// DeleteAskFredThreadResponse is returned by DeleteAskFredThread on success.
+type DeleteAskFredThreadResponse struct {
+	// Delete an AskFred thread and all its messages
+	DeleteAskFredThread *DeleteAskFredThreadDeleteAskFredThread `json:"deleteAskFredThread"`
+}
+
+// GetDeleteAskFredThread returns DeleteAskFredThreadResponse.DeleteAskFredThread, and is useful for accessing the field via an interface.
+func (v *DeleteAskFredThreadResponse) GetDeleteAskFredThread() *DeleteAskFredThreadDeleteAskFredThread {
+	return v.DeleteAskFredThread
+}
+
+// DeleteTranscriptDeleteTranscript includes the requested fields of the GraphQL type Transcript.
+type DeleteTranscriptDeleteTranscript struct {
+	Id    *string `json:"id"`
+	Title *string `json:"title"`
+}
+
+// GetId returns DeleteTranscriptDeleteTranscript.Id, and is useful for accessing the field via an interface.
+func (v *DeleteTranscriptDeleteTranscript) GetId() *string { return v.Id }
+
+// GetTitle returns DeleteTranscriptDeleteTranscript.Title, and is useful for accessing the field via an interface.
+func (v *DeleteTranscriptDeleteTranscript) GetTitle() *string { return v.Title }
+
+// DeleteTranscriptResponse is returned by DeleteTranscript on success.
+type DeleteTranscriptResponse struct {
+	DeleteTranscript *DeleteTranscriptDeleteTranscript `json:"deleteTranscript"`
+}
+
+// GetDeleteTranscript returns DeleteTranscriptResponse.DeleteTranscript, and is useful for accessing the field via an interface.
+func (v *DeleteTranscriptResponse) GetDeleteTranscript() *DeleteTranscriptDeleteTranscript {
+	return v.DeleteTranscript
+}
+
+type DownloadAuthInput struct {
+	Type   DownloadAuthType      `json:"type"`
+	Bearer *BearerTokenAuthInput `json:"bearer,omitempty"`
+	Basic  *BasicAuthInput       `json:"basic,omitempty"`
+}
+
+// GetType returns DownloadAuthInput.Type, and is useful for accessing the field via an interface.
+func (v *DownloadAuthInput) GetType() DownloadAuthType { return v.Type }
+
+// GetBearer returns DownloadAuthInput.Bearer, and is useful for accessing the field via an interface.
+func (v *DownloadAuthInput) GetBearer() *BearerTokenAuthInput { return v.Bearer }
+
+// GetBasic returns DownloadAuthInput.Basic, and is useful for accessing the field via an interface.
+func (v *DownloadAuthInput) GetBasic() *BasicAuthInput { return v.Basic }
+
+// Authentication method for downloading the audio/video file
+type DownloadAuthType string
+
+const (
+	DownloadAuthTypeNone        DownloadAuthType = "none"
+	DownloadAuthTypeBearerToken DownloadAuthType = "bearer_token"
+	DownloadAuthTypeBasicAuth   DownloadAuthType = "basic_auth"
+)
+
+var AllDownloadAuthType = []DownloadAuthType{
+	DownloadAuthTypeNone,
+	DownloadAuthTypeBearerToken,
+	DownloadAuthTypeBasicAuth,
+}
+
+// Output format mode for AskFred responses
+type FormatMode string
+
+const (
+	FormatModeMarkdown  FormatMode = "markdown"
+	FormatModePlaintext FormatMode = "plaintext"
+)
+
+var AllFormatMode = []FormatMode{
+	FormatModeMarkdown,
+	FormatModePlaintext,
+}
 
 // LiveActionItemsLive_action_itemsLiveActionItem includes the requested fields of the GraphQL type LiveActionItem.
 type LiveActionItemsLive_action_itemsLiveActionItem struct {
@@ -1100,6 +1583,68 @@ const (
 var AllMeetingState = []MeetingState{
 	MeetingStateActive,
 	MeetingStatePaused,
+}
+
+// Actions that can be performed to change meeting state
+type MeetingStateAction string
+
+const (
+	MeetingStateActionPauseRecording  MeetingStateAction = "pause_recording"
+	MeetingStateActionResumeRecording MeetingStateAction = "resume_recording"
+)
+
+var AllMeetingStateAction = []MeetingStateAction{
+	MeetingStateActionPauseRecording,
+	MeetingStateActionResumeRecording,
+}
+
+type RevokeSharedMeetingAccessInput struct {
+	Meeting_id string `json:"meeting_id"`
+	Email      string `json:"email"`
+}
+
+// GetMeeting_id returns RevokeSharedMeetingAccessInput.Meeting_id, and is useful for accessing the field via an interface.
+func (v *RevokeSharedMeetingAccessInput) GetMeeting_id() string { return v.Meeting_id }
+
+// GetEmail returns RevokeSharedMeetingAccessInput.Email, and is useful for accessing the field via an interface.
+func (v *RevokeSharedMeetingAccessInput) GetEmail() string { return v.Email }
+
+// RevokeSharedMeetingAccessResponse is returned by RevokeSharedMeetingAccess on success.
+type RevokeSharedMeetingAccessResponse struct {
+	RevokeSharedMeetingAccess *RevokeSharedMeetingAccessRevokeSharedMeetingAccessRevokeSharedMeetingAccessResponse `json:"revokeSharedMeetingAccess"`
+}
+
+// GetRevokeSharedMeetingAccess returns RevokeSharedMeetingAccessResponse.RevokeSharedMeetingAccess, and is useful for accessing the field via an interface.
+func (v *RevokeSharedMeetingAccessResponse) GetRevokeSharedMeetingAccess() *RevokeSharedMeetingAccessRevokeSharedMeetingAccessRevokeSharedMeetingAccessResponse {
+	return v.RevokeSharedMeetingAccess
+}
+
+// RevokeSharedMeetingAccessRevokeSharedMeetingAccessRevokeSharedMeetingAccessResponse includes the requested fields of the GraphQL type RevokeSharedMeetingAccessResponse.
+type RevokeSharedMeetingAccessRevokeSharedMeetingAccessRevokeSharedMeetingAccessResponse struct {
+	Success bool    `json:"success"`
+	Message *string `json:"message"`
+}
+
+// GetSuccess returns RevokeSharedMeetingAccessRevokeSharedMeetingAccessRevokeSharedMeetingAccessResponse.Success, and is useful for accessing the field via an interface.
+func (v *RevokeSharedMeetingAccessRevokeSharedMeetingAccessRevokeSharedMeetingAccessResponse) GetSuccess() bool {
+	return v.Success
+}
+
+// GetMessage returns RevokeSharedMeetingAccessRevokeSharedMeetingAccessRevokeSharedMeetingAccessResponse.Message, and is useful for accessing the field via an interface.
+func (v *RevokeSharedMeetingAccessRevokeSharedMeetingAccessRevokeSharedMeetingAccessResponse) GetMessage() *string {
+	return v.Message
+}
+
+type Role string
+
+const (
+	RoleAdmin Role = "admin"
+	RoleUser  Role = "user"
+)
+
+var AllRole = []Role{
+	RoleAdmin,
+	RoleUser,
 }
 
 // RuleExecutionsByMeetingResponse is returned by RuleExecutionsByMeeting on success.
@@ -1211,6 +1756,285 @@ func (v *RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetin
 func (v *RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupMeetingRuleExecutionMeeting) GetOrganizer_email() *string {
 	return v.Organizer_email
 }
+
+// SetUserRoleResponse is returned by SetUserRole on success.
+type SetUserRoleResponse struct {
+	SetUserRole *SetUserRoleSetUserRoleUser `json:"setUserRole"`
+}
+
+// GetSetUserRole returns SetUserRoleResponse.SetUserRole, and is useful for accessing the field via an interface.
+func (v *SetUserRoleResponse) GetSetUserRole() *SetUserRoleSetUserRoleUser { return v.SetUserRole }
+
+// SetUserRoleSetUserRoleUser includes the requested fields of the GraphQL type User.
+type SetUserRoleSetUserRoleUser struct {
+	User_id  *string `json:"user_id"`
+	Email    *string `json:"email"`
+	Name     *string `json:"name"`
+	Is_admin *bool   `json:"is_admin"`
+}
+
+// GetUser_id returns SetUserRoleSetUserRoleUser.User_id, and is useful for accessing the field via an interface.
+func (v *SetUserRoleSetUserRoleUser) GetUser_id() *string { return v.User_id }
+
+// GetEmail returns SetUserRoleSetUserRoleUser.Email, and is useful for accessing the field via an interface.
+func (v *SetUserRoleSetUserRoleUser) GetEmail() *string { return v.Email }
+
+// GetName returns SetUserRoleSetUserRoleUser.Name, and is useful for accessing the field via an interface.
+func (v *SetUserRoleSetUserRoleUser) GetName() *string { return v.Name }
+
+// GetIs_admin returns SetUserRoleSetUserRoleUser.Is_admin, and is useful for accessing the field via an interface.
+func (v *SetUserRoleSetUserRoleUser) GetIs_admin() *bool { return v.Is_admin }
+
+type ShareMeetingInput struct {
+	Meeting_id  string   `json:"meeting_id"`
+	Emails      []string `json:"emails"`
+	Expiry_days *int     `json:"expiry_days"`
+}
+
+// GetMeeting_id returns ShareMeetingInput.Meeting_id, and is useful for accessing the field via an interface.
+func (v *ShareMeetingInput) GetMeeting_id() string { return v.Meeting_id }
+
+// GetEmails returns ShareMeetingInput.Emails, and is useful for accessing the field via an interface.
+func (v *ShareMeetingInput) GetEmails() []string { return v.Emails }
+
+// GetExpiry_days returns ShareMeetingInput.Expiry_days, and is useful for accessing the field via an interface.
+func (v *ShareMeetingInput) GetExpiry_days() *int { return v.Expiry_days }
+
+// ShareMeetingResponse is returned by ShareMeeting on success.
+type ShareMeetingResponse struct {
+	ShareMeeting *ShareMeetingShareMeetingShareMeetingResponse `json:"shareMeeting"`
+}
+
+// GetShareMeeting returns ShareMeetingResponse.ShareMeeting, and is useful for accessing the field via an interface.
+func (v *ShareMeetingResponse) GetShareMeeting() *ShareMeetingShareMeetingShareMeetingResponse {
+	return v.ShareMeeting
+}
+
+// ShareMeetingShareMeetingShareMeetingResponse includes the requested fields of the GraphQL type ShareMeetingResponse.
+type ShareMeetingShareMeetingShareMeetingResponse struct {
+	Success bool    `json:"success"`
+	Message *string `json:"message"`
+}
+
+// GetSuccess returns ShareMeetingShareMeetingShareMeetingResponse.Success, and is useful for accessing the field via an interface.
+func (v *ShareMeetingShareMeetingShareMeetingResponse) GetSuccess() bool { return v.Success }
+
+// GetMessage returns ShareMeetingShareMeetingShareMeetingResponse.Message, and is useful for accessing the field via an interface.
+func (v *ShareMeetingShareMeetingShareMeetingResponse) GetMessage() *string { return v.Message }
+
+type UpdateMeetingChannelInput struct {
+	Transcript_ids []string `json:"transcript_ids"`
+	Channel_id     string   `json:"channel_id"`
+}
+
+// GetTranscript_ids returns UpdateMeetingChannelInput.Transcript_ids, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingChannelInput) GetTranscript_ids() []string { return v.Transcript_ids }
+
+// GetChannel_id returns UpdateMeetingChannelInput.Channel_id, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingChannelInput) GetChannel_id() string { return v.Channel_id }
+
+// UpdateMeetingChannelResponse is returned by UpdateMeetingChannel on success.
+type UpdateMeetingChannelResponse struct {
+	UpdateMeetingChannel []*UpdateMeetingChannelUpdateMeetingChannelTranscript `json:"updateMeetingChannel"`
+}
+
+// GetUpdateMeetingChannel returns UpdateMeetingChannelResponse.UpdateMeetingChannel, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingChannelResponse) GetUpdateMeetingChannel() []*UpdateMeetingChannelUpdateMeetingChannelTranscript {
+	return v.UpdateMeetingChannel
+}
+
+// UpdateMeetingChannelUpdateMeetingChannelTranscript includes the requested fields of the GraphQL type Transcript.
+type UpdateMeetingChannelUpdateMeetingChannelTranscript struct {
+	Id       *string                                                              `json:"id"`
+	Title    *string                                                              `json:"title"`
+	Date     *float64                                                             `json:"date"`
+	Channels []*UpdateMeetingChannelUpdateMeetingChannelTranscriptChannelsChannel `json:"channels"`
+}
+
+// GetId returns UpdateMeetingChannelUpdateMeetingChannelTranscript.Id, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingChannelUpdateMeetingChannelTranscript) GetId() *string { return v.Id }
+
+// GetTitle returns UpdateMeetingChannelUpdateMeetingChannelTranscript.Title, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingChannelUpdateMeetingChannelTranscript) GetTitle() *string { return v.Title }
+
+// GetDate returns UpdateMeetingChannelUpdateMeetingChannelTranscript.Date, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingChannelUpdateMeetingChannelTranscript) GetDate() *float64 { return v.Date }
+
+// GetChannels returns UpdateMeetingChannelUpdateMeetingChannelTranscript.Channels, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingChannelUpdateMeetingChannelTranscript) GetChannels() []*UpdateMeetingChannelUpdateMeetingChannelTranscriptChannelsChannel {
+	return v.Channels
+}
+
+// UpdateMeetingChannelUpdateMeetingChannelTranscriptChannelsChannel includes the requested fields of the GraphQL type Channel.
+type UpdateMeetingChannelUpdateMeetingChannelTranscriptChannelsChannel struct {
+	Id    string  `json:"id"`
+	Title *string `json:"title"`
+}
+
+// GetId returns UpdateMeetingChannelUpdateMeetingChannelTranscriptChannelsChannel.Id, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingChannelUpdateMeetingChannelTranscriptChannelsChannel) GetId() string {
+	return v.Id
+}
+
+// GetTitle returns UpdateMeetingChannelUpdateMeetingChannelTranscriptChannelsChannel.Title, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingChannelUpdateMeetingChannelTranscriptChannelsChannel) GetTitle() *string {
+	return v.Title
+}
+
+type UpdateMeetingPrivacyInput struct {
+	Id      string         `json:"id"`
+	Privacy MeetingPrivacy `json:"privacy"`
+}
+
+// GetId returns UpdateMeetingPrivacyInput.Id, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingPrivacyInput) GetId() string { return v.Id }
+
+// GetPrivacy returns UpdateMeetingPrivacyInput.Privacy, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingPrivacyInput) GetPrivacy() MeetingPrivacy { return v.Privacy }
+
+// UpdateMeetingPrivacyResponse is returned by UpdateMeetingPrivacy on success.
+type UpdateMeetingPrivacyResponse struct {
+	UpdateMeetingPrivacy *UpdateMeetingPrivacyUpdateMeetingPrivacyTranscript `json:"updateMeetingPrivacy"`
+}
+
+// GetUpdateMeetingPrivacy returns UpdateMeetingPrivacyResponse.UpdateMeetingPrivacy, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingPrivacyResponse) GetUpdateMeetingPrivacy() *UpdateMeetingPrivacyUpdateMeetingPrivacyTranscript {
+	return v.UpdateMeetingPrivacy
+}
+
+// UpdateMeetingPrivacyUpdateMeetingPrivacyTranscript includes the requested fields of the GraphQL type Transcript.
+type UpdateMeetingPrivacyUpdateMeetingPrivacyTranscript struct {
+	Id      *string  `json:"id"`
+	Title   *string  `json:"title"`
+	Privacy *string  `json:"privacy"`
+	Date    *float64 `json:"date"`
+}
+
+// GetId returns UpdateMeetingPrivacyUpdateMeetingPrivacyTranscript.Id, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingPrivacyUpdateMeetingPrivacyTranscript) GetId() *string { return v.Id }
+
+// GetTitle returns UpdateMeetingPrivacyUpdateMeetingPrivacyTranscript.Title, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingPrivacyUpdateMeetingPrivacyTranscript) GetTitle() *string { return v.Title }
+
+// GetPrivacy returns UpdateMeetingPrivacyUpdateMeetingPrivacyTranscript.Privacy, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingPrivacyUpdateMeetingPrivacyTranscript) GetPrivacy() *string { return v.Privacy }
+
+// GetDate returns UpdateMeetingPrivacyUpdateMeetingPrivacyTranscript.Date, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingPrivacyUpdateMeetingPrivacyTranscript) GetDate() *float64 { return v.Date }
+
+type UpdateMeetingStateInput struct {
+	Meeting_id string `json:"meeting_id"`
+	// The state action to execute (pause_recording or resume_recording)
+	Action MeetingStateAction `json:"action"`
+}
+
+// GetMeeting_id returns UpdateMeetingStateInput.Meeting_id, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingStateInput) GetMeeting_id() string { return v.Meeting_id }
+
+// GetAction returns UpdateMeetingStateInput.Action, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingStateInput) GetAction() MeetingStateAction { return v.Action }
+
+// UpdateMeetingStateResponse is returned by UpdateMeetingState on success.
+type UpdateMeetingStateResponse struct {
+	// Update meeting state (pause or resume recording)
+	UpdateMeetingState *UpdateMeetingStateUpdateMeetingStateUpdateMeetingStateResult `json:"updateMeetingState"`
+}
+
+// GetUpdateMeetingState returns UpdateMeetingStateResponse.UpdateMeetingState, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingStateResponse) GetUpdateMeetingState() *UpdateMeetingStateUpdateMeetingStateUpdateMeetingStateResult {
+	return v.UpdateMeetingState
+}
+
+// UpdateMeetingStateUpdateMeetingStateUpdateMeetingStateResult includes the requested fields of the GraphQL type UpdateMeetingStateResult.
+type UpdateMeetingStateUpdateMeetingStateUpdateMeetingStateResult struct {
+	// Whether the action was executed successfully
+	Success bool `json:"success"`
+	// The action that was executed
+	Action MeetingStateAction `json:"action"`
+}
+
+// GetSuccess returns UpdateMeetingStateUpdateMeetingStateUpdateMeetingStateResult.Success, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingStateUpdateMeetingStateUpdateMeetingStateResult) GetSuccess() bool {
+	return v.Success
+}
+
+// GetAction returns UpdateMeetingStateUpdateMeetingStateUpdateMeetingStateResult.Action, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingStateUpdateMeetingStateUpdateMeetingStateResult) GetAction() MeetingStateAction {
+	return v.Action
+}
+
+type UpdateMeetingTitleInput struct {
+	Title string `json:"title"`
+	Id    string `json:"id"`
+}
+
+// GetTitle returns UpdateMeetingTitleInput.Title, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingTitleInput) GetTitle() string { return v.Title }
+
+// GetId returns UpdateMeetingTitleInput.Id, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingTitleInput) GetId() string { return v.Id }
+
+// UpdateMeetingTitleResponse is returned by UpdateMeetingTitle on success.
+type UpdateMeetingTitleResponse struct {
+	UpdateMeetingTitle *UpdateMeetingTitleUpdateMeetingTitleTranscript `json:"updateMeetingTitle"`
+}
+
+// GetUpdateMeetingTitle returns UpdateMeetingTitleResponse.UpdateMeetingTitle, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingTitleResponse) GetUpdateMeetingTitle() *UpdateMeetingTitleUpdateMeetingTitleTranscript {
+	return v.UpdateMeetingTitle
+}
+
+// UpdateMeetingTitleUpdateMeetingTitleTranscript includes the requested fields of the GraphQL type Transcript.
+type UpdateMeetingTitleUpdateMeetingTitleTranscript struct {
+	Id              *string  `json:"id"`
+	Title           *string  `json:"title"`
+	Date            *float64 `json:"date"`
+	Duration        *float64 `json:"duration"`
+	Organizer_email *string  `json:"organizer_email"`
+}
+
+// GetId returns UpdateMeetingTitleUpdateMeetingTitleTranscript.Id, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingTitleUpdateMeetingTitleTranscript) GetId() *string { return v.Id }
+
+// GetTitle returns UpdateMeetingTitleUpdateMeetingTitleTranscript.Title, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingTitleUpdateMeetingTitleTranscript) GetTitle() *string { return v.Title }
+
+// GetDate returns UpdateMeetingTitleUpdateMeetingTitleTranscript.Date, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingTitleUpdateMeetingTitleTranscript) GetDate() *float64 { return v.Date }
+
+// GetDuration returns UpdateMeetingTitleUpdateMeetingTitleTranscript.Duration, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingTitleUpdateMeetingTitleTranscript) GetDuration() *float64 { return v.Duration }
+
+// GetOrganizer_email returns UpdateMeetingTitleUpdateMeetingTitleTranscript.Organizer_email, and is useful for accessing the field via an interface.
+func (v *UpdateMeetingTitleUpdateMeetingTitleTranscript) GetOrganizer_email() *string {
+	return v.Organizer_email
+}
+
+// UploadAudioResponse is returned by UploadAudio on success.
+type UploadAudioResponse struct {
+	UploadAudio *UploadAudioUploadAudioAudioUploadStatus `json:"uploadAudio"`
+}
+
+// GetUploadAudio returns UploadAudioResponse.UploadAudio, and is useful for accessing the field via an interface.
+func (v *UploadAudioResponse) GetUploadAudio() *UploadAudioUploadAudioAudioUploadStatus {
+	return v.UploadAudio
+}
+
+// UploadAudioUploadAudioAudioUploadStatus includes the requested fields of the GraphQL type AudioUploadStatus.
+type UploadAudioUploadAudioAudioUploadStatus struct {
+	Success bool   `json:"success"`
+	Title   string `json:"title"`
+	Message string `json:"message"`
+}
+
+// GetSuccess returns UploadAudioUploadAudioAudioUploadStatus.Success, and is useful for accessing the field via an interface.
+func (v *UploadAudioUploadAudioAudioUploadStatus) GetSuccess() bool { return v.Success }
+
+// GetTitle returns UploadAudioUploadAudioAudioUploadStatus.Title, and is useful for accessing the field via an interface.
+func (v *UploadAudioUploadAudioAudioUploadStatus) GetTitle() string { return v.Title }
+
+// GetMessage returns UploadAudioUploadAudioAudioUploadStatus.Message, and is useful for accessing the field via an interface.
+func (v *UploadAudioUploadAudioAudioUploadStatus) GetMessage() string { return v.Message }
 
 // UserGroupsResponse is returned by UserGroups on success.
 type UserGroupsResponse struct {
@@ -1430,6 +2254,78 @@ type __ChannelInput struct {
 // GetId returns __ChannelInput.Id, and is useful for accessing the field via an interface.
 func (v *__ChannelInput) GetId() string { return v.Id }
 
+// __ConfirmUploadInput is used internally by genqlient
+type __ConfirmUploadInput struct {
+	Input *ConfirmUploadInput `json:"input,omitempty"`
+}
+
+// GetInput returns __ConfirmUploadInput.Input, and is useful for accessing the field via an interface.
+func (v *__ConfirmUploadInput) GetInput() *ConfirmUploadInput { return v.Input }
+
+// __ContinueAskFredThreadInput is used internally by genqlient
+type __ContinueAskFredThreadInput struct {
+	Input *ContinueAskFredThreadInput `json:"input,omitempty"`
+}
+
+// GetInput returns __ContinueAskFredThreadInput.Input, and is useful for accessing the field via an interface.
+func (v *__ContinueAskFredThreadInput) GetInput() *ContinueAskFredThreadInput { return v.Input }
+
+// __CreateAskFredThreadInput is used internally by genqlient
+type __CreateAskFredThreadInput struct {
+	Input *CreateAskFredThreadInput `json:"input,omitempty"`
+}
+
+// GetInput returns __CreateAskFredThreadInput.Input, and is useful for accessing the field via an interface.
+func (v *__CreateAskFredThreadInput) GetInput() *CreateAskFredThreadInput { return v.Input }
+
+// __CreateBiteInput is used internally by genqlient
+type __CreateBiteInput struct {
+	Transcript_Id string  `json:"transcript_Id"`
+	Name          *string `json:"name"`
+	Start_time    float64 `json:"start_time"`
+	End_time      float64 `json:"end_time"`
+	Media_type    *string `json:"media_type"`
+}
+
+// GetTranscript_Id returns __CreateBiteInput.Transcript_Id, and is useful for accessing the field via an interface.
+func (v *__CreateBiteInput) GetTranscript_Id() string { return v.Transcript_Id }
+
+// GetName returns __CreateBiteInput.Name, and is useful for accessing the field via an interface.
+func (v *__CreateBiteInput) GetName() *string { return v.Name }
+
+// GetStart_time returns __CreateBiteInput.Start_time, and is useful for accessing the field via an interface.
+func (v *__CreateBiteInput) GetStart_time() float64 { return v.Start_time }
+
+// GetEnd_time returns __CreateBiteInput.End_time, and is useful for accessing the field via an interface.
+func (v *__CreateBiteInput) GetEnd_time() float64 { return v.End_time }
+
+// GetMedia_type returns __CreateBiteInput.Media_type, and is useful for accessing the field via an interface.
+func (v *__CreateBiteInput) GetMedia_type() *string { return v.Media_type }
+
+// __CreateUploadUrlInput is used internally by genqlient
+type __CreateUploadUrlInput struct {
+	Input *CreateUploadUrlInput `json:"input,omitempty"`
+}
+
+// GetInput returns __CreateUploadUrlInput.Input, and is useful for accessing the field via an interface.
+func (v *__CreateUploadUrlInput) GetInput() *CreateUploadUrlInput { return v.Input }
+
+// __DeleteAskFredThreadInput is used internally by genqlient
+type __DeleteAskFredThreadInput struct {
+	Id string `json:"id"`
+}
+
+// GetId returns __DeleteAskFredThreadInput.Id, and is useful for accessing the field via an interface.
+func (v *__DeleteAskFredThreadInput) GetId() string { return v.Id }
+
+// __DeleteTranscriptInput is used internally by genqlient
+type __DeleteTranscriptInput struct {
+	Id string `json:"id"`
+}
+
+// GetId returns __DeleteTranscriptInput.Id, and is useful for accessing the field via an interface.
+func (v *__DeleteTranscriptInput) GetId() string { return v.Id }
+
 // __LiveActionItemsInput is used internally by genqlient
 type __LiveActionItemsInput struct {
 	Meeting_id string `json:"meeting_id"`
@@ -1437,6 +2333,14 @@ type __LiveActionItemsInput struct {
 
 // GetMeeting_id returns __LiveActionItemsInput.Meeting_id, and is useful for accessing the field via an interface.
 func (v *__LiveActionItemsInput) GetMeeting_id() string { return v.Meeting_id }
+
+// __RevokeSharedMeetingAccessInput is used internally by genqlient
+type __RevokeSharedMeetingAccessInput struct {
+	Input *RevokeSharedMeetingAccessInput `json:"input,omitempty"`
+}
+
+// GetInput returns __RevokeSharedMeetingAccessInput.Input, and is useful for accessing the field via an interface.
+func (v *__RevokeSharedMeetingAccessInput) GetInput() *RevokeSharedMeetingAccessInput { return v.Input }
 
 // __RuleExecutionsByMeetingInput is used internally by genqlient
 type __RuleExecutionsByMeetingInput struct {
@@ -1457,6 +2361,66 @@ func (v *__RuleExecutionsByMeetingInput) GetLogs_per_meeting() *int { return v.L
 
 // GetMeeting_id returns __RuleExecutionsByMeetingInput.Meeting_id, and is useful for accessing the field via an interface.
 func (v *__RuleExecutionsByMeetingInput) GetMeeting_id() *string { return v.Meeting_id }
+
+// __SetUserRoleInput is used internally by genqlient
+type __SetUserRoleInput struct {
+	User_id string `json:"user_id"`
+	Role    Role   `json:"role"`
+}
+
+// GetUser_id returns __SetUserRoleInput.User_id, and is useful for accessing the field via an interface.
+func (v *__SetUserRoleInput) GetUser_id() string { return v.User_id }
+
+// GetRole returns __SetUserRoleInput.Role, and is useful for accessing the field via an interface.
+func (v *__SetUserRoleInput) GetRole() Role { return v.Role }
+
+// __ShareMeetingInput is used internally by genqlient
+type __ShareMeetingInput struct {
+	Input *ShareMeetingInput `json:"input,omitempty"`
+}
+
+// GetInput returns __ShareMeetingInput.Input, and is useful for accessing the field via an interface.
+func (v *__ShareMeetingInput) GetInput() *ShareMeetingInput { return v.Input }
+
+// __UpdateMeetingChannelInput is used internally by genqlient
+type __UpdateMeetingChannelInput struct {
+	Input *UpdateMeetingChannelInput `json:"input,omitempty"`
+}
+
+// GetInput returns __UpdateMeetingChannelInput.Input, and is useful for accessing the field via an interface.
+func (v *__UpdateMeetingChannelInput) GetInput() *UpdateMeetingChannelInput { return v.Input }
+
+// __UpdateMeetingPrivacyInput is used internally by genqlient
+type __UpdateMeetingPrivacyInput struct {
+	Input *UpdateMeetingPrivacyInput `json:"input,omitempty"`
+}
+
+// GetInput returns __UpdateMeetingPrivacyInput.Input, and is useful for accessing the field via an interface.
+func (v *__UpdateMeetingPrivacyInput) GetInput() *UpdateMeetingPrivacyInput { return v.Input }
+
+// __UpdateMeetingStateInput is used internally by genqlient
+type __UpdateMeetingStateInput struct {
+	Input *UpdateMeetingStateInput `json:"input,omitempty"`
+}
+
+// GetInput returns __UpdateMeetingStateInput.Input, and is useful for accessing the field via an interface.
+func (v *__UpdateMeetingStateInput) GetInput() *UpdateMeetingStateInput { return v.Input }
+
+// __UpdateMeetingTitleInput is used internally by genqlient
+type __UpdateMeetingTitleInput struct {
+	Input *UpdateMeetingTitleInput `json:"input,omitempty"`
+}
+
+// GetInput returns __UpdateMeetingTitleInput.Input, and is useful for accessing the field via an interface.
+func (v *__UpdateMeetingTitleInput) GetInput() *UpdateMeetingTitleInput { return v.Input }
+
+// __UploadAudioInput is used internally by genqlient
+type __UploadAudioInput struct {
+	Input *AudioUploadInput `json:"input,omitempty"`
+}
+
+// GetInput returns __UploadAudioInput.Input, and is useful for accessing the field via an interface.
+func (v *__UploadAudioInput) GetInput() *AudioUploadInput { return v.Input }
 
 // __UserGroupsInput is used internally by genqlient
 type __UserGroupsInput struct {
@@ -1952,6 +2916,42 @@ func Channels(
 	return data_, err_
 }
 
+// The mutation executed by ConfirmUpload.
+const ConfirmUpload_Operation = `
+mutation ConfirmUpload ($input: ConfirmUploadInput!) {
+	confirmUpload(input: $input) {
+		success
+		meeting_id
+		message
+	}
+}
+`
+
+func ConfirmUpload(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	input *ConfirmUploadInput,
+) (data_ *ConfirmUploadResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "ConfirmUpload",
+		Query:  ConfirmUpload_Operation,
+		Variables: &__ConfirmUploadInput{
+			Input: input,
+		},
+	}
+
+	data_ = &ConfirmUploadResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
 // The query executed by Contacts.
 const Contacts_Operation = `
 query Contacts {
@@ -1974,6 +2974,244 @@ func Contacts(
 	}
 
 	data_ = &ContactsResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by ContinueAskFredThread.
+const ContinueAskFredThread_Operation = `
+mutation ContinueAskFredThread ($input: ContinueAskFredThreadInput!) {
+	continueAskFredThread(input: $input) {
+		message {
+			id
+			thread_id
+			query
+			answer
+			status
+			created_at
+		}
+	}
+}
+`
+
+func ContinueAskFredThread(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	input *ContinueAskFredThreadInput,
+) (data_ *ContinueAskFredThreadResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "ContinueAskFredThread",
+		Query:  ContinueAskFredThread_Operation,
+		Variables: &__ContinueAskFredThreadInput{
+			Input: input,
+		},
+	}
+
+	data_ = &ContinueAskFredThreadResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by CreateAskFredThread.
+const CreateAskFredThread_Operation = `
+mutation CreateAskFredThread ($input: CreateAskFredThreadInput!) {
+	createAskFredThread(input: $input) {
+		message {
+			id
+			thread_id
+			query
+			answer
+			status
+			created_at
+		}
+	}
+}
+`
+
+func CreateAskFredThread(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	input *CreateAskFredThreadInput,
+) (data_ *CreateAskFredThreadResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "CreateAskFredThread",
+		Query:  CreateAskFredThread_Operation,
+		Variables: &__CreateAskFredThreadInput{
+			Input: input,
+		},
+	}
+
+	data_ = &CreateAskFredThreadResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by CreateBite.
+const CreateBite_Operation = `
+mutation CreateBite ($transcript_Id: ID!, $name: String, $start_time: Float!, $end_time: Float!, $media_type: String) {
+	createBite(transcript_Id: $transcript_Id, name: $name, start_time: $start_time, end_time: $end_time, media_type: $media_type) {
+		id
+		name
+		transcript_id
+		start_time
+		end_time
+		status
+		media_type
+		created_at
+	}
+}
+`
+
+func CreateBite(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	transcript_Id string,
+	name *string,
+	start_time float64,
+	end_time float64,
+	media_type *string,
+) (data_ *CreateBiteResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "CreateBite",
+		Query:  CreateBite_Operation,
+		Variables: &__CreateBiteInput{
+			Transcript_Id: transcript_Id,
+			Name:          name,
+			Start_time:    start_time,
+			End_time:      end_time,
+			Media_type:    media_type,
+		},
+	}
+
+	data_ = &CreateBiteResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by CreateUploadUrl.
+const CreateUploadUrl_Operation = `
+mutation CreateUploadUrl ($input: CreateUploadUrlInput!) {
+	createUploadUrl(input: $input) {
+		upload_url
+		meeting_id
+		expires_at
+	}
+}
+`
+
+func CreateUploadUrl(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	input *CreateUploadUrlInput,
+) (data_ *CreateUploadUrlResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "CreateUploadUrl",
+		Query:  CreateUploadUrl_Operation,
+		Variables: &__CreateUploadUrlInput{
+			Input: input,
+		},
+	}
+
+	data_ = &CreateUploadUrlResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by DeleteAskFredThread.
+const DeleteAskFredThread_Operation = `
+mutation DeleteAskFredThread ($id: String!) {
+	deleteAskFredThread(id: $id) {
+		id
+		title
+		created_at
+	}
+}
+`
+
+func DeleteAskFredThread(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	id string,
+) (data_ *DeleteAskFredThreadResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "DeleteAskFredThread",
+		Query:  DeleteAskFredThread_Operation,
+		Variables: &__DeleteAskFredThreadInput{
+			Id: id,
+		},
+	}
+
+	data_ = &DeleteAskFredThreadResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by DeleteTranscript.
+const DeleteTranscript_Operation = `
+mutation DeleteTranscript ($id: String!) {
+	deleteTranscript(id: $id) {
+		id
+		title
+	}
+}
+`
+
+func DeleteTranscript(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	id string,
+) (data_ *DeleteTranscriptResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "DeleteTranscript",
+		Query:  DeleteTranscript_Operation,
+		Variables: &__DeleteTranscriptInput{
+			Id: id,
+		},
+	}
+
+	data_ = &DeleteTranscriptResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
@@ -2009,6 +3247,41 @@ func LiveActionItems(
 	}
 
 	data_ = &LiveActionItemsResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by RevokeSharedMeetingAccess.
+const RevokeSharedMeetingAccess_Operation = `
+mutation RevokeSharedMeetingAccess ($input: RevokeSharedMeetingAccessInput!) {
+	revokeSharedMeetingAccess(input: $input) {
+		success
+		message
+	}
+}
+`
+
+func RevokeSharedMeetingAccess(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	input *RevokeSharedMeetingAccessInput,
+) (data_ *RevokeSharedMeetingAccessResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "RevokeSharedMeetingAccess",
+		Query:  RevokeSharedMeetingAccess_Operation,
+		Variables: &__RevokeSharedMeetingAccessInput{
+			Input: input,
+		},
+	}
+
+	data_ = &RevokeSharedMeetingAccessResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
@@ -2065,6 +3338,266 @@ func RuleExecutionsByMeeting(
 	}
 
 	data_ = &RuleExecutionsByMeetingResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by SetUserRole.
+const SetUserRole_Operation = `
+mutation SetUserRole ($user_id: String!, $role: Role!) {
+	setUserRole(user_id: $user_id, role: $role) {
+		user_id
+		email
+		name
+		is_admin
+	}
+}
+`
+
+func SetUserRole(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	user_id string,
+	role Role,
+) (data_ *SetUserRoleResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "SetUserRole",
+		Query:  SetUserRole_Operation,
+		Variables: &__SetUserRoleInput{
+			User_id: user_id,
+			Role:    role,
+		},
+	}
+
+	data_ = &SetUserRoleResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by ShareMeeting.
+const ShareMeeting_Operation = `
+mutation ShareMeeting ($input: ShareMeetingInput!) {
+	shareMeeting(input: $input) {
+		success
+		message
+	}
+}
+`
+
+func ShareMeeting(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	input *ShareMeetingInput,
+) (data_ *ShareMeetingResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "ShareMeeting",
+		Query:  ShareMeeting_Operation,
+		Variables: &__ShareMeetingInput{
+			Input: input,
+		},
+	}
+
+	data_ = &ShareMeetingResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by UpdateMeetingChannel.
+const UpdateMeetingChannel_Operation = `
+mutation UpdateMeetingChannel ($input: UpdateMeetingChannelInput!) {
+	updateMeetingChannel(input: $input) {
+		id
+		title
+		date
+		channels {
+			id
+			title
+		}
+	}
+}
+`
+
+func UpdateMeetingChannel(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	input *UpdateMeetingChannelInput,
+) (data_ *UpdateMeetingChannelResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "UpdateMeetingChannel",
+		Query:  UpdateMeetingChannel_Operation,
+		Variables: &__UpdateMeetingChannelInput{
+			Input: input,
+		},
+	}
+
+	data_ = &UpdateMeetingChannelResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by UpdateMeetingPrivacy.
+const UpdateMeetingPrivacy_Operation = `
+mutation UpdateMeetingPrivacy ($input: UpdateMeetingPrivacyInput!) {
+	updateMeetingPrivacy(input: $input) {
+		id
+		title
+		privacy
+		date
+	}
+}
+`
+
+func UpdateMeetingPrivacy(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	input *UpdateMeetingPrivacyInput,
+) (data_ *UpdateMeetingPrivacyResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "UpdateMeetingPrivacy",
+		Query:  UpdateMeetingPrivacy_Operation,
+		Variables: &__UpdateMeetingPrivacyInput{
+			Input: input,
+		},
+	}
+
+	data_ = &UpdateMeetingPrivacyResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by UpdateMeetingState.
+const UpdateMeetingState_Operation = `
+mutation UpdateMeetingState ($input: UpdateMeetingStateInput!) {
+	updateMeetingState(input: $input) {
+		success
+		action
+	}
+}
+`
+
+func UpdateMeetingState(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	input *UpdateMeetingStateInput,
+) (data_ *UpdateMeetingStateResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "UpdateMeetingState",
+		Query:  UpdateMeetingState_Operation,
+		Variables: &__UpdateMeetingStateInput{
+			Input: input,
+		},
+	}
+
+	data_ = &UpdateMeetingStateResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by UpdateMeetingTitle.
+const UpdateMeetingTitle_Operation = `
+mutation UpdateMeetingTitle ($input: UpdateMeetingTitleInput!) {
+	updateMeetingTitle(input: $input) {
+		id
+		title
+		date
+		duration
+		organizer_email
+	}
+}
+`
+
+func UpdateMeetingTitle(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	input *UpdateMeetingTitleInput,
+) (data_ *UpdateMeetingTitleResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "UpdateMeetingTitle",
+		Query:  UpdateMeetingTitle_Operation,
+		Variables: &__UpdateMeetingTitleInput{
+			Input: input,
+		},
+	}
+
+	data_ = &UpdateMeetingTitleResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by UploadAudio.
+const UploadAudio_Operation = `
+mutation UploadAudio ($input: AudioUploadInput) {
+	uploadAudio(input: $input) {
+		success
+		title
+		message
+	}
+}
+`
+
+func UploadAudio(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	input *AudioUploadInput,
+) (data_ *UploadAudioResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "UploadAudio",
+		Query:  UploadAudio_Operation,
+		Variables: &__UploadAudioInput{
+			Input: input,
+		},
+	}
+
+	data_ = &UploadAudioResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(

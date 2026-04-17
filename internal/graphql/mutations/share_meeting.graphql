@@ -1,0 +1,6 @@
+mutation ShareMeeting($input: ShareMeetingInput!) {
+  shareMeeting(input: $input) {
+    success
+    message
+  }
+}

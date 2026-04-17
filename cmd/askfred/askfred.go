@@ -11,5 +11,8 @@ func NewAskFredCmd() *cobra.Command {
 	}
 	c.AddCommand(newThreadsCmd())
 	c.AddCommand(newThreadCmd())
+	c.AddCommand(newAskCmd())
+	c.AddCommand(newContinueCmd())
+	c.AddCommand(newDeleteCmd())
 	return c
 }

@@ -41,6 +41,10 @@ All commands accept --fields (field projection), --jq (post-filter),
 	root.Version = version
 	root.SetVersionTemplate("fireflies version {{.Version}}\n")
 
+	// Replace Cobra's default completion command with our enriched version.
+	root.CompletionOptions.DisableDefaultCmd = true
+	root.AddCommand(newCompletionCmd())
+
 	root.AddCommand(authcmd.NewAuthCmd())
 	root.AddCommand(cfgcmd.NewConfigCmd())
 	root.AddCommand(usercmd.NewUsersCmd())

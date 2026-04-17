@@ -34,7 +34,7 @@ func minimalServeHandler(secret []byte, version string, out io.Writer) http.Hand
 			http.Error(w, "cannot read body", http.StatusBadRequest)
 			return
 		}
-		defer r.Body.Close()
+		defer r.Body.Close() //nolint:errcheck
 
 		sigHeader := r.Header.Get("x-hub-signature")
 		if err := webhook.Verify(secret, body, sigHeader); err != nil {
@@ -49,7 +49,7 @@ func minimalServeHandler(secret []byte, version string, out io.Writer) http.Hand
 		payload["version"] = version
 
 		line, _ := json.Marshal(payload)
-		fmt.Fprintf(out, "%s\n", line)
+		_, _ = fmt.Fprintf(out, "%s\n", line) //nolint:errcheck
 		w.WriteHeader(http.StatusOK)
 	}
 }

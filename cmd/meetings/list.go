@@ -36,9 +36,9 @@ Use --fields ? to list available dynamic fields.`,
 
 			// Handle --fields ?
 			if sh.Fields == "?" {
-				fmt.Fprintln(os.Stdout, "Available transcript fields:")
+				_, _ = fmt.Fprintln(os.Stdout, "Available transcript fields:")
 				for _, f := range dynamic.AllFields() {
-					fmt.Fprintf(os.Stdout, "  %s\n", f)
+					_, _ = fmt.Fprintf(os.Stdout, "  %s\n", f)
 				}
 				return nil
 			}
@@ -49,8 +49,8 @@ Use --fields ? to list available dynamic fields.`,
 			if sh.DryRun {
 				vars := buildListVars(sh)
 				q := dynamic.BuildTranscriptsListQuery(tFields)
-				fmt.Fprintln(os.Stdout, q)
-				fmt.Fprintf(os.Stdout, "%v\n", vars)
+				_, _ = fmt.Fprintln(os.Stdout, q)
+				_, _ = fmt.Fprintf(os.Stdout, "%v\n", vars)
 				return nil
 			}
 

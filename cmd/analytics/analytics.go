@@ -29,7 +29,7 @@ func NewAnalyticsCmd() *cobra.Command {
 
 			if sh.DryRun {
 				_, _ = os.Stdout.WriteString("query Analytics($start_time: String, $end_time: String) {\n  analytics(start_time: $start_time, end_time: $end_time) { team { meeting { count duration } } users { user_id user_name user_email } }\n}\n")
-				fmt.Fprintf(os.Stdout, `{"start_time": %q, "end_time": %q}`+"\n", sh.Since, sh.Until)
+				_, _ = fmt.Fprintf(os.Stdout, `{"start_time": %q, "end_time": %q}`+"\n", sh.Since, sh.Until)
 				return nil
 			}
 

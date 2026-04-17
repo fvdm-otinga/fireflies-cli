@@ -29,7 +29,7 @@ func newExecutionsCmd() *cobra.Command {
 
 			if sh.DryRun {
 				_, _ = os.Stdout.WriteString("query RuleExecutionsByMeeting($meeting_id: String, $limit: Int) {\n  rule_executions_by_meeting(filters: { meeting_id: $meeting_id }, limit: $limit) { has_more meetings { meeting_id executions { extension_id extension_title } } }\n}\n")
-				fmt.Fprintf(os.Stdout, `{"meeting_id": %q}`+"\n", meetingID)
+				_, _ = fmt.Fprintf(os.Stdout, `{"meeting_id": %q}`+"\n", meetingID)
 				return nil
 			}
 

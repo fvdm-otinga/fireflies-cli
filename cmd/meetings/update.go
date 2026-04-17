@@ -45,8 +45,8 @@ func newUpdateTitleCmd() *cobra.Command {
 				vars, _ := json.MarshalIndent(map[string]any{
 					"input": map[string]any{"id": id, "title": title},
 				}, "", "  ")
-				fmt.Fprintf(os.Stdout, "mutation UpdateMeetingTitle($input: UpdateMeetingTitleInput!) {\n  updateMeetingTitle(input: $input) { id title date duration organizer_email }\n}\n")
-				fmt.Fprintf(os.Stdout, "%s\n", vars)
+				_, _ = fmt.Fprintf(os.Stdout, "mutation UpdateMeetingTitle($input: UpdateMeetingTitleInput!) {\n  updateMeetingTitle(input: $input) { id title date duration organizer_email }\n}\n")
+				_, _ = fmt.Fprintf(os.Stdout, "%s\n", vars)
 				return nil
 			}
 
@@ -66,7 +66,7 @@ func newUpdateTitleCmd() *cobra.Command {
 				return ferr.Usage(err.Error())
 			}
 			if f == output.FormatTable && !sh.JSON {
-				fmt.Fprintf(os.Stdout, "title updated: %s → %q\n", id, title)
+				_, _ = fmt.Fprintf(os.Stdout, "title updated: %s → %q\n", id, title)
 				return nil
 			}
 			return output.Render(os.Stdout, resp.UpdateMeetingTitle, output.RenderOpts{
@@ -111,8 +111,8 @@ func newUpdatePrivacyCmd() *cobra.Command {
 				vars, _ := json.MarshalIndent(map[string]any{
 					"input": map[string]any{"id": id, "privacy": privacyStr},
 				}, "", "  ")
-				fmt.Fprintf(os.Stdout, "mutation UpdateMeetingPrivacy($input: UpdateMeetingPrivacyInput!) {\n  updateMeetingPrivacy(input: $input) { id title privacy date }\n}\n")
-				fmt.Fprintf(os.Stdout, "%s\n", vars)
+				_, _ = fmt.Fprintf(os.Stdout, "mutation UpdateMeetingPrivacy($input: UpdateMeetingPrivacyInput!) {\n  updateMeetingPrivacy(input: $input) { id title privacy date }\n}\n")
+				_, _ = fmt.Fprintf(os.Stdout, "%s\n", vars)
 				return nil
 			}
 
@@ -136,7 +136,7 @@ func newUpdatePrivacyCmd() *cobra.Command {
 				if resp.UpdateMeetingPrivacy.Privacy != nil {
 					privVal = string(*resp.UpdateMeetingPrivacy.Privacy)
 				}
-				fmt.Fprintf(os.Stdout, "privacy updated: meeting %s → %s\n", id, privVal)
+				_, _ = fmt.Fprintf(os.Stdout, "privacy updated: meeting %s → %s\n", id, privVal)
 				return nil
 			}
 			return output.Render(os.Stdout, resp.UpdateMeetingPrivacy, output.RenderOpts{
@@ -180,8 +180,8 @@ func newUpdateStateCmd() *cobra.Command {
 				vars, _ := json.MarshalIndent(map[string]any{
 					"input": map[string]any{"meeting_id": meetingID, "action": actionStr},
 				}, "", "  ")
-				fmt.Fprintf(os.Stdout, "mutation UpdateMeetingState($input: UpdateMeetingStateInput!) {\n  updateMeetingState(input: $input) { success action }\n}\n")
-				fmt.Fprintf(os.Stdout, "%s\n", vars)
+				_, _ = fmt.Fprintf(os.Stdout, "mutation UpdateMeetingState($input: UpdateMeetingStateInput!) {\n  updateMeetingState(input: $input) { success action }\n}\n")
+				_, _ = fmt.Fprintf(os.Stdout, "%s\n", vars)
 				return nil
 			}
 
@@ -201,7 +201,7 @@ func newUpdateStateCmd() *cobra.Command {
 				return ferr.Usage(err.Error())
 			}
 			if f == output.FormatTable && !sh.JSON {
-				fmt.Fprintf(os.Stdout, "state updated: meeting %s action=%s success=%v\n", meetingID, resp.UpdateMeetingState.Action, resp.UpdateMeetingState.Success)
+				_, _ = fmt.Fprintf(os.Stdout, "state updated: meeting %s action=%s success=%v\n", meetingID, resp.UpdateMeetingState.Action, resp.UpdateMeetingState.Success)
 				return nil
 			}
 			return output.Render(os.Stdout, resp.UpdateMeetingState, output.RenderOpts{

@@ -29,7 +29,7 @@ func newThreadCmd() *cobra.Command {
 
 			if sh.DryRun {
 				_, _ = os.Stdout.WriteString("query AskFredThread($id: String!) {\n  askfred_thread(id: $id) { id title created_at messages { id query answer status created_at } }\n}\n")
-				fmt.Fprintf(os.Stdout, `{"id": %q}`+"\n", id)
+				_, _ = fmt.Fprintf(os.Stdout, `{"id": %q}`+"\n", id)
 				return nil
 			}
 

@@ -46,8 +46,8 @@ The --prompt flag describes the soundbite content. Use --start and --end
 			}
 
 			if sh.DryRun {
-				fmt.Fprintf(os.Stdout, "mutation CreateLiveSoundbite($input: CreateLiveSoundbiteInput!) {\n  createLiveSoundbite(input: $input) { success }\n}\n")
-				fmt.Fprintf(os.Stdout, `{"input": {"meeting_id": %q, "prompt": %q}}`+"\n", meetingID, effectivePrompt)
+				_, _ = fmt.Fprintf(os.Stdout, "mutation CreateLiveSoundbite($input: CreateLiveSoundbiteInput!) {\n  createLiveSoundbite(input: $input) { success }\n}\n")
+				_, _ = fmt.Fprintf(os.Stdout, `{"input": {"meeting_id": %q, "prompt": %q}}`+"\n", meetingID, effectivePrompt)
 				return nil
 			}
 

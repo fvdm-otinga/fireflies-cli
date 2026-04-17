@@ -69,8 +69,8 @@ Time values (--start, --end) accept:
 					"end_time":      endMs,
 					"media_type":    mediaType,
 				}, "", "  ")
-				fmt.Fprintf(os.Stdout, "mutation CreateBite($transcript_Id: ID!, $name: String, $start_time: Float!, $end_time: Float!, $media_type: String) {\n  createBite(transcript_Id: $transcript_Id, name: $name, start_time: $start_time, end_time: $end_time, media_type: $media_type) { id name transcript_id start_time end_time status media_type created_at }\n}\n")
-				fmt.Fprintf(os.Stdout, "%s\n", vars)
+				_, _ = fmt.Fprintf(os.Stdout, "mutation CreateBite($transcript_Id: ID!, $name: String, $start_time: Float!, $end_time: Float!, $media_type: String) {\n  createBite(transcript_Id: $transcript_Id, name: $name, start_time: $start_time, end_time: $end_time, media_type: $media_type) { id name transcript_id start_time end_time status media_type created_at }\n}\n")
+				_, _ = fmt.Fprintf(os.Stdout, "%s\n", vars)
 				return nil
 			}
 

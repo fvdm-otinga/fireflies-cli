@@ -32,8 +32,8 @@ func newDeleteCmd() *cobra.Command {
 				vars, _ := json.MarshalIndent(map[string]any{
 					"id": id,
 				}, "", "  ")
-				fmt.Fprintf(os.Stdout, "mutation DeleteTranscript($id: String!) {\n  deleteTranscript(id: $id) { id title }\n}\n")
-				fmt.Fprintf(os.Stdout, "%s\n", vars)
+				_, _ = fmt.Fprintf(os.Stdout, "mutation DeleteTranscript($id: String!) {\n  deleteTranscript(id: $id) { id title }\n}\n")
+				_, _ = fmt.Fprintf(os.Stdout, "%s\n", vars)
 				return nil
 			}
 
@@ -61,7 +61,7 @@ func newDeleteCmd() *cobra.Command {
 				if resp.DeleteTranscript.Title != nil {
 					title = *resp.DeleteTranscript.Title
 				}
-				fmt.Fprintf(os.Stdout, "meeting %s deleted (%s)\n", id, title)
+				_, _ = fmt.Fprintf(os.Stdout, "meeting %s deleted (%s)\n", id, title)
 				return nil
 			}
 			return output.Render(os.Stdout, resp.DeleteTranscript, output.RenderOpts{

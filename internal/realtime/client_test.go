@@ -41,7 +41,7 @@ func TestSubscribe_DispatchEvents(t *testing.T) {
 			t.Errorf("upgrade: %v", err)
 			return
 		}
-		defer conn.Close()
+		defer conn.Close() //nolint:errcheck
 
 		// Send Engine.IO open packet.
 		if err := conn.WriteMessage(websocket.TextMessage, []byte(`0{"sid":"abc","upgrades":[],"pingInterval":25000,"pingTimeout":5000}`)); err != nil {

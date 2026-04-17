@@ -51,8 +51,8 @@ Use --prompt (or --text as an alias) for the action item description.
 			}
 
 			if sh.DryRun {
-				fmt.Fprintf(os.Stdout, "mutation CreateLiveActionItem($input: CreateLiveActionItemInput!) {\n  createLiveActionItem(input: $input) { success }\n}\n")
-				fmt.Fprintf(os.Stdout, `{"input": {"meeting_id": %q, "prompt": %q}}`+"\n", meetingID, effectivePrompt)
+				_, _ = fmt.Fprintf(os.Stdout, "mutation CreateLiveActionItem($input: CreateLiveActionItemInput!) {\n  createLiveActionItem(input: $input) { success }\n}\n")
+				_, _ = fmt.Fprintf(os.Stdout, `{"input": {"meeting_id": %q, "prompt": %q}}`+"\n", meetingID, effectivePrompt)
 				return nil
 			}
 

@@ -29,7 +29,7 @@ func newGetCmd() *cobra.Command {
 
 			if sh.DryRun {
 				_, _ = os.Stdout.WriteString("query Bite($id: ID!) {\n  bite(id: $id) { id name transcript_id created_at start_time end_time status }\n}\n")
-				fmt.Fprintf(os.Stdout, `{"id": %q}`+"\n", id)
+				_, _ = fmt.Fprintf(os.Stdout, `{"id": %q}`+"\n", id)
 				return nil
 			}
 

@@ -34,12 +34,12 @@ func newLogoutCmd() *cobra.Command {
 			}
 
 			if !yes {
-				fmt.Fprintf(cmd.OutOrStdout(), "Remove profile %q? [y/N] ", profile)
+				_, _ = fmt.Fprintf(cmd.OutOrStdout(), "Remove profile %q? [y/N] ", profile)
 				scanner := bufio.NewScanner(os.Stdin)
 				if scanner.Scan() {
 					answer := strings.TrimSpace(strings.ToLower(scanner.Text()))
 					if answer != "y" && answer != "yes" {
-						fmt.Fprintln(cmd.OutOrStdout(), "Aborted.")
+						_, _ = fmt.Fprintln(cmd.OutOrStdout(), "Aborted.")
 						return nil
 					}
 				}
@@ -49,7 +49,7 @@ func newLogoutCmd() *cobra.Command {
 			if err := loader.DeleteProfile(profile); err != nil {
 				return ferr.General("remove profile: " + err.Error())
 			}
-			fmt.Fprintf(cmd.OutOrStdout(), "Profile %q removed.\n", profile)
+			_, _ = fmt.Fprintf(cmd.OutOrStdout(), "Profile %q removed.\n", profile)
 			return nil
 		},
 	}

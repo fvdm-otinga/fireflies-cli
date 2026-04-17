@@ -79,19 +79,19 @@ is set (masked), and the authenticated user's email (via Whoami).`,
 			}
 
 			w := cmd.OutOrStdout()
-			fmt.Fprintf(w, "Profile:     %s\n", info.Profile)
-			fmt.Fprintf(w, "Config file: %s\n", info.ConfigFile)
+			_, _ = fmt.Fprintf(w, "Profile:     %s\n", info.Profile)
+			_, _ = fmt.Fprintf(w, "Config file: %s\n", info.ConfigFile)
 			if info.EnvKeySet {
-				fmt.Fprintf(w, "Env key:     set (%s)\n", info.EnvKeyMask)
+				_, _ = fmt.Fprintf(w, "Env key:     set (%s)\n", info.EnvKeyMask)
 			} else {
-				fmt.Fprintf(w, "Env key:     not set\n")
+				_, _ = fmt.Fprintf(w, "Env key:     not set\n")
 			}
 			if info.Email != "" {
-				fmt.Fprintf(w, "Logged in:   %s (%s)\n", info.Email, info.Name)
+				_, _ = fmt.Fprintf(w, "Logged in:   %s (%s)\n", info.Email, info.Name)
 			} else if profileErr != nil {
-				fmt.Fprintf(w, "Logged in:   no — %s\n", ferr.General(profileErr.Error()).Message)
+				_, _ = fmt.Fprintf(w, "Logged in:   no — %s\n", ferr.General(profileErr.Error()).Message)
 			} else {
-				fmt.Fprintf(w, "Logged in:   unknown (API call failed)\n")
+				_, _ = fmt.Fprintf(w, "Logged in:   unknown (API call failed)\n")
 			}
 			return nil
 		},

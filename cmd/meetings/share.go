@@ -40,8 +40,8 @@ func newShareCmd() *cobra.Command {
 						"emails":     emails,
 					},
 				}, "", "  ")
-				fmt.Fprintf(os.Stdout, "mutation ShareMeeting($input: ShareMeetingInput!) {\n  shareMeeting(input: $input) { success message }\n}\n")
-				fmt.Fprintf(os.Stdout, "%s\n", vars)
+				_, _ = fmt.Fprintf(os.Stdout, "mutation ShareMeeting($input: ShareMeetingInput!) {\n  shareMeeting(input: $input) { success message }\n}\n")
+				_, _ = fmt.Fprintf(os.Stdout, "%s\n", vars)
 				return nil
 			}
 
@@ -68,7 +68,7 @@ func newShareCmd() *cobra.Command {
 				if resp.ShareMeeting.Message != nil {
 					msg = *resp.ShareMeeting.Message
 				}
-				fmt.Fprintf(os.Stdout, "meeting %s shared (success=%v) %s\n", id, resp.ShareMeeting.Success, msg)
+				_, _ = fmt.Fprintf(os.Stdout, "meeting %s shared (success=%v) %s\n", id, resp.ShareMeeting.Success, msg)
 				return nil
 			}
 			return output.Render(os.Stdout, resp.ShareMeeting, output.RenderOpts{

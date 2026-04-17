@@ -103,7 +103,7 @@ func buildMux(secret []byte) *http.ServeMux {
 
 func handleHealth(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	fmt.Fprint(w, "ok")
+	_, _ = fmt.Fprint(w, "ok")
 }
 
 func makeWebhookHandler(secret []byte, version string) http.HandlerFunc {
@@ -124,7 +124,7 @@ func makeWebhookHandler(secret []byte, version string) http.HandlerFunc {
 			logger.Printf("method=%s path=%s status=400 dur=%s err=%q", r.Method, r.URL.Path, time.Since(start), err)
 			return
 		}
-		defer r.Body.Close()
+		defer r.Body.Close() //nolint:errcheck // request body already fully read above
 
 		sigHeader := r.Header.Get("x-hub-signature")
 
@@ -147,7 +147,7 @@ func makeWebhookHandler(secret []byte, version string) http.HandlerFunc {
 		// Emit one NDJSON line on stdout.
 		line, err := json.Marshal(payload)
 		if err == nil {
-			fmt.Fprintf(os.Stdout, "%s\n", line)
+			_, _ = fmt.Fprintf(os.Stdout, "%s\n", line)
 		}
 
 		w.WriteHeader(http.StatusOK)

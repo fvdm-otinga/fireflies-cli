@@ -63,12 +63,12 @@ Speaker: text output.`,
 							speaker = payload["speaker"].(string)
 						}
 						if speaker != "" && text != "" {
-							fmt.Fprintf(os.Stdout, "%s: %s\n", speaker, text)
+							_, _ = fmt.Fprintf(os.Stdout, "%s: %s\n", speaker, text)
 							return
 						}
 					}
 					// Fallback: print raw payload.
-					fmt.Fprintf(os.Stdout, "%s\n", e.Payload)
+					_, _ = fmt.Fprintf(os.Stdout, "%s\n", e.Payload)
 					return
 				}
 				// NDJSON output.
@@ -76,7 +76,7 @@ Speaker: text output.`,
 					"event":   e.Name,
 					"payload": json.RawMessage(e.Payload),
 				})
-				fmt.Fprintf(os.Stdout, "%s\n", line)
+				_, _ = fmt.Fprintf(os.Stdout, "%s\n", line)
 			}); err != nil {
 				return ferr.General(fmt.Sprintf("realtime: %v", err))
 			}

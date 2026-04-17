@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+---
+
+## [1.0.0] - 2026-04-17
+
 ### Added
 
 **Phase 0 — Interface Contract & Scaffold (Team Architect)**
@@ -78,6 +82,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `CHANGELOG.md`: this file (Keep-a-Changelog format)
 - `fvdm-otinga/homebrew-tap` GitHub repo bootstrapped
 
+**Phase 2 — Integration & Hardening**
+- `golangci-lint` v2 clean (19 errcheck/staticcheck/unused issues fixed across cmd/ and internal/)
+- `go vet ./...` clean
+- `govulncheck ./...` — 4 stdlib CVEs in go1.26.1 (crypto/x509, crypto/tls); fixed in go1.26.2 (not yet released); documented in `docs/security-audit-v1.md`
+- Security gates all pass — see `docs/security-audit-v1.md`
+- `internal/client/client_test.go`: `TestAuthTokenNotLogged` — verifies Bearer token is set in header and never leaks to other observable outputs
+- `internal/client/client.go`: `NewWithTransport` constructor for test-injectable HTTP transport
+- `testdata/fixtures/whoami_happy.yaml`: go-vcr v4 cassette for `users whoami` happy path (scrubbed of secrets)
+- `internal/client/client_replay_test.go`: cassette replay test proving go-vcr integration path works
+- `docs/fixture-recording.md`: guide for recording and scrubbing cassettes for remaining commands
+- `docs/reference/`: 60 auto-generated per-command Markdown files via `make docs`
+- `.golangci.yml`: updated to golangci-lint v2 format; removed deprecated `gosimple` linter
+
 ---
 
-[Unreleased]: https://github.com/fvdm-otinga/fireflies-cli/compare/contract-v1...HEAD
+[Unreleased]: https://github.com/fvdm-otinga/fireflies-cli/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/fvdm-otinga/fireflies-cli/compare/contract-v1...v1.0.0

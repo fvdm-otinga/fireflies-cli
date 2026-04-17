@@ -44,8 +44,8 @@ func newSetRoleCmd() *cobra.Command {
 					"user_id": userID,
 					"role":    roleStr,
 				}, "", "  ")
-				fmt.Fprintf(os.Stdout, "mutation SetUserRole($user_id: String!, $role: Role!) {\n  setUserRole(user_id: $user_id, role: $role) { user_id email name is_admin }\n}\n")
-				fmt.Fprintf(os.Stdout, "%s\n", vars)
+				_, _ = fmt.Fprintf(os.Stdout, "mutation SetUserRole($user_id: String!, $role: Role!) {\n  setUserRole(user_id: $user_id, role: $role) { user_id email name is_admin }\n}\n")
+				_, _ = fmt.Fprintf(os.Stdout, "%s\n", vars)
 				return nil
 			}
 

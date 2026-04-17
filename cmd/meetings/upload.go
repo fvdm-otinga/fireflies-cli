@@ -70,14 +70,14 @@ Required: --title`,
 							"attendees":       attendeeInputs,
 						},
 					}, "", "  ")
-					fmt.Fprintf(os.Stdout, "mutation CreateUploadUrl($input: CreateUploadUrlInput!) {\n  createUploadUrl(input: $input) { upload_url meeting_id expires_at }\n}\n")
-					fmt.Fprintf(os.Stdout, "%s\n", vars1)
-					fmt.Fprintf(os.Stdout, "# then: S3 PUT <upload_url>\n")
+					_, _ = fmt.Fprintf(os.Stdout, "mutation CreateUploadUrl($input: CreateUploadUrlInput!) {\n  createUploadUrl(input: $input) { upload_url meeting_id expires_at }\n}\n")
+					_, _ = fmt.Fprintf(os.Stdout, "%s\n", vars1)
+					_, _ = fmt.Fprintf(os.Stdout, "# then: S3 PUT <upload_url>\n")
 					vars2, _ := json.MarshalIndent(map[string]any{
 						"input": map[string]any{"meeting_id": "<meeting_id from step 1>"},
 					}, "", "  ")
-					fmt.Fprintf(os.Stdout, "mutation ConfirmUpload($input: ConfirmUploadInput!) {\n  confirmUpload(input: $input) { success meeting_id message }\n}\n")
-					fmt.Fprintf(os.Stdout, "%s\n", vars2)
+					_, _ = fmt.Fprintf(os.Stdout, "mutation ConfirmUpload($input: ConfirmUploadInput!) {\n  confirmUpload(input: $input) { success meeting_id message }\n}\n")
+					_, _ = fmt.Fprintf(os.Stdout, "%s\n", vars2)
 				} else {
 					// Single-step: uploadAudio
 					attendeeInputs := buildAttendeeInputs(attendees)
@@ -92,8 +92,8 @@ Required: --title`,
 							"client_reference_id": clientRefID,
 						},
 					}, "", "  ")
-					fmt.Fprintf(os.Stdout, "mutation UploadAudio($input: AudioUploadInput) {\n  uploadAudio(input: $input) { success title message }\n}\n")
-					fmt.Fprintf(os.Stdout, "%s\n", vars)
+					_, _ = fmt.Fprintf(os.Stdout, "mutation UploadAudio($input: AudioUploadInput) {\n  uploadAudio(input: $input) { success title message }\n}\n")
+					_, _ = fmt.Fprintf(os.Stdout, "%s\n", vars)
 				}
 				return nil
 			}
@@ -221,14 +221,14 @@ func uploadLocalFile(ctx context.Context, c *client.Client, filePath, title stri
 	}
 	uploadURL := urlResp.CreateUploadUrl.Upload_url
 	meetingID := urlResp.CreateUploadUrl.Meeting_id
-	fmt.Fprintf(w, "Uploading %s (%d bytes) to meeting %s...\n", filePath, fileSize, meetingID)
+	_, _ = fmt.Fprintf(w, "Uploading %s (%d bytes) to meeting %s...\n", filePath, fileSize, meetingID)
 
 	// Step 2: PUT file to S3.
 	f, err := os.Open(filePath)
 	if err != nil {
 		return ferr.General(fmt.Sprintf("open file: %v", err))
 	}
-	defer f.Close()
+	defer f.Close() //nolint:errcheck // read-only open; close error not actionable
 
 	putReq, err := http.NewRequestWithContext(ctx, http.MethodPut, uploadURL, &progressReader{r: f, total: int64(fileSize), w: w})
 	if err != nil {
@@ -242,12 +242,12 @@ func uploadLocalFile(ctx context.Context, c *client.Client, filePath, title stri
 	if err != nil {
 		return ferr.General(fmt.Sprintf("S3 PUT failed: %v", err))
 	}
-	defer putResp.Body.Close()
+	defer putResp.Body.Close() //nolint:errcheck // response body close
 	if putResp.StatusCode < 200 || putResp.StatusCode >= 300 {
 		body, _ := io.ReadAll(putResp.Body)
 		return ferr.General(fmt.Sprintf("S3 PUT returned %d: %s", putResp.StatusCode, string(body)))
 	}
-	fmt.Fprintln(w, " done.")
+	_, _ = fmt.Fprintln(w, " done.")
 
 	// Step 3: Confirm upload.
 	confirmResp, err := ffgql.ConfirmUpload(ctx, c, &ffgql.ConfirmUploadInput{Meeting_id: meetingID})
@@ -285,7 +285,7 @@ func (p *progressReader) Read(b []byte) (int, error) {
 	p.read += int64(n)
 	if p.total > 0 {
 		pct := float64(p.read) / float64(p.total) * 100
-		fmt.Fprintf(p.w, "\r  %.0f%%", pct)
+		_, _ = fmt.Fprintf(p.w, "\r  %.0f%%", pct)
 	}
 	return n, err
 }

@@ -33,7 +33,7 @@ file mode 0600 under the given profile (default: "default").`,
 				profile = "default"
 			}
 
-			fmt.Fprintf(cmd.OutOrStdout(), "Enter Fireflies API key for profile %q: ", profile)
+			_, _ = fmt.Fprintf(cmd.OutOrStdout(), "Enter Fireflies API key for profile %q: ", profile)
 			apiKey, err := readSecretLine()
 			if err != nil {
 				return ferr.General("failed to read API key: " + err.Error())
@@ -68,7 +68,7 @@ file mode 0600 under the given profile (default: "default").`,
 			if resp.User.Email != nil {
 				email = *resp.User.Email
 			}
-			fmt.Fprintf(cmd.OutOrStdout(), "\nLogged in as %s (profile: %q)\n", email, profile)
+			_, _ = fmt.Fprintf(cmd.OutOrStdout(), "\nLogged in as %s (profile: %q)\n", email, profile)
 			return nil
 		},
 	}
@@ -84,7 +84,7 @@ func readSecretLine() (string, error) {
 	f := os.Stdin
 	if tty, err := os.OpenFile("/dev/tty", os.O_RDWR, 0); err == nil {
 		f = tty
-		defer tty.Close()
+		defer tty.Close() //nolint:errcheck // best-effort TTY close
 	}
 	scanner := bufio.NewScanner(f)
 	if scanner.Scan() {

@@ -29,7 +29,7 @@ func newItemsCmd() *cobra.Command {
 
 			if sh.DryRun {
 				_, _ = os.Stdout.WriteString("query LiveActionItems($meeting_id: ID!) {\n  live_action_items(meeting_id: $meeting_id) { name action_item }\n}\n")
-				fmt.Fprintf(os.Stdout, `{"meeting_id": %q}`+"\n", meetingID)
+				_, _ = fmt.Fprintf(os.Stdout, `{"meeting_id": %q}`+"\n", meetingID)
 				return nil
 			}
 

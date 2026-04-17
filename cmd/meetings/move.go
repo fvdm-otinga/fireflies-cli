@@ -40,8 +40,8 @@ func newMoveCmd() *cobra.Command {
 						"channel_id":     channelID,
 					},
 				}, "", "  ")
-				fmt.Fprintf(os.Stdout, "mutation UpdateMeetingChannel($input: UpdateMeetingChannelInput!) {\n  updateMeetingChannel(input: $input) { id title date channels { id title } }\n}\n")
-				fmt.Fprintf(os.Stdout, "%s\n", vars)
+				_, _ = fmt.Fprintf(os.Stdout, "mutation UpdateMeetingChannel($input: UpdateMeetingChannelInput!) {\n  updateMeetingChannel(input: $input) { id title date channels { id title } }\n}\n")
+				_, _ = fmt.Fprintf(os.Stdout, "%s\n", vars)
 				return nil
 			}
 
@@ -64,7 +64,7 @@ func newMoveCmd() *cobra.Command {
 				return ferr.Usage(err.Error())
 			}
 			if f == output.FormatTable && !sh.JSON {
-				fmt.Fprintf(os.Stdout, "meeting %s moved to channel %s\n", id, channelID)
+				_, _ = fmt.Fprintf(os.Stdout, "meeting %s moved to channel %s\n", id, channelID)
 				return nil
 			}
 			return output.Render(os.Stdout, resp.UpdateMeetingChannel, output.RenderOpts{

@@ -9,8 +9,6 @@ import (
 	ferr "github.com/fvdm-otinga/fireflies-cli/internal/errors"
 )
 
-var validKeys = []string{"api_key", "endpoint"}
-
 func newGetCmd() *cobra.Command {
 	var showSecret bool
 	cmd := &cobra.Command{
@@ -42,15 +40,15 @@ The api_key is masked unless --show-secret is provided.`,
 			case "api_key":
 				val := prof.APIKey
 				if val == "" {
-					fmt.Fprintln(cmd.OutOrStdout(), "")
+					_, _ = fmt.Fprintln(cmd.OutOrStdout(), "")
 					return nil
 				}
 				if !showSecret {
 					val = maskValue(val)
 				}
-				fmt.Fprintln(cmd.OutOrStdout(), val)
+				_, _ = fmt.Fprintln(cmd.OutOrStdout(), val)
 			case "endpoint":
-				fmt.Fprintln(cmd.OutOrStdout(), prof.Endpoint)
+				_, _ = fmt.Fprintln(cmd.OutOrStdout(), prof.Endpoint)
 			default:
 				return ferr.Usage(fmt.Sprintf("unknown key %q — valid keys: api_key, endpoint", key))
 			}

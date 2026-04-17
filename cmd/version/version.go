@@ -34,7 +34,7 @@ func NewVersionCmd(version, commit, date string) *cobra.Command {
 				return enc.Encode(info)
 			}
 
-			fmt.Fprintf(cmd.OutOrStdout(), "fireflies version %s\ncommit:  %s\nbuilt:   %s\n",
+			_, _ = fmt.Fprintf(cmd.OutOrStdout(), "fireflies version %s\ncommit:  %s\nbuilt:   %s\n",
 				info.Version, info.Commit, info.Date)
 			return nil
 		},

@@ -27,7 +27,6 @@ type Client struct {
 	apiKey   string
 	http     *http.Client
 	buckets  map[string]*bucket
-	mu       sync.Mutex
 }
 
 // bucket is a minimal token bucket for per-operation rate limiting.
@@ -74,6 +73,13 @@ var opLimits = map[string]struct {
 
 // New constructs a client from a config.Profile.
 func New(p config.Profile) *Client {
+	return NewWithTransport(p, nil)
+}
+
+// NewWithTransport constructs a client from a config.Profile with a custom
+// http.RoundTripper. If transport is nil, http.DefaultTransport is used.
+// This is intended for testing only.
+func NewWithTransport(p config.Profile, transport http.RoundTripper) *Client {
 	endpoint := p.Endpoint
 	if endpoint == "" {
 		endpoint = DefaultEndpoint
@@ -82,10 +88,14 @@ func New(p config.Profile) *Client {
 	for op, lim := range opLimits {
 		buckets[op] = newBucket(lim.capacity, lim.window)
 	}
+	httpClient := &http.Client{Timeout: 60 * time.Second}
+	if transport != nil {
+		httpClient.Transport = transport
+	}
 	return &Client{
 		endpoint: endpoint,
 		apiKey:   p.APIKey,
-		http:     &http.Client{Timeout: 60 * time.Second},
+		http:     httpClient,
 		buckets:  buckets,
 	}
 }

@@ -47,7 +47,7 @@ Valid keys: api_key, endpoint.`,
 			if err := loader.SetProfile(profile, prof, false); err != nil {
 				return ferr.General("write config: " + err.Error())
 			}
-			fmt.Fprintf(cmd.OutOrStdout(), "Set %s for profile %q\n", key, profile)
+			_, _ = fmt.Fprintf(cmd.OutOrStdout(), "Set %s for profile %q\n", key, profile)
 			return nil
 		},
 	}

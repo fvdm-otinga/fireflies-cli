@@ -118,7 +118,7 @@ func Handle(w io.Writer, err error) ExitCode {
 		_ = json.NewEncoder(w).Encode(cli)
 		return cli.Exit
 	}
-	fmt.Fprintf(w, "%s\n", err.Error())
+	_, _ = fmt.Fprintf(w, "%s\n", err.Error())
 	return ExitGeneralError
 }
 

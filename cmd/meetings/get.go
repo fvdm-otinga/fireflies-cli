@@ -29,9 +29,9 @@ func newGetCmd() *cobra.Command {
 
 			// Handle --fields ?
 			if sh.Fields == "?" {
-				fmt.Fprintln(os.Stdout, "Available transcript fields:")
+				_, _ = fmt.Fprintln(os.Stdout, "Available transcript fields:")
 				for _, f := range dynamic.AllFields() {
-					fmt.Fprintf(os.Stdout, "  %s\n", f)
+					_, _ = fmt.Fprintf(os.Stdout, "  %s\n", f)
 				}
 				return nil
 			}
@@ -40,8 +40,8 @@ func newGetCmd() *cobra.Command {
 
 			if sh.DryRun {
 				q := dynamic.BuildSingleTranscriptQuery(tFields)
-				fmt.Fprintln(os.Stdout, q)
-				fmt.Fprintf(os.Stdout, `{"id": %q}`+"\n", id)
+				_, _ = fmt.Fprintln(os.Stdout, q)
+				_, _ = fmt.Fprintf(os.Stdout, `{"id": %q}`+"\n", id)
 				return nil
 			}
 

@@ -29,7 +29,7 @@ func newGetCmd() *cobra.Command {
 
 			if sh.DryRun {
 				_, _ = os.Stdout.WriteString("query Channel($id: ID!) {\n  channel(id: $id) { id title created_at updated_at created_by is_private }\n}\n")
-				fmt.Fprintf(os.Stdout, `{"id": %q}`+"\n", id)
+				_, _ = fmt.Fprintf(os.Stdout, `{"id": %q}`+"\n", id)
 				return nil
 			}
 

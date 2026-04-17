@@ -44,8 +44,8 @@ func newTextCmd() *cobra.Command {
 
 			if sh.DryRun {
 				q := dynamic.BuildSingleTranscriptQuery(tFields)
-				fmt.Fprintln(os.Stdout, q)
-				fmt.Fprintf(os.Stdout, `{"id": %q}`+"\n", id)
+				_, _ = fmt.Fprintln(os.Stdout, q)
+				_, _ = fmt.Fprintf(os.Stdout, `{"id": %q}`+"\n", id)
 				return nil
 			}
 
@@ -128,7 +128,7 @@ func filterSentences(sentences []map[string]any, sinceMs, untilMs float64) []map
 	}
 	out := make([]map[string]any, 0, len(sentences))
 	for _, s := range sentences {
-		startRaw, _ := s["start_time"]
+		startRaw := s["start_time"]
 		var start float64
 		switch v := startRaw.(type) {
 		case float64:

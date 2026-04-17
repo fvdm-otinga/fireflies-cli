@@ -32,8 +32,8 @@ func newDeleteCmd() *cobra.Command {
 				vars, _ := json.MarshalIndent(map[string]any{
 					"id": threadID,
 				}, "", "  ")
-				fmt.Fprintf(os.Stdout, "mutation DeleteAskFredThread($id: String!) {\n  deleteAskFredThread(id: $id) { id title created_at }\n}\n")
-				fmt.Fprintf(os.Stdout, "%s\n", vars)
+				_, _ = fmt.Fprintf(os.Stdout, "mutation DeleteAskFredThread($id: String!) {\n  deleteAskFredThread(id: $id) { id title created_at }\n}\n")
+				_, _ = fmt.Fprintf(os.Stdout, "%s\n", vars)
 				return nil
 			}
 
@@ -57,7 +57,7 @@ func newDeleteCmd() *cobra.Command {
 				return ferr.Usage(err.Error())
 			}
 			if f == output.FormatTable && !sh.JSON {
-				fmt.Fprintf(os.Stdout, "thread %s deleted\n", resp.DeleteAskFredThread.Id)
+				_, _ = fmt.Fprintf(os.Stdout, "thread %s deleted\n", resp.DeleteAskFredThread.Id)
 				return nil
 			}
 			return output.Render(os.Stdout, resp.DeleteAskFredThread, output.RenderOpts{

@@ -8,6 +8,7 @@ require (
 	github.com/itchyny/gojq v0.12.19
 	github.com/pelletier/go-toml/v2 v2.3.0
 	github.com/spf13/cobra v1.10.2
+	gopkg.in/dnaeon/go-vcr.v4 v4.0.6
 	gopkg.in/yaml.v3 v3.0.1
 )
 
@@ -24,6 +25,7 @@ require (
 	github.com/spf13/pflag v1.0.9 // indirect
 	github.com/vektah/gqlparser/v2 v2.5.19 // indirect
 	go.yaml.in/yaml/v3 v3.0.4 // indirect
+	go.yaml.in/yaml/v4 v4.0.0-rc.3 // indirect
 	golang.org/x/mod v0.35.0 // indirect
 	golang.org/x/sync v0.20.0 // indirect
 	golang.org/x/tools v0.44.0 // indirect

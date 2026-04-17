@@ -64,8 +64,8 @@ The question can be provided as a positional argument or piped via stdin:
 						"transcript_id": meetingID,
 					},
 				}, "", "  ")
-				fmt.Fprintf(os.Stdout, "mutation CreateAskFredThread($input: CreateAskFredThreadInput!) {\n  createAskFredThread(input: $input) { message { id thread_id query answer status created_at } }\n}\n")
-				fmt.Fprintf(os.Stdout, "%s\n", vars)
+				_, _ = fmt.Fprintf(os.Stdout, "mutation CreateAskFredThread($input: CreateAskFredThreadInput!) {\n  createAskFredThread(input: $input) { message { id thread_id query answer status created_at } }\n}\n")
+				_, _ = fmt.Fprintf(os.Stdout, "%s\n", vars)
 				return nil
 			}
 

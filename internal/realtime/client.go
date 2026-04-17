@@ -76,7 +76,7 @@ func (c *Client) connect(ctx context.Context, meetingID string, handler func(Eve
 	if err != nil {
 		return fmt.Errorf("websocket dial: %w", err)
 	}
-	defer conn.Close()
+	defer conn.Close() //nolint:errcheck // WS close
 
 	// Close the WS connection when ctx is done.
 	go func() {
@@ -85,7 +85,7 @@ func (c *Client) connect(ctx context.Context, meetingID string, handler func(Eve
 			websocket.CloseMessage,
 			websocket.FormatCloseMessage(websocket.CloseNormalClosure, ""),
 		)
-		conn.Close()
+		conn.Close() //nolint:errcheck // best-effort close on ctx cancel
 	}()
 
 	// Socket.IO v4 framing:

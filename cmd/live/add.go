@@ -37,8 +37,8 @@ Rate limit: 3 requests per 20 minutes (enforced client-side).`,
 			}
 
 			if sh.DryRun {
-				fmt.Fprintf(os.Stdout, "mutation AddToLiveMeeting($meeting_link: String!, ...) {\n  addToLiveMeeting(meeting_link: $meeting_link, ...) { message success }\n}\n")
-				fmt.Fprintf(os.Stdout, `{"meeting_link": %q, "name": %q, "email": %q}`+"\n", meetingLink, name, email)
+				_, _ = fmt.Fprintf(os.Stdout, "mutation AddToLiveMeeting($meeting_link: String!, ...) {\n  addToLiveMeeting(meeting_link: $meeting_link, ...) { message success }\n}\n")
+				_, _ = fmt.Fprintf(os.Stdout, `{"meeting_link": %q, "name": %q, "email": %q}`+"\n", meetingLink, name, email)
 				return nil
 			}
 

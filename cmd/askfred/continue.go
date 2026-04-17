@@ -53,8 +53,8 @@ func newContinueCmd() *cobra.Command {
 						"query":     question,
 					},
 				}, "", "  ")
-				fmt.Fprintf(os.Stdout, "mutation ContinueAskFredThread($input: ContinueAskFredThreadInput!) {\n  continueAskFredThread(input: $input) { message { id thread_id query answer status created_at } }\n}\n")
-				fmt.Fprintf(os.Stdout, "%s\n", vars)
+				_, _ = fmt.Fprintf(os.Stdout, "mutation ContinueAskFredThread($input: ContinueAskFredThreadInput!) {\n  continueAskFredThread(input: $input) { message { id thread_id query answer status created_at } }\n}\n")
+				_, _ = fmt.Fprintf(os.Stdout, "%s\n", vars)
 				return nil
 			}
 

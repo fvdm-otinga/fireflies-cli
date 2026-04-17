@@ -41,8 +41,8 @@ func newRevokeCmd() *cobra.Command {
 						"email":      email,
 					},
 				}, "", "  ")
-				fmt.Fprintf(os.Stdout, "mutation RevokeSharedMeetingAccess($input: RevokeSharedMeetingAccessInput!) {\n  revokeSharedMeetingAccess(input: $input) { success message }\n}\n")
-				fmt.Fprintf(os.Stdout, "%s\n", vars)
+				_, _ = fmt.Fprintf(os.Stdout, "mutation RevokeSharedMeetingAccess($input: RevokeSharedMeetingAccessInput!) {\n  revokeSharedMeetingAccess(input: $input) { success message }\n}\n")
+				_, _ = fmt.Fprintf(os.Stdout, "%s\n", vars)
 				return nil
 			}
 
@@ -73,7 +73,7 @@ func newRevokeCmd() *cobra.Command {
 				if resp.RevokeSharedMeetingAccess.Message != nil {
 					msg = *resp.RevokeSharedMeetingAccess.Message
 				}
-				fmt.Fprintf(os.Stdout, "access revoked for %s from meeting %s (success=%v) %s\n", email, id, resp.RevokeSharedMeetingAccess.Success, msg)
+				_, _ = fmt.Fprintf(os.Stdout, "access revoked for %s from meeting %s (success=%v) %s\n", email, id, resp.RevokeSharedMeetingAccess.Success, msg)
 				return nil
 			}
 			return output.Render(os.Stdout, resp.RevokeSharedMeetingAccess, output.RenderOpts{

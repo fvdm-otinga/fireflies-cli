@@ -176,10 +176,10 @@ func writePlaintext(w io.Writer, v any) error {
 	case []any:
 		for _, item := range t {
 			if s, ok := item.(string); ok {
-				fmt.Fprintln(w, s)
+				_, _ = fmt.Fprintln(w, s)
 			} else {
 				b, _ := json.Marshal(item)
-				fmt.Fprintln(w, string(b))
+				_, _ = fmt.Fprintln(w, string(b))
 			}
 		}
 		return nil

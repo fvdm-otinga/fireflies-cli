@@ -1,0 +1,9 @@
+query AskFredThreads($transcript_id: String) {
+  askfred_threads(transcript_id: $transcript_id) {
+    id
+    title
+    transcript_id
+    user_id
+    created_at
+  }
+}

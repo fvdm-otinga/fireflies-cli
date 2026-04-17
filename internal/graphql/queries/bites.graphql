@@ -1,0 +1,20 @@
+query Bites($mine: Boolean, $transcript_id: ID, $limit: Int, $skip: Int) {
+  bites(mine: $mine, transcript_id: $transcript_id, limit: $limit, skip: $skip) {
+    id
+    name
+    transcript_id
+    user_id
+    start_time
+    end_time
+    created_at
+    status
+    summary
+    media_type
+    thumbnail
+    privacies
+    user {
+      id
+      name
+    }
+  }
+}

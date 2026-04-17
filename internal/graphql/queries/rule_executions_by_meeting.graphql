@@ -1,0 +1,26 @@
+query RuleExecutionsByMeeting($limit: Int, $cursor: String, $logs_per_meeting: Int, $meeting_id: String) {
+  rule_executions_by_meeting(
+    limit: $limit
+    cursor: $cursor
+    logs_per_meeting: $logs_per_meeting
+    filters: { meeting_id: $meeting_id }
+  ) {
+    has_more
+    next_cursor
+    meetings {
+      meeting_id
+      meeting {
+        id
+        title
+        organizer_email
+      }
+      executions {
+        meeting_id
+        extension_id
+        extension_title
+        stopped_at
+        user_name
+      }
+    }
+  }
+}

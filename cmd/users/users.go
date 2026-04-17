@@ -10,5 +10,7 @@ func NewUsersCmd() *cobra.Command {
 		Short: "Manage and query Fireflies users",
 	}
 	c.AddCommand(newWhoamiCmd())
+	c.AddCommand(newListCmd())
+	c.AddCommand(newGroupsCmd())
 	return c
 }

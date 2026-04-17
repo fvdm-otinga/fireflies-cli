@@ -1,0 +1,6 @@
+query LiveActionItems($meeting_id: ID!) {
+  live_action_items(meeting_id: $meeting_id) {
+    name
+    action_item
+  }
+}

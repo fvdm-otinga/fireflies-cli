@@ -4,8 +4,18 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 
+	analytcmd "github.com/fvdm-otinga/fireflies-cli/cmd/analytics"
+	appscmd "github.com/fvdm-otinga/fireflies-cli/cmd/apps"
+	askfredcmd "github.com/fvdm-otinga/fireflies-cli/cmd/askfred"
 	authcmd "github.com/fvdm-otinga/fireflies-cli/cmd/auth"
 	cfgcmd "github.com/fvdm-otinga/fireflies-cli/cmd/config"
+	channelscmd "github.com/fvdm-otinga/fireflies-cli/cmd/channels"
+	contactscmd "github.com/fvdm-otinga/fireflies-cli/cmd/contacts"
+	livecmd "github.com/fvdm-otinga/fireflies-cli/cmd/live"
+	meetingscmd "github.com/fvdm-otinga/fireflies-cli/cmd/meetings"
+	rulescmd "github.com/fvdm-otinga/fireflies-cli/cmd/rules"
+	soundbitescmd "github.com/fvdm-otinga/fireflies-cli/cmd/soundbites"
+	transcriptcmd "github.com/fvdm-otinga/fireflies-cli/cmd/transcript"
 	usercmd "github.com/fvdm-otinga/fireflies-cli/cmd/users"
 	vercmd "github.com/fvdm-otinga/fireflies-cli/cmd/version"
 	"github.com/fvdm-otinga/fireflies-cli/internal/flags"
@@ -33,5 +43,15 @@ All commands accept --fields (field projection), --jq (post-filter),
 	root.AddCommand(cfgcmd.NewConfigCmd())
 	root.AddCommand(usercmd.NewUsersCmd())
 	root.AddCommand(vercmd.NewVersionCmd(version, commit, date))
+	root.AddCommand(meetingscmd.NewMeetingsCmd())
+	root.AddCommand(channelscmd.NewChannelsCmd())
+	root.AddCommand(analytcmd.NewAnalyticsCmd())
+	root.AddCommand(transcriptcmd.NewTranscriptCmd())
+	root.AddCommand(soundbitescmd.NewSoundbitesCmd())
+	root.AddCommand(appscmd.NewAppsCmd())
+	root.AddCommand(askfredcmd.NewAskFredCmd())
+	root.AddCommand(rulescmd.NewRulesCmd())
+	root.AddCommand(contactscmd.NewContactsCmd())
+	root.AddCommand(livecmd.NewLiveCmd())
 	return root
 }

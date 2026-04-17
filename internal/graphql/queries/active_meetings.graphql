@@ -1,0 +1,12 @@
+query ActiveMeetings($states: [MeetingState!]) {
+  active_meetings(input: { states: $states }) {
+    id
+    title
+    organizer_email
+    meeting_link
+    start_time
+    end_time
+    privacy
+    state
+  }
+}

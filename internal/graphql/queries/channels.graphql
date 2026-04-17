@@ -1,0 +1,15 @@
+query Channels {
+  channels {
+    id
+    created_at
+    updated_at
+    created_by
+    is_private
+    title
+    members {
+      user_id
+      email
+      name
+    }
+  }
+}

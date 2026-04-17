@@ -87,14 +87,30 @@ func Render(w io.Writer, v any, opts RenderOpts) error {
 	case FormatYAML:
 		return writeYAML(w, raw)
 	case FormatTable:
-		return writeTable(w, raw, opts.Cols)
+		return writeTable(w, unwrapEnvelope(raw), opts.Cols)
 	case FormatTSV:
-		return writeTSV(w, raw, opts.Cols)
+		return writeTSV(w, unwrapEnvelope(raw), opts.Cols)
 	case FormatPlaintext:
 		return writePlaintext(w, raw)
 	default:
 		return fmt.Errorf("unknown format %q", opts.Format)
 	}
+}
+
+// unwrapEnvelope extracts the "data" slice from an envelope map produced by
+// output.Envelope, so that table/tsv renderers receive a []any directly.
+// Non-envelope values are returned unchanged.
+func unwrapEnvelope(v any) any {
+	m, ok := v.(map[string]any)
+	if !ok {
+		return v
+	}
+	if data, ok := m["data"]; ok {
+		if _, hasMeta := m["meta"]; hasMeta {
+			return data
+		}
+	}
+	return v
 }
 
 func toAny(v any) (any, error) {

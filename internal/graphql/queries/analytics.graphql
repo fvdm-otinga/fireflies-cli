@@ -1,0 +1,75 @@
+query Analytics($start_time: String, $end_time: String) {
+  analytics(start_time: $start_time, end_time: $end_time) {
+    team {
+      meeting {
+        count
+        count_diff_pct
+        duration
+        duration_diff_pct
+        average_count
+        average_count_diff_pct
+        average_duration
+        average_duration_diff_pct
+      }
+      conversation {
+        average_filler_words
+        average_filler_words_diff_pct
+        average_monologues_count
+        average_monologues_count_diff_pct
+        average_questions
+        average_questions_diff_pct
+        average_sentiments {
+          negative_pct
+          neutral_pct
+          positive_pct
+        }
+        average_silence_duration
+        average_silence_duration_diff_pct
+        average_talk_listen_ratio
+        average_words_per_minute
+        longest_monologue_duration_sec
+        longest_monologue_duration_diff_pct
+        total_filler_words
+        total_filler_words_diff_pct
+        total_meeting_notes_count
+        total_meetings_count
+        total_monologues_count
+        total_monologues_diff_pct
+        teammates_count
+        total_questions
+        total_questions_diff_pct
+        total_silence_duration
+        total_silence_duration_diff_pct
+      }
+    }
+    users {
+      user_id
+      user_name
+      user_email
+      meeting {
+        count
+        count_diff
+        count_diff_compared_to
+        count_diff_pct
+        duration
+        duration_diff
+        duration_diff_compared_to
+        duration_diff_pct
+      }
+      conversation {
+        talk_listen_pct
+        talk_listen_ratio
+        total_silence_duration
+        total_speak_duration
+        total_word_count
+        user_filler_words
+        user_longest_monologue_sec
+        user_monologues_count
+        user_questions
+        user_speak_duration
+        user_word_count
+        user_words_per_minute
+      }
+    }
+  }
+}

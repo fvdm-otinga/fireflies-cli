@@ -1,0 +1,37 @@
+query Bite($id: ID!) {
+  bite(id: $id) {
+    id
+    name
+    transcript_id
+    user_id
+    start_time
+    end_time
+    created_at
+    status
+    summary
+    media_type
+    thumbnail
+    privacies
+    user {
+      id
+      name
+    }
+    captions {
+      index
+      speaker_name
+      start_time
+      end_time
+      text
+    }
+    sources {
+      src
+      type
+    }
+    created_from {
+      id
+      name
+      type
+      duration
+    }
+  }
+}

@@ -1,0 +1,13 @@
+query Apps($app_id: String, $transcript_id: String, $skip: Float, $limit: Float) {
+  apps(app_id: $app_id, transcript_id: $transcript_id, skip: $skip, limit: $limit) {
+    outputs {
+      transcript_id
+      user_id
+      app_id
+      created_at
+      title
+      prompt
+      response
+    }
+  }
+}

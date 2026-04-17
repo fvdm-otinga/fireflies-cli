@@ -1,0 +1,8 @@
+query Contacts {
+  contacts {
+    email
+    name
+    picture
+    last_meeting_date
+  }
+}

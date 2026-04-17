@@ -1,0 +1,10 @@
+query UsersList {
+  users {
+    user_id
+    email
+    name
+    is_admin
+    num_transcripts
+    minutes_consumed
+  }
+}

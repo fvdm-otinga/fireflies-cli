@@ -57,7 +57,7 @@ var subSelections = map[TranscriptField][]string{
 	FCalendarID:     nil,
 	FDateString:     nil,
 	FPrivacy:        nil,
-	FParticipants: {"name", "email"},
+	FParticipants: nil,
 	FSpeakers:     {"id", "name"},
 	FChannels:     {"id", "title"},
 	FSummary:      {"keywords", "action_items", "outline", "overview", "short_summary", "bullet_gist", "gist", "meeting_type", "topics_discussed"},

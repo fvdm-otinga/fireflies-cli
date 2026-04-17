@@ -8,6 +8,1300 @@ import (
 	"github.com/Khan/genqlient/graphql"
 )
 
+// ActiveMeetingsActive_meetingsActiveMeeting includes the requested fields of the GraphQL type ActiveMeeting.
+type ActiveMeetingsActive_meetingsActiveMeeting struct {
+	Id              *string         `json:"id"`
+	Title           *string         `json:"title"`
+	Organizer_email *string         `json:"organizer_email"`
+	Meeting_link    *string         `json:"meeting_link"`
+	Start_time      *string         `json:"start_time"`
+	End_time        *string         `json:"end_time"`
+	Privacy         *MeetingPrivacy `json:"privacy"`
+	State           *MeetingState   `json:"state"`
+}
+
+// GetId returns ActiveMeetingsActive_meetingsActiveMeeting.Id, and is useful for accessing the field via an interface.
+func (v *ActiveMeetingsActive_meetingsActiveMeeting) GetId() *string { return v.Id }
+
+// GetTitle returns ActiveMeetingsActive_meetingsActiveMeeting.Title, and is useful for accessing the field via an interface.
+func (v *ActiveMeetingsActive_meetingsActiveMeeting) GetTitle() *string { return v.Title }
+
+// GetOrganizer_email returns ActiveMeetingsActive_meetingsActiveMeeting.Organizer_email, and is useful for accessing the field via an interface.
+func (v *ActiveMeetingsActive_meetingsActiveMeeting) GetOrganizer_email() *string {
+	return v.Organizer_email
+}
+
+// GetMeeting_link returns ActiveMeetingsActive_meetingsActiveMeeting.Meeting_link, and is useful for accessing the field via an interface.
+func (v *ActiveMeetingsActive_meetingsActiveMeeting) GetMeeting_link() *string { return v.Meeting_link }
+
+// GetStart_time returns ActiveMeetingsActive_meetingsActiveMeeting.Start_time, and is useful for accessing the field via an interface.
+func (v *ActiveMeetingsActive_meetingsActiveMeeting) GetStart_time() *string { return v.Start_time }
+
+// GetEnd_time returns ActiveMeetingsActive_meetingsActiveMeeting.End_time, and is useful for accessing the field via an interface.
+func (v *ActiveMeetingsActive_meetingsActiveMeeting) GetEnd_time() *string { return v.End_time }
+
+// GetPrivacy returns ActiveMeetingsActive_meetingsActiveMeeting.Privacy, and is useful for accessing the field via an interface.
+func (v *ActiveMeetingsActive_meetingsActiveMeeting) GetPrivacy() *MeetingPrivacy { return v.Privacy }
+
+// GetState returns ActiveMeetingsActive_meetingsActiveMeeting.State, and is useful for accessing the field via an interface.
+func (v *ActiveMeetingsActive_meetingsActiveMeeting) GetState() *MeetingState { return v.State }
+
+// ActiveMeetingsResponse is returned by ActiveMeetings on success.
+type ActiveMeetingsResponse struct {
+	Active_meetings []*ActiveMeetingsActive_meetingsActiveMeeting `json:"active_meetings"`
+}
+
+// GetActive_meetings returns ActiveMeetingsResponse.Active_meetings, and is useful for accessing the field via an interface.
+func (v *ActiveMeetingsResponse) GetActive_meetings() []*ActiveMeetingsActive_meetingsActiveMeeting {
+	return v.Active_meetings
+}
+
+// AnalyticsAnalytics includes the requested fields of the GraphQL type Analytics.
+type AnalyticsAnalytics struct {
+	Team  *AnalyticsAnalyticsTeamTeamAnalytics    `json:"team"`
+	Users []*AnalyticsAnalyticsUsersUserAnalytics `json:"users"`
+}
+
+// GetTeam returns AnalyticsAnalytics.Team, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalytics) GetTeam() *AnalyticsAnalyticsTeamTeamAnalytics { return v.Team }
+
+// GetUsers returns AnalyticsAnalytics.Users, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalytics) GetUsers() []*AnalyticsAnalyticsUsersUserAnalytics { return v.Users }
+
+// AnalyticsAnalyticsTeamTeamAnalytics includes the requested fields of the GraphQL type TeamAnalytics.
+type AnalyticsAnalyticsTeamTeamAnalytics struct {
+	Meeting      *AnalyticsAnalyticsTeamTeamAnalyticsMeetingTeamMeetingStats           `json:"meeting"`
+	Conversation *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats `json:"conversation"`
+}
+
+// GetMeeting returns AnalyticsAnalyticsTeamTeamAnalytics.Meeting, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalytics) GetMeeting() *AnalyticsAnalyticsTeamTeamAnalyticsMeetingTeamMeetingStats {
+	return v.Meeting
+}
+
+// GetConversation returns AnalyticsAnalyticsTeamTeamAnalytics.Conversation, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalytics) GetConversation() *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats {
+	return v.Conversation
+}
+
+// AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats includes the requested fields of the GraphQL type TeamConversationStats.
+type AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats struct {
+	Average_filler_words                int                                                                                               `json:"average_filler_words"`
+	Average_filler_words_diff_pct       *int                                                                                              `json:"average_filler_words_diff_pct"`
+	Average_monologues_count            int                                                                                               `json:"average_monologues_count"`
+	Average_monologues_count_diff_pct   *int                                                                                              `json:"average_monologues_count_diff_pct"`
+	Average_questions                   int                                                                                               `json:"average_questions"`
+	Average_questions_diff_pct          *int                                                                                              `json:"average_questions_diff_pct"`
+	Average_sentiments                  *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStatsAverage_sentimentsSentiments `json:"average_sentiments"`
+	Average_silence_duration            float64                                                                                           `json:"average_silence_duration"`
+	Average_silence_duration_diff_pct   *int                                                                                              `json:"average_silence_duration_diff_pct"`
+	Average_talk_listen_ratio           float64                                                                                           `json:"average_talk_listen_ratio"`
+	Average_words_per_minute            float64                                                                                           `json:"average_words_per_minute"`
+	Longest_monologue_duration_sec      int                                                                                               `json:"longest_monologue_duration_sec"`
+	Longest_monologue_duration_diff_pct *int                                                                                              `json:"longest_monologue_duration_diff_pct"`
+	Total_filler_words                  int                                                                                               `json:"total_filler_words"`
+	Total_filler_words_diff_pct         *int                                                                                              `json:"total_filler_words_diff_pct"`
+	Total_meeting_notes_count           int                                                                                               `json:"total_meeting_notes_count"`
+	Total_meetings_count                int                                                                                               `json:"total_meetings_count"`
+	Total_monologues_count              int                                                                                               `json:"total_monologues_count"`
+	Total_monologues_diff_pct           *int                                                                                              `json:"total_monologues_diff_pct"`
+	Teammates_count                     int                                                                                               `json:"teammates_count"`
+	Total_questions                     int                                                                                               `json:"total_questions"`
+	Total_questions_diff_pct            *int                                                                                              `json:"total_questions_diff_pct"`
+	Total_silence_duration              float64                                                                                           `json:"total_silence_duration"`
+	Total_silence_duration_diff_pct     *int                                                                                              `json:"total_silence_duration_diff_pct"`
+}
+
+// GetAverage_filler_words returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Average_filler_words, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetAverage_filler_words() int {
+	return v.Average_filler_words
+}
+
+// GetAverage_filler_words_diff_pct returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Average_filler_words_diff_pct, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetAverage_filler_words_diff_pct() *int {
+	return v.Average_filler_words_diff_pct
+}
+
+// GetAverage_monologues_count returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Average_monologues_count, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetAverage_monologues_count() int {
+	return v.Average_monologues_count
+}
+
+// GetAverage_monologues_count_diff_pct returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Average_monologues_count_diff_pct, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetAverage_monologues_count_diff_pct() *int {
+	return v.Average_monologues_count_diff_pct
+}
+
+// GetAverage_questions returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Average_questions, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetAverage_questions() int {
+	return v.Average_questions
+}
+
+// GetAverage_questions_diff_pct returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Average_questions_diff_pct, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetAverage_questions_diff_pct() *int {
+	return v.Average_questions_diff_pct
+}
+
+// GetAverage_sentiments returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Average_sentiments, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetAverage_sentiments() *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStatsAverage_sentimentsSentiments {
+	return v.Average_sentiments
+}
+
+// GetAverage_silence_duration returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Average_silence_duration, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetAverage_silence_duration() float64 {
+	return v.Average_silence_duration
+}
+
+// GetAverage_silence_duration_diff_pct returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Average_silence_duration_diff_pct, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetAverage_silence_duration_diff_pct() *int {
+	return v.Average_silence_duration_diff_pct
+}
+
+// GetAverage_talk_listen_ratio returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Average_talk_listen_ratio, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetAverage_talk_listen_ratio() float64 {
+	return v.Average_talk_listen_ratio
+}
+
+// GetAverage_words_per_minute returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Average_words_per_minute, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetAverage_words_per_minute() float64 {
+	return v.Average_words_per_minute
+}
+
+// GetLongest_monologue_duration_sec returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Longest_monologue_duration_sec, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetLongest_monologue_duration_sec() int {
+	return v.Longest_monologue_duration_sec
+}
+
+// GetLongest_monologue_duration_diff_pct returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Longest_monologue_duration_diff_pct, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetLongest_monologue_duration_diff_pct() *int {
+	return v.Longest_monologue_duration_diff_pct
+}
+
+// GetTotal_filler_words returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Total_filler_words, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetTotal_filler_words() int {
+	return v.Total_filler_words
+}
+
+// GetTotal_filler_words_diff_pct returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Total_filler_words_diff_pct, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetTotal_filler_words_diff_pct() *int {
+	return v.Total_filler_words_diff_pct
+}
+
+// GetTotal_meeting_notes_count returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Total_meeting_notes_count, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetTotal_meeting_notes_count() int {
+	return v.Total_meeting_notes_count
+}
+
+// GetTotal_meetings_count returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Total_meetings_count, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetTotal_meetings_count() int {
+	return v.Total_meetings_count
+}
+
+// GetTotal_monologues_count returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Total_monologues_count, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetTotal_monologues_count() int {
+	return v.Total_monologues_count
+}
+
+// GetTotal_monologues_diff_pct returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Total_monologues_diff_pct, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetTotal_monologues_diff_pct() *int {
+	return v.Total_monologues_diff_pct
+}
+
+// GetTeammates_count returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Teammates_count, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetTeammates_count() int {
+	return v.Teammates_count
+}
+
+// GetTotal_questions returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Total_questions, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetTotal_questions() int {
+	return v.Total_questions
+}
+
+// GetTotal_questions_diff_pct returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Total_questions_diff_pct, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetTotal_questions_diff_pct() *int {
+	return v.Total_questions_diff_pct
+}
+
+// GetTotal_silence_duration returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Total_silence_duration, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetTotal_silence_duration() float64 {
+	return v.Total_silence_duration
+}
+
+// GetTotal_silence_duration_diff_pct returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats.Total_silence_duration_diff_pct, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStats) GetTotal_silence_duration_diff_pct() *int {
+	return v.Total_silence_duration_diff_pct
+}
+
+// AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStatsAverage_sentimentsSentiments includes the requested fields of the GraphQL type Sentiments.
+type AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStatsAverage_sentimentsSentiments struct {
+	Negative_pct *float64 `json:"negative_pct"`
+	Neutral_pct  *float64 `json:"neutral_pct"`
+	Positive_pct *float64 `json:"positive_pct"`
+}
+
+// GetNegative_pct returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStatsAverage_sentimentsSentiments.Negative_pct, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStatsAverage_sentimentsSentiments) GetNegative_pct() *float64 {
+	return v.Negative_pct
+}
+
+// GetNeutral_pct returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStatsAverage_sentimentsSentiments.Neutral_pct, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStatsAverage_sentimentsSentiments) GetNeutral_pct() *float64 {
+	return v.Neutral_pct
+}
+
+// GetPositive_pct returns AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStatsAverage_sentimentsSentiments.Positive_pct, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsConversationTeamConversationStatsAverage_sentimentsSentiments) GetPositive_pct() *float64 {
+	return v.Positive_pct
+}
+
+// AnalyticsAnalyticsTeamTeamAnalyticsMeetingTeamMeetingStats includes the requested fields of the GraphQL type TeamMeetingStats.
+type AnalyticsAnalyticsTeamTeamAnalyticsMeetingTeamMeetingStats struct {
+	Count                     int     `json:"count"`
+	Count_diff_pct            *int    `json:"count_diff_pct"`
+	Duration                  float64 `json:"duration"`
+	Duration_diff_pct         *int    `json:"duration_diff_pct"`
+	Average_count             int     `json:"average_count"`
+	Average_count_diff_pct    *int    `json:"average_count_diff_pct"`
+	Average_duration          int     `json:"average_duration"`
+	Average_duration_diff_pct *int    `json:"average_duration_diff_pct"`
+}
+
+// GetCount returns AnalyticsAnalyticsTeamTeamAnalyticsMeetingTeamMeetingStats.Count, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsMeetingTeamMeetingStats) GetCount() int { return v.Count }
+
+// GetCount_diff_pct returns AnalyticsAnalyticsTeamTeamAnalyticsMeetingTeamMeetingStats.Count_diff_pct, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsMeetingTeamMeetingStats) GetCount_diff_pct() *int {
+	return v.Count_diff_pct
+}
+
+// GetDuration returns AnalyticsAnalyticsTeamTeamAnalyticsMeetingTeamMeetingStats.Duration, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsMeetingTeamMeetingStats) GetDuration() float64 {
+	return v.Duration
+}
+
+// GetDuration_diff_pct returns AnalyticsAnalyticsTeamTeamAnalyticsMeetingTeamMeetingStats.Duration_diff_pct, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsMeetingTeamMeetingStats) GetDuration_diff_pct() *int {
+	return v.Duration_diff_pct
+}
+
+// GetAverage_count returns AnalyticsAnalyticsTeamTeamAnalyticsMeetingTeamMeetingStats.Average_count, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsMeetingTeamMeetingStats) GetAverage_count() int {
+	return v.Average_count
+}
+
+// GetAverage_count_diff_pct returns AnalyticsAnalyticsTeamTeamAnalyticsMeetingTeamMeetingStats.Average_count_diff_pct, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsMeetingTeamMeetingStats) GetAverage_count_diff_pct() *int {
+	return v.Average_count_diff_pct
+}
+
+// GetAverage_duration returns AnalyticsAnalyticsTeamTeamAnalyticsMeetingTeamMeetingStats.Average_duration, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsMeetingTeamMeetingStats) GetAverage_duration() int {
+	return v.Average_duration
+}
+
+// GetAverage_duration_diff_pct returns AnalyticsAnalyticsTeamTeamAnalyticsMeetingTeamMeetingStats.Average_duration_diff_pct, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsTeamTeamAnalyticsMeetingTeamMeetingStats) GetAverage_duration_diff_pct() *int {
+	return v.Average_duration_diff_pct
+}
+
+// AnalyticsAnalyticsUsersUserAnalytics includes the requested fields of the GraphQL type UserAnalytics.
+type AnalyticsAnalyticsUsersUserAnalytics struct {
+	User_id      string                                                                 `json:"user_id"`
+	User_name    string                                                                 `json:"user_name"`
+	User_email   string                                                                 `json:"user_email"`
+	Meeting      *AnalyticsAnalyticsUsersUserAnalyticsMeetingUserMeetingStats           `json:"meeting"`
+	Conversation *AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats `json:"conversation"`
+}
+
+// GetUser_id returns AnalyticsAnalyticsUsersUserAnalytics.User_id, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalytics) GetUser_id() string { return v.User_id }
+
+// GetUser_name returns AnalyticsAnalyticsUsersUserAnalytics.User_name, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalytics) GetUser_name() string { return v.User_name }
+
+// GetUser_email returns AnalyticsAnalyticsUsersUserAnalytics.User_email, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalytics) GetUser_email() string { return v.User_email }
+
+// GetMeeting returns AnalyticsAnalyticsUsersUserAnalytics.Meeting, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalytics) GetMeeting() *AnalyticsAnalyticsUsersUserAnalyticsMeetingUserMeetingStats {
+	return v.Meeting
+}
+
+// GetConversation returns AnalyticsAnalyticsUsersUserAnalytics.Conversation, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalytics) GetConversation() *AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats {
+	return v.Conversation
+}
+
+// AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats includes the requested fields of the GraphQL type UserConversationStats.
+type AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats struct {
+	Talk_listen_pct            float64 `json:"talk_listen_pct"`
+	Talk_listen_ratio          float64 `json:"talk_listen_ratio"`
+	Total_silence_duration     float64 `json:"total_silence_duration"`
+	Total_speak_duration       float64 `json:"total_speak_duration"`
+	Total_word_count           int     `json:"total_word_count"`
+	User_filler_words          int     `json:"user_filler_words"`
+	User_longest_monologue_sec int     `json:"user_longest_monologue_sec"`
+	User_monologues_count      int     `json:"user_monologues_count"`
+	User_questions             int     `json:"user_questions"`
+	User_speak_duration        float64 `json:"user_speak_duration"`
+	User_word_count            int     `json:"user_word_count"`
+	User_words_per_minute      int     `json:"user_words_per_minute"`
+}
+
+// GetTalk_listen_pct returns AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats.Talk_listen_pct, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats) GetTalk_listen_pct() float64 {
+	return v.Talk_listen_pct
+}
+
+// GetTalk_listen_ratio returns AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats.Talk_listen_ratio, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats) GetTalk_listen_ratio() float64 {
+	return v.Talk_listen_ratio
+}
+
+// GetTotal_silence_duration returns AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats.Total_silence_duration, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats) GetTotal_silence_duration() float64 {
+	return v.Total_silence_duration
+}
+
+// GetTotal_speak_duration returns AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats.Total_speak_duration, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats) GetTotal_speak_duration() float64 {
+	return v.Total_speak_duration
+}
+
+// GetTotal_word_count returns AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats.Total_word_count, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats) GetTotal_word_count() int {
+	return v.Total_word_count
+}
+
+// GetUser_filler_words returns AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats.User_filler_words, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats) GetUser_filler_words() int {
+	return v.User_filler_words
+}
+
+// GetUser_longest_monologue_sec returns AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats.User_longest_monologue_sec, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats) GetUser_longest_monologue_sec() int {
+	return v.User_longest_monologue_sec
+}
+
+// GetUser_monologues_count returns AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats.User_monologues_count, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats) GetUser_monologues_count() int {
+	return v.User_monologues_count
+}
+
+// GetUser_questions returns AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats.User_questions, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats) GetUser_questions() int {
+	return v.User_questions
+}
+
+// GetUser_speak_duration returns AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats.User_speak_duration, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats) GetUser_speak_duration() float64 {
+	return v.User_speak_duration
+}
+
+// GetUser_word_count returns AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats.User_word_count, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats) GetUser_word_count() int {
+	return v.User_word_count
+}
+
+// GetUser_words_per_minute returns AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats.User_words_per_minute, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalyticsConversationUserConversationStats) GetUser_words_per_minute() int {
+	return v.User_words_per_minute
+}
+
+// AnalyticsAnalyticsUsersUserAnalyticsMeetingUserMeetingStats includes the requested fields of the GraphQL type UserMeetingStats.
+type AnalyticsAnalyticsUsersUserAnalyticsMeetingUserMeetingStats struct {
+	Count                     int     `json:"count"`
+	Count_diff                int     `json:"count_diff"`
+	Count_diff_compared_to    int     `json:"count_diff_compared_to"`
+	Count_diff_pct            *int    `json:"count_diff_pct"`
+	Duration                  float64 `json:"duration"`
+	Duration_diff             int     `json:"duration_diff"`
+	Duration_diff_compared_to int     `json:"duration_diff_compared_to"`
+	Duration_diff_pct         *int    `json:"duration_diff_pct"`
+}
+
+// GetCount returns AnalyticsAnalyticsUsersUserAnalyticsMeetingUserMeetingStats.Count, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalyticsMeetingUserMeetingStats) GetCount() int { return v.Count }
+
+// GetCount_diff returns AnalyticsAnalyticsUsersUserAnalyticsMeetingUserMeetingStats.Count_diff, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalyticsMeetingUserMeetingStats) GetCount_diff() int {
+	return v.Count_diff
+}
+
+// GetCount_diff_compared_to returns AnalyticsAnalyticsUsersUserAnalyticsMeetingUserMeetingStats.Count_diff_compared_to, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalyticsMeetingUserMeetingStats) GetCount_diff_compared_to() int {
+	return v.Count_diff_compared_to
+}
+
+// GetCount_diff_pct returns AnalyticsAnalyticsUsersUserAnalyticsMeetingUserMeetingStats.Count_diff_pct, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalyticsMeetingUserMeetingStats) GetCount_diff_pct() *int {
+	return v.Count_diff_pct
+}
+
+// GetDuration returns AnalyticsAnalyticsUsersUserAnalyticsMeetingUserMeetingStats.Duration, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalyticsMeetingUserMeetingStats) GetDuration() float64 {
+	return v.Duration
+}
+
+// GetDuration_diff returns AnalyticsAnalyticsUsersUserAnalyticsMeetingUserMeetingStats.Duration_diff, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalyticsMeetingUserMeetingStats) GetDuration_diff() int {
+	return v.Duration_diff
+}
+
+// GetDuration_diff_compared_to returns AnalyticsAnalyticsUsersUserAnalyticsMeetingUserMeetingStats.Duration_diff_compared_to, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalyticsMeetingUserMeetingStats) GetDuration_diff_compared_to() int {
+	return v.Duration_diff_compared_to
+}
+
+// GetDuration_diff_pct returns AnalyticsAnalyticsUsersUserAnalyticsMeetingUserMeetingStats.Duration_diff_pct, and is useful for accessing the field via an interface.
+func (v *AnalyticsAnalyticsUsersUserAnalyticsMeetingUserMeetingStats) GetDuration_diff_pct() *int {
+	return v.Duration_diff_pct
+}
+
+// AnalyticsResponse is returned by Analytics on success.
+type AnalyticsResponse struct {
+	Analytics *AnalyticsAnalytics `json:"analytics"`
+}
+
+// GetAnalytics returns AnalyticsResponse.Analytics, and is useful for accessing the field via an interface.
+func (v *AnalyticsResponse) GetAnalytics() *AnalyticsAnalytics { return v.Analytics }
+
+// AppsApps includes the requested fields of the GraphQL type Apps.
+type AppsApps struct {
+	Outputs []*AppsAppsOutputsAppOutput `json:"outputs"`
+}
+
+// GetOutputs returns AppsApps.Outputs, and is useful for accessing the field via an interface.
+func (v *AppsApps) GetOutputs() []*AppsAppsOutputsAppOutput { return v.Outputs }
+
+// AppsAppsOutputsAppOutput includes the requested fields of the GraphQL type AppOutput.
+type AppsAppsOutputsAppOutput struct {
+	Transcript_id *string  `json:"transcript_id"`
+	User_id       *string  `json:"user_id"`
+	App_id        *string  `json:"app_id"`
+	Created_at    *float64 `json:"created_at"`
+	Title         *string  `json:"title"`
+	Prompt        *string  `json:"prompt"`
+	Response      *string  `json:"response"`
+}
+
+// GetTranscript_id returns AppsAppsOutputsAppOutput.Transcript_id, and is useful for accessing the field via an interface.
+func (v *AppsAppsOutputsAppOutput) GetTranscript_id() *string { return v.Transcript_id }
+
+// GetUser_id returns AppsAppsOutputsAppOutput.User_id, and is useful for accessing the field via an interface.
+func (v *AppsAppsOutputsAppOutput) GetUser_id() *string { return v.User_id }
+
+// GetApp_id returns AppsAppsOutputsAppOutput.App_id, and is useful for accessing the field via an interface.
+func (v *AppsAppsOutputsAppOutput) GetApp_id() *string { return v.App_id }
+
+// GetCreated_at returns AppsAppsOutputsAppOutput.Created_at, and is useful for accessing the field via an interface.
+func (v *AppsAppsOutputsAppOutput) GetCreated_at() *float64 { return v.Created_at }
+
+// GetTitle returns AppsAppsOutputsAppOutput.Title, and is useful for accessing the field via an interface.
+func (v *AppsAppsOutputsAppOutput) GetTitle() *string { return v.Title }
+
+// GetPrompt returns AppsAppsOutputsAppOutput.Prompt, and is useful for accessing the field via an interface.
+func (v *AppsAppsOutputsAppOutput) GetPrompt() *string { return v.Prompt }
+
+// GetResponse returns AppsAppsOutputsAppOutput.Response, and is useful for accessing the field via an interface.
+func (v *AppsAppsOutputsAppOutput) GetResponse() *string { return v.Response }
+
+// AppsResponse is returned by Apps on success.
+type AppsResponse struct {
+	Apps *AppsApps `json:"apps"`
+}
+
+// GetApps returns AppsResponse.Apps, and is useful for accessing the field via an interface.
+func (v *AppsResponse) GetApps() *AppsApps { return v.Apps }
+
+// The status of an AskFred message
+type AskFredMessageStatus string
+
+const (
+	AskFredMessageStatusProcessing AskFredMessageStatus = "processing"
+	AskFredMessageStatusCompleted  AskFredMessageStatus = "completed"
+	AskFredMessageStatusFailed     AskFredMessageStatus = "failed"
+)
+
+var AllAskFredMessageStatus = []AskFredMessageStatus{
+	AskFredMessageStatusProcessing,
+	AskFredMessageStatusCompleted,
+	AskFredMessageStatusFailed,
+}
+
+// AskFredThreadAskfred_threadAskFredThread includes the requested fields of the GraphQL type AskFredThread.
+type AskFredThreadAskfred_threadAskFredThread struct {
+	Id            string                                                            `json:"id"`
+	Title         string                                                            `json:"title"`
+	Transcript_id *string                                                           `json:"transcript_id"`
+	User_id       string                                                            `json:"user_id"`
+	Created_at    string                                                            `json:"created_at"`
+	Messages      []*AskFredThreadAskfred_threadAskFredThreadMessagesAskFredMessage `json:"messages"`
+}
+
+// GetId returns AskFredThreadAskfred_threadAskFredThread.Id, and is useful for accessing the field via an interface.
+func (v *AskFredThreadAskfred_threadAskFredThread) GetId() string { return v.Id }
+
+// GetTitle returns AskFredThreadAskfred_threadAskFredThread.Title, and is useful for accessing the field via an interface.
+func (v *AskFredThreadAskfred_threadAskFredThread) GetTitle() string { return v.Title }
+
+// GetTranscript_id returns AskFredThreadAskfred_threadAskFredThread.Transcript_id, and is useful for accessing the field via an interface.
+func (v *AskFredThreadAskfred_threadAskFredThread) GetTranscript_id() *string { return v.Transcript_id }
+
+// GetUser_id returns AskFredThreadAskfred_threadAskFredThread.User_id, and is useful for accessing the field via an interface.
+func (v *AskFredThreadAskfred_threadAskFredThread) GetUser_id() string { return v.User_id }
+
+// GetCreated_at returns AskFredThreadAskfred_threadAskFredThread.Created_at, and is useful for accessing the field via an interface.
+func (v *AskFredThreadAskfred_threadAskFredThread) GetCreated_at() string { return v.Created_at }
+
+// GetMessages returns AskFredThreadAskfred_threadAskFredThread.Messages, and is useful for accessing the field via an interface.
+func (v *AskFredThreadAskfred_threadAskFredThread) GetMessages() []*AskFredThreadAskfred_threadAskFredThreadMessagesAskFredMessage {
+	return v.Messages
+}
+
+// AskFredThreadAskfred_threadAskFredThreadMessagesAskFredMessage includes the requested fields of the GraphQL type AskFredMessage.
+type AskFredThreadAskfred_threadAskFredThreadMessagesAskFredMessage struct {
+	Id                string               `json:"id"`
+	Thread_id         string               `json:"thread_id"`
+	Query             string               `json:"query"`
+	Answer            string               `json:"answer"`
+	Suggested_queries []string             `json:"suggested_queries"`
+	Status            AskFredMessageStatus `json:"status"`
+	Created_at        string               `json:"created_at"`
+	Updated_at        *string              `json:"updated_at"`
+}
+
+// GetId returns AskFredThreadAskfred_threadAskFredThreadMessagesAskFredMessage.Id, and is useful for accessing the field via an interface.
+func (v *AskFredThreadAskfred_threadAskFredThreadMessagesAskFredMessage) GetId() string { return v.Id }
+
+// GetThread_id returns AskFredThreadAskfred_threadAskFredThreadMessagesAskFredMessage.Thread_id, and is useful for accessing the field via an interface.
+func (v *AskFredThreadAskfred_threadAskFredThreadMessagesAskFredMessage) GetThread_id() string {
+	return v.Thread_id
+}
+
+// GetQuery returns AskFredThreadAskfred_threadAskFredThreadMessagesAskFredMessage.Query, and is useful for accessing the field via an interface.
+func (v *AskFredThreadAskfred_threadAskFredThreadMessagesAskFredMessage) GetQuery() string {
+	return v.Query
+}
+
+// GetAnswer returns AskFredThreadAskfred_threadAskFredThreadMessagesAskFredMessage.Answer, and is useful for accessing the field via an interface.
+func (v *AskFredThreadAskfred_threadAskFredThreadMessagesAskFredMessage) GetAnswer() string {
+	return v.Answer
+}
+
+// GetSuggested_queries returns AskFredThreadAskfred_threadAskFredThreadMessagesAskFredMessage.Suggested_queries, and is useful for accessing the field via an interface.
+func (v *AskFredThreadAskfred_threadAskFredThreadMessagesAskFredMessage) GetSuggested_queries() []string {
+	return v.Suggested_queries
+}
+
+// GetStatus returns AskFredThreadAskfred_threadAskFredThreadMessagesAskFredMessage.Status, and is useful for accessing the field via an interface.
+func (v *AskFredThreadAskfred_threadAskFredThreadMessagesAskFredMessage) GetStatus() AskFredMessageStatus {
+	return v.Status
+}
+
+// GetCreated_at returns AskFredThreadAskfred_threadAskFredThreadMessagesAskFredMessage.Created_at, and is useful for accessing the field via an interface.
+func (v *AskFredThreadAskfred_threadAskFredThreadMessagesAskFredMessage) GetCreated_at() string {
+	return v.Created_at
+}
+
+// GetUpdated_at returns AskFredThreadAskfred_threadAskFredThreadMessagesAskFredMessage.Updated_at, and is useful for accessing the field via an interface.
+func (v *AskFredThreadAskfred_threadAskFredThreadMessagesAskFredMessage) GetUpdated_at() *string {
+	return v.Updated_at
+}
+
+// AskFredThreadResponse is returned by AskFredThread on success.
+type AskFredThreadResponse struct {
+	// Get a specific thread by ID with all its messages
+	Askfred_thread *AskFredThreadAskfred_threadAskFredThread `json:"askfred_thread"`
+}
+
+// GetAskfred_thread returns AskFredThreadResponse.Askfred_thread, and is useful for accessing the field via an interface.
+func (v *AskFredThreadResponse) GetAskfred_thread() *AskFredThreadAskfred_threadAskFredThread {
+	return v.Askfred_thread
+}
+
+// AskFredThreadsAskfred_threadsAskFredThreadSummary includes the requested fields of the GraphQL type AskFredThreadSummary.
+type AskFredThreadsAskfred_threadsAskFredThreadSummary struct {
+	Id            string  `json:"id"`
+	Title         string  `json:"title"`
+	Transcript_id *string `json:"transcript_id"`
+	User_id       string  `json:"user_id"`
+	Created_at    string  `json:"created_at"`
+}
+
+// GetId returns AskFredThreadsAskfred_threadsAskFredThreadSummary.Id, and is useful for accessing the field via an interface.
+func (v *AskFredThreadsAskfred_threadsAskFredThreadSummary) GetId() string { return v.Id }
+
+// GetTitle returns AskFredThreadsAskfred_threadsAskFredThreadSummary.Title, and is useful for accessing the field via an interface.
+func (v *AskFredThreadsAskfred_threadsAskFredThreadSummary) GetTitle() string { return v.Title }
+
+// GetTranscript_id returns AskFredThreadsAskfred_threadsAskFredThreadSummary.Transcript_id, and is useful for accessing the field via an interface.
+func (v *AskFredThreadsAskfred_threadsAskFredThreadSummary) GetTranscript_id() *string {
+	return v.Transcript_id
+}
+
+// GetUser_id returns AskFredThreadsAskfred_threadsAskFredThreadSummary.User_id, and is useful for accessing the field via an interface.
+func (v *AskFredThreadsAskfred_threadsAskFredThreadSummary) GetUser_id() string { return v.User_id }
+
+// GetCreated_at returns AskFredThreadsAskfred_threadsAskFredThreadSummary.Created_at, and is useful for accessing the field via an interface.
+func (v *AskFredThreadsAskfred_threadsAskFredThreadSummary) GetCreated_at() string {
+	return v.Created_at
+}
+
+// AskFredThreadsResponse is returned by AskFredThreads on success.
+type AskFredThreadsResponse struct {
+	// Get a summary of all threads for the current user
+	Askfred_threads []*AskFredThreadsAskfred_threadsAskFredThreadSummary `json:"askfred_threads"`
+}
+
+// GetAskfred_threads returns AskFredThreadsResponse.Askfred_threads, and is useful for accessing the field via an interface.
+func (v *AskFredThreadsResponse) GetAskfred_threads() []*AskFredThreadsAskfred_threadsAskFredThreadSummary {
+	return v.Askfred_threads
+}
+
+// BiteBite includes the requested fields of the GraphQL type Bite.
+type BiteBite struct {
+	Id            string                          `json:"id"`
+	Name          string                          `json:"name"`
+	Transcript_id string                          `json:"transcript_id"`
+	User_id       string                          `json:"user_id"`
+	Start_time    float64                         `json:"start_time"`
+	End_time      float64                         `json:"end_time"`
+	Created_at    *string                         `json:"created_at"`
+	Status        *string                         `json:"status"`
+	Summary       *string                         `json:"summary"`
+	Media_type    *string                         `json:"media_type"`
+	Thumbnail     *string                         `json:"thumbnail"`
+	Privacies     []BitePrivacy                   `json:"privacies"`
+	User          *BiteBiteUser                   `json:"user"`
+	Captions      []*BiteBiteCaptionsBiteCaption  `json:"captions"`
+	Sources       []*BiteBiteSourcesMediaSource   `json:"sources"`
+	Created_from  *BiteBiteCreated_fromBiteOrigin `json:"created_from"`
+}
+
+// GetId returns BiteBite.Id, and is useful for accessing the field via an interface.
+func (v *BiteBite) GetId() string { return v.Id }
+
+// GetName returns BiteBite.Name, and is useful for accessing the field via an interface.
+func (v *BiteBite) GetName() string { return v.Name }
+
+// GetTranscript_id returns BiteBite.Transcript_id, and is useful for accessing the field via an interface.
+func (v *BiteBite) GetTranscript_id() string { return v.Transcript_id }
+
+// GetUser_id returns BiteBite.User_id, and is useful for accessing the field via an interface.
+func (v *BiteBite) GetUser_id() string { return v.User_id }
+
+// GetStart_time returns BiteBite.Start_time, and is useful for accessing the field via an interface.
+func (v *BiteBite) GetStart_time() float64 { return v.Start_time }
+
+// GetEnd_time returns BiteBite.End_time, and is useful for accessing the field via an interface.
+func (v *BiteBite) GetEnd_time() float64 { return v.End_time }
+
+// GetCreated_at returns BiteBite.Created_at, and is useful for accessing the field via an interface.
+func (v *BiteBite) GetCreated_at() *string { return v.Created_at }
+
+// GetStatus returns BiteBite.Status, and is useful for accessing the field via an interface.
+func (v *BiteBite) GetStatus() *string { return v.Status }
+
+// GetSummary returns BiteBite.Summary, and is useful for accessing the field via an interface.
+func (v *BiteBite) GetSummary() *string { return v.Summary }
+
+// GetMedia_type returns BiteBite.Media_type, and is useful for accessing the field via an interface.
+func (v *BiteBite) GetMedia_type() *string { return v.Media_type }
+
+// GetThumbnail returns BiteBite.Thumbnail, and is useful for accessing the field via an interface.
+func (v *BiteBite) GetThumbnail() *string { return v.Thumbnail }
+
+// GetPrivacies returns BiteBite.Privacies, and is useful for accessing the field via an interface.
+func (v *BiteBite) GetPrivacies() []BitePrivacy { return v.Privacies }
+
+// GetUser returns BiteBite.User, and is useful for accessing the field via an interface.
+func (v *BiteBite) GetUser() *BiteBiteUser { return v.User }
+
+// GetCaptions returns BiteBite.Captions, and is useful for accessing the field via an interface.
+func (v *BiteBite) GetCaptions() []*BiteBiteCaptionsBiteCaption { return v.Captions }
+
+// GetSources returns BiteBite.Sources, and is useful for accessing the field via an interface.
+func (v *BiteBite) GetSources() []*BiteBiteSourcesMediaSource { return v.Sources }
+
+// GetCreated_from returns BiteBite.Created_from, and is useful for accessing the field via an interface.
+func (v *BiteBite) GetCreated_from() *BiteBiteCreated_fromBiteOrigin { return v.Created_from }
+
+// BiteBiteCaptionsBiteCaption includes the requested fields of the GraphQL type BiteCaption.
+type BiteBiteCaptionsBiteCaption struct {
+	Index        int     `json:"index"`
+	Speaker_name string  `json:"speaker_name"`
+	Start_time   float64 `json:"start_time"`
+	End_time     float64 `json:"end_time"`
+	Text         string  `json:"text"`
+}
+
+// GetIndex returns BiteBiteCaptionsBiteCaption.Index, and is useful for accessing the field via an interface.
+func (v *BiteBiteCaptionsBiteCaption) GetIndex() int { return v.Index }
+
+// GetSpeaker_name returns BiteBiteCaptionsBiteCaption.Speaker_name, and is useful for accessing the field via an interface.
+func (v *BiteBiteCaptionsBiteCaption) GetSpeaker_name() string { return v.Speaker_name }
+
+// GetStart_time returns BiteBiteCaptionsBiteCaption.Start_time, and is useful for accessing the field via an interface.
+func (v *BiteBiteCaptionsBiteCaption) GetStart_time() float64 { return v.Start_time }
+
+// GetEnd_time returns BiteBiteCaptionsBiteCaption.End_time, and is useful for accessing the field via an interface.
+func (v *BiteBiteCaptionsBiteCaption) GetEnd_time() float64 { return v.End_time }
+
+// GetText returns BiteBiteCaptionsBiteCaption.Text, and is useful for accessing the field via an interface.
+func (v *BiteBiteCaptionsBiteCaption) GetText() string { return v.Text }
+
+// BiteBiteCreated_fromBiteOrigin includes the requested fields of the GraphQL type BiteOrigin.
+type BiteBiteCreated_fromBiteOrigin struct {
+	Id       string         `json:"id"`
+	Name     string         `json:"name"`
+	Type     BiteOriginType `json:"type"`
+	Duration *float64       `json:"duration"`
+}
+
+// GetId returns BiteBiteCreated_fromBiteOrigin.Id, and is useful for accessing the field via an interface.
+func (v *BiteBiteCreated_fromBiteOrigin) GetId() string { return v.Id }
+
+// GetName returns BiteBiteCreated_fromBiteOrigin.Name, and is useful for accessing the field via an interface.
+func (v *BiteBiteCreated_fromBiteOrigin) GetName() string { return v.Name }
+
+// GetType returns BiteBiteCreated_fromBiteOrigin.Type, and is useful for accessing the field via an interface.
+func (v *BiteBiteCreated_fromBiteOrigin) GetType() BiteOriginType { return v.Type }
+
+// GetDuration returns BiteBiteCreated_fromBiteOrigin.Duration, and is useful for accessing the field via an interface.
+func (v *BiteBiteCreated_fromBiteOrigin) GetDuration() *float64 { return v.Duration }
+
+// BiteBiteSourcesMediaSource includes the requested fields of the GraphQL type MediaSource.
+type BiteBiteSourcesMediaSource struct {
+	Src  string `json:"src"`
+	Type string `json:"type"`
+}
+
+// GetSrc returns BiteBiteSourcesMediaSource.Src, and is useful for accessing the field via an interface.
+func (v *BiteBiteSourcesMediaSource) GetSrc() string { return v.Src }
+
+// GetType returns BiteBiteSourcesMediaSource.Type, and is useful for accessing the field via an interface.
+func (v *BiteBiteSourcesMediaSource) GetType() string { return v.Type }
+
+// BiteBiteUser includes the requested fields of the GraphQL type BiteUser.
+type BiteBiteUser struct {
+	Id   string `json:"id"`
+	Name string `json:"name"`
+}
+
+// GetId returns BiteBiteUser.Id, and is useful for accessing the field via an interface.
+func (v *BiteBiteUser) GetId() string { return v.Id }
+
+// GetName returns BiteBiteUser.Name, and is useful for accessing the field via an interface.
+func (v *BiteBiteUser) GetName() string { return v.Name }
+
+type BiteOriginType string
+
+const (
+	BiteOriginTypeMeeting BiteOriginType = "MEETING"
+)
+
+var AllBiteOriginType = []BiteOriginType{
+	BiteOriginTypeMeeting,
+}
+
+type BitePrivacy string
+
+const (
+	BitePrivacyPublic       BitePrivacy = "public"
+	BitePrivacyTeam         BitePrivacy = "team"
+	BitePrivacyParticipants BitePrivacy = "participants"
+)
+
+var AllBitePrivacy = []BitePrivacy{
+	BitePrivacyPublic,
+	BitePrivacyTeam,
+	BitePrivacyParticipants,
+}
+
+// BiteResponse is returned by Bite on success.
+type BiteResponse struct {
+	Bite *BiteBite `json:"bite"`
+}
+
+// GetBite returns BiteResponse.Bite, and is useful for accessing the field via an interface.
+func (v *BiteResponse) GetBite() *BiteBite { return v.Bite }
+
+// BitesBitesBite includes the requested fields of the GraphQL type Bite.
+type BitesBitesBite struct {
+	Id            string              `json:"id"`
+	Name          string              `json:"name"`
+	Transcript_id string              `json:"transcript_id"`
+	User_id       string              `json:"user_id"`
+	Start_time    float64             `json:"start_time"`
+	End_time      float64             `json:"end_time"`
+	Created_at    *string             `json:"created_at"`
+	Status        *string             `json:"status"`
+	Summary       *string             `json:"summary"`
+	Media_type    *string             `json:"media_type"`
+	Thumbnail     *string             `json:"thumbnail"`
+	Privacies     []BitePrivacy       `json:"privacies"`
+	User          *BitesBitesBiteUser `json:"user"`
+}
+
+// GetId returns BitesBitesBite.Id, and is useful for accessing the field via an interface.
+func (v *BitesBitesBite) GetId() string { return v.Id }
+
+// GetName returns BitesBitesBite.Name, and is useful for accessing the field via an interface.
+func (v *BitesBitesBite) GetName() string { return v.Name }
+
+// GetTranscript_id returns BitesBitesBite.Transcript_id, and is useful for accessing the field via an interface.
+func (v *BitesBitesBite) GetTranscript_id() string { return v.Transcript_id }
+
+// GetUser_id returns BitesBitesBite.User_id, and is useful for accessing the field via an interface.
+func (v *BitesBitesBite) GetUser_id() string { return v.User_id }
+
+// GetStart_time returns BitesBitesBite.Start_time, and is useful for accessing the field via an interface.
+func (v *BitesBitesBite) GetStart_time() float64 { return v.Start_time }
+
+// GetEnd_time returns BitesBitesBite.End_time, and is useful for accessing the field via an interface.
+func (v *BitesBitesBite) GetEnd_time() float64 { return v.End_time }
+
+// GetCreated_at returns BitesBitesBite.Created_at, and is useful for accessing the field via an interface.
+func (v *BitesBitesBite) GetCreated_at() *string { return v.Created_at }
+
+// GetStatus returns BitesBitesBite.Status, and is useful for accessing the field via an interface.
+func (v *BitesBitesBite) GetStatus() *string { return v.Status }
+
+// GetSummary returns BitesBitesBite.Summary, and is useful for accessing the field via an interface.
+func (v *BitesBitesBite) GetSummary() *string { return v.Summary }
+
+// GetMedia_type returns BitesBitesBite.Media_type, and is useful for accessing the field via an interface.
+func (v *BitesBitesBite) GetMedia_type() *string { return v.Media_type }
+
+// GetThumbnail returns BitesBitesBite.Thumbnail, and is useful for accessing the field via an interface.
+func (v *BitesBitesBite) GetThumbnail() *string { return v.Thumbnail }
+
+// GetPrivacies returns BitesBitesBite.Privacies, and is useful for accessing the field via an interface.
+func (v *BitesBitesBite) GetPrivacies() []BitePrivacy { return v.Privacies }
+
+// GetUser returns BitesBitesBite.User, and is useful for accessing the field via an interface.
+func (v *BitesBitesBite) GetUser() *BitesBitesBiteUser { return v.User }
+
+// BitesBitesBiteUser includes the requested fields of the GraphQL type BiteUser.
+type BitesBitesBiteUser struct {
+	Id   string `json:"id"`
+	Name string `json:"name"`
+}
+
+// GetId returns BitesBitesBiteUser.Id, and is useful for accessing the field via an interface.
+func (v *BitesBitesBiteUser) GetId() string { return v.Id }
+
+// GetName returns BitesBitesBiteUser.Name, and is useful for accessing the field via an interface.
+func (v *BitesBitesBiteUser) GetName() string { return v.Name }
+
+// BitesResponse is returned by Bites on success.
+type BitesResponse struct {
+	Bites []*BitesBitesBite `json:"bites"`
+}
+
+// GetBites returns BitesResponse.Bites, and is useful for accessing the field via an interface.
+func (v *BitesResponse) GetBites() []*BitesBitesBite { return v.Bites }
+
+// ChannelChannel includes the requested fields of the GraphQL type Channel.
+type ChannelChannel struct {
+	Id         string                                `json:"id"`
+	Created_at *string                               `json:"created_at"`
+	Updated_at *string                               `json:"updated_at"`
+	Created_by *string                               `json:"created_by"`
+	Is_private *bool                                 `json:"is_private"`
+	Title      *string                               `json:"title"`
+	Members    []*ChannelChannelMembersChannelMember `json:"members"`
+}
+
+// GetId returns ChannelChannel.Id, and is useful for accessing the field via an interface.
+func (v *ChannelChannel) GetId() string { return v.Id }
+
+// GetCreated_at returns ChannelChannel.Created_at, and is useful for accessing the field via an interface.
+func (v *ChannelChannel) GetCreated_at() *string { return v.Created_at }
+
+// GetUpdated_at returns ChannelChannel.Updated_at, and is useful for accessing the field via an interface.
+func (v *ChannelChannel) GetUpdated_at() *string { return v.Updated_at }
+
+// GetCreated_by returns ChannelChannel.Created_by, and is useful for accessing the field via an interface.
+func (v *ChannelChannel) GetCreated_by() *string { return v.Created_by }
+
+// GetIs_private returns ChannelChannel.Is_private, and is useful for accessing the field via an interface.
+func (v *ChannelChannel) GetIs_private() *bool { return v.Is_private }
+
+// GetTitle returns ChannelChannel.Title, and is useful for accessing the field via an interface.
+func (v *ChannelChannel) GetTitle() *string { return v.Title }
+
+// GetMembers returns ChannelChannel.Members, and is useful for accessing the field via an interface.
+func (v *ChannelChannel) GetMembers() []*ChannelChannelMembersChannelMember { return v.Members }
+
+// ChannelChannelMembersChannelMember includes the requested fields of the GraphQL type ChannelMember.
+type ChannelChannelMembersChannelMember struct {
+	User_id string `json:"user_id"`
+	Email   string `json:"email"`
+	Name    string `json:"name"`
+}
+
+// GetUser_id returns ChannelChannelMembersChannelMember.User_id, and is useful for accessing the field via an interface.
+func (v *ChannelChannelMembersChannelMember) GetUser_id() string { return v.User_id }
+
+// GetEmail returns ChannelChannelMembersChannelMember.Email, and is useful for accessing the field via an interface.
+func (v *ChannelChannelMembersChannelMember) GetEmail() string { return v.Email }
+
+// GetName returns ChannelChannelMembersChannelMember.Name, and is useful for accessing the field via an interface.
+func (v *ChannelChannelMembersChannelMember) GetName() string { return v.Name }
+
+// ChannelResponse is returned by Channel on success.
+type ChannelResponse struct {
+	Channel *ChannelChannel `json:"channel"`
+}
+
+// GetChannel returns ChannelResponse.Channel, and is useful for accessing the field via an interface.
+func (v *ChannelResponse) GetChannel() *ChannelChannel { return v.Channel }
+
+// ChannelsChannelsChannel includes the requested fields of the GraphQL type Channel.
+type ChannelsChannelsChannel struct {
+	Id         string                                         `json:"id"`
+	Created_at *string                                        `json:"created_at"`
+	Updated_at *string                                        `json:"updated_at"`
+	Created_by *string                                        `json:"created_by"`
+	Is_private *bool                                          `json:"is_private"`
+	Title      *string                                        `json:"title"`
+	Members    []*ChannelsChannelsChannelMembersChannelMember `json:"members"`
+}
+
+// GetId returns ChannelsChannelsChannel.Id, and is useful for accessing the field via an interface.
+func (v *ChannelsChannelsChannel) GetId() string { return v.Id }
+
+// GetCreated_at returns ChannelsChannelsChannel.Created_at, and is useful for accessing the field via an interface.
+func (v *ChannelsChannelsChannel) GetCreated_at() *string { return v.Created_at }
+
+// GetUpdated_at returns ChannelsChannelsChannel.Updated_at, and is useful for accessing the field via an interface.
+func (v *ChannelsChannelsChannel) GetUpdated_at() *string { return v.Updated_at }
+
+// GetCreated_by returns ChannelsChannelsChannel.Created_by, and is useful for accessing the field via an interface.
+func (v *ChannelsChannelsChannel) GetCreated_by() *string { return v.Created_by }
+
+// GetIs_private returns ChannelsChannelsChannel.Is_private, and is useful for accessing the field via an interface.
+func (v *ChannelsChannelsChannel) GetIs_private() *bool { return v.Is_private }
+
+// GetTitle returns ChannelsChannelsChannel.Title, and is useful for accessing the field via an interface.
+func (v *ChannelsChannelsChannel) GetTitle() *string { return v.Title }
+
+// GetMembers returns ChannelsChannelsChannel.Members, and is useful for accessing the field via an interface.
+func (v *ChannelsChannelsChannel) GetMembers() []*ChannelsChannelsChannelMembersChannelMember {
+	return v.Members
+}
+
+// ChannelsChannelsChannelMembersChannelMember includes the requested fields of the GraphQL type ChannelMember.
+type ChannelsChannelsChannelMembersChannelMember struct {
+	User_id string `json:"user_id"`
+	Email   string `json:"email"`
+	Name    string `json:"name"`
+}
+
+// GetUser_id returns ChannelsChannelsChannelMembersChannelMember.User_id, and is useful for accessing the field via an interface.
+func (v *ChannelsChannelsChannelMembersChannelMember) GetUser_id() string { return v.User_id }
+
+// GetEmail returns ChannelsChannelsChannelMembersChannelMember.Email, and is useful for accessing the field via an interface.
+func (v *ChannelsChannelsChannelMembersChannelMember) GetEmail() string { return v.Email }
+
+// GetName returns ChannelsChannelsChannelMembersChannelMember.Name, and is useful for accessing the field via an interface.
+func (v *ChannelsChannelsChannelMembersChannelMember) GetName() string { return v.Name }
+
+// ChannelsResponse is returned by Channels on success.
+type ChannelsResponse struct {
+	Channels []*ChannelsChannelsChannel `json:"channels"`
+}
+
+// GetChannels returns ChannelsResponse.Channels, and is useful for accessing the field via an interface.
+func (v *ChannelsResponse) GetChannels() []*ChannelsChannelsChannel { return v.Channels }
+
+// ContactsContactsContact includes the requested fields of the GraphQL type Contact.
+type ContactsContactsContact struct {
+	Email             string  `json:"email"`
+	Name              string  `json:"name"`
+	Picture           *string `json:"picture"`
+	Last_meeting_date *string `json:"last_meeting_date"`
+}
+
+// GetEmail returns ContactsContactsContact.Email, and is useful for accessing the field via an interface.
+func (v *ContactsContactsContact) GetEmail() string { return v.Email }
+
+// GetName returns ContactsContactsContact.Name, and is useful for accessing the field via an interface.
+func (v *ContactsContactsContact) GetName() string { return v.Name }
+
+// GetPicture returns ContactsContactsContact.Picture, and is useful for accessing the field via an interface.
+func (v *ContactsContactsContact) GetPicture() *string { return v.Picture }
+
+// GetLast_meeting_date returns ContactsContactsContact.Last_meeting_date, and is useful for accessing the field via an interface.
+func (v *ContactsContactsContact) GetLast_meeting_date() *string { return v.Last_meeting_date }
+
+// ContactsResponse is returned by Contacts on success.
+type ContactsResponse struct {
+	Contacts []*ContactsContactsContact `json:"contacts"`
+}
+
+// GetContacts returns ContactsResponse.Contacts, and is useful for accessing the field via an interface.
+func (v *ContactsResponse) GetContacts() []*ContactsContactsContact { return v.Contacts }
+
+// LiveActionItemsLive_action_itemsLiveActionItem includes the requested fields of the GraphQL type LiveActionItem.
+type LiveActionItemsLive_action_itemsLiveActionItem struct {
+	Name        *string `json:"name"`
+	Action_item string  `json:"action_item"`
+}
+
+// GetName returns LiveActionItemsLive_action_itemsLiveActionItem.Name, and is useful for accessing the field via an interface.
+func (v *LiveActionItemsLive_action_itemsLiveActionItem) GetName() *string { return v.Name }
+
+// GetAction_item returns LiveActionItemsLive_action_itemsLiveActionItem.Action_item, and is useful for accessing the field via an interface.
+func (v *LiveActionItemsLive_action_itemsLiveActionItem) GetAction_item() string {
+	return v.Action_item
+}
+
+// LiveActionItemsResponse is returned by LiveActionItems on success.
+type LiveActionItemsResponse struct {
+	// Get live action items for a meeting
+	Live_action_items []*LiveActionItemsLive_action_itemsLiveActionItem `json:"live_action_items"`
+}
+
+// GetLive_action_items returns LiveActionItemsResponse.Live_action_items, and is useful for accessing the field via an interface.
+func (v *LiveActionItemsResponse) GetLive_action_items() []*LiveActionItemsLive_action_itemsLiveActionItem {
+	return v.Live_action_items
+}
+
+// Meeting privacy levels
+type MeetingPrivacy string
+
+const (
+	MeetingPrivacyLink                     MeetingPrivacy = "link"
+	MeetingPrivacyOwner                    MeetingPrivacy = "owner"
+	MeetingPrivacyParticipants             MeetingPrivacy = "participants"
+	MeetingPrivacyTeammatesandparticipants MeetingPrivacy = "teammatesandparticipants"
+	MeetingPrivacyTeammates                MeetingPrivacy = "teammates"
+)
+
+var AllMeetingPrivacy = []MeetingPrivacy{
+	MeetingPrivacyLink,
+	MeetingPrivacyOwner,
+	MeetingPrivacyParticipants,
+	MeetingPrivacyTeammatesandparticipants,
+	MeetingPrivacyTeammates,
+}
+
+// Meeting state values
+type MeetingState string
+
+const (
+	MeetingStateActive MeetingState = "active"
+	MeetingStatePaused MeetingState = "paused"
+)
+
+var AllMeetingState = []MeetingState{
+	MeetingStateActive,
+	MeetingStatePaused,
+}
+
+// RuleExecutionsByMeetingResponse is returned by RuleExecutionsByMeeting on success.
+type RuleExecutionsByMeetingResponse struct {
+	Rule_executions_by_meeting *RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponse `json:"rule_executions_by_meeting"`
+}
+
+// GetRule_executions_by_meeting returns RuleExecutionsByMeetingResponse.Rule_executions_by_meeting, and is useful for accessing the field via an interface.
+func (v *RuleExecutionsByMeetingResponse) GetRule_executions_by_meeting() *RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponse {
+	return v.Rule_executions_by_meeting
+}
+
+// RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponse includes the requested fields of the GraphQL type RuleExecutionsByMeetingResponse.
+type RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponse struct {
+	Has_more    bool                                                                                                                 `json:"has_more"`
+	Next_cursor *string                                                                                                              `json:"next_cursor"`
+	Meetings    []*RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroup `json:"meetings"`
+}
+
+// GetHas_more returns RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponse.Has_more, and is useful for accessing the field via an interface.
+func (v *RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponse) GetHas_more() bool {
+	return v.Has_more
+}
+
+// GetNext_cursor returns RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponse.Next_cursor, and is useful for accessing the field via an interface.
+func (v *RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponse) GetNext_cursor() *string {
+	return v.Next_cursor
+}
+
+// GetMeetings returns RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponse.Meetings, and is useful for accessing the field via an interface.
+func (v *RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponse) GetMeetings() []*RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroup {
+	return v.Meetings
+}
+
+// RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroup includes the requested fields of the GraphQL type RuleExecutionMeetingGroup.
+type RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroup struct {
+	Meeting_id string                                                                                                                                        `json:"meeting_id"`
+	Meeting    *RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupMeetingRuleExecutionMeeting `json:"meeting"`
+	Executions []*RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupExecutionsRuleExecution   `json:"executions"`
+}
+
+// GetMeeting_id returns RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroup.Meeting_id, and is useful for accessing the field via an interface.
+func (v *RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroup) GetMeeting_id() string {
+	return v.Meeting_id
+}
+
+// GetMeeting returns RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroup.Meeting, and is useful for accessing the field via an interface.
+func (v *RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroup) GetMeeting() *RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupMeetingRuleExecutionMeeting {
+	return v.Meeting
+}
+
+// GetExecutions returns RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroup.Executions, and is useful for accessing the field via an interface.
+func (v *RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroup) GetExecutions() []*RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupExecutionsRuleExecution {
+	return v.Executions
+}
+
+// RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupExecutionsRuleExecution includes the requested fields of the GraphQL type RuleExecution.
+type RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupExecutionsRuleExecution struct {
+	Meeting_id      *string `json:"meeting_id"`
+	Extension_id    string  `json:"extension_id"`
+	Extension_title string  `json:"extension_title"`
+	Stopped_at      *string `json:"stopped_at"`
+	User_name       *string `json:"user_name"`
+}
+
+// GetMeeting_id returns RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupExecutionsRuleExecution.Meeting_id, and is useful for accessing the field via an interface.
+func (v *RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupExecutionsRuleExecution) GetMeeting_id() *string {
+	return v.Meeting_id
+}
+
+// GetExtension_id returns RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupExecutionsRuleExecution.Extension_id, and is useful for accessing the field via an interface.
+func (v *RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupExecutionsRuleExecution) GetExtension_id() string {
+	return v.Extension_id
+}
+
+// GetExtension_title returns RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupExecutionsRuleExecution.Extension_title, and is useful for accessing the field via an interface.
+func (v *RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupExecutionsRuleExecution) GetExtension_title() string {
+	return v.Extension_title
+}
+
+// GetStopped_at returns RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupExecutionsRuleExecution.Stopped_at, and is useful for accessing the field via an interface.
+func (v *RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupExecutionsRuleExecution) GetStopped_at() *string {
+	return v.Stopped_at
+}
+
+// GetUser_name returns RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupExecutionsRuleExecution.User_name, and is useful for accessing the field via an interface.
+func (v *RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupExecutionsRuleExecution) GetUser_name() *string {
+	return v.User_name
+}
+
+// RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupMeetingRuleExecutionMeeting includes the requested fields of the GraphQL type RuleExecutionMeeting.
+type RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupMeetingRuleExecutionMeeting struct {
+	Id              string  `json:"id"`
+	Title           *string `json:"title"`
+	Organizer_email *string `json:"organizer_email"`
+}
+
+// GetId returns RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupMeetingRuleExecutionMeeting.Id, and is useful for accessing the field via an interface.
+func (v *RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupMeetingRuleExecutionMeeting) GetId() string {
+	return v.Id
+}
+
+// GetTitle returns RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupMeetingRuleExecutionMeeting.Title, and is useful for accessing the field via an interface.
+func (v *RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupMeetingRuleExecutionMeeting) GetTitle() *string {
+	return v.Title
+}
+
+// GetOrganizer_email returns RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupMeetingRuleExecutionMeeting.Organizer_email, and is useful for accessing the field via an interface.
+func (v *RuleExecutionsByMeetingRule_executions_by_meetingRuleExecutionsByMeetingResponseMeetingsRuleExecutionMeetingGroupMeetingRuleExecutionMeeting) GetOrganizer_email() *string {
+	return v.Organizer_email
+}
+
+// UserGroupsResponse is returned by UserGroups on success.
+type UserGroupsResponse struct {
+	User_groups []*UserGroupsUser_groupsUserGroup `json:"user_groups"`
+}
+
+// GetUser_groups returns UserGroupsResponse.User_groups, and is useful for accessing the field via an interface.
+func (v *UserGroupsResponse) GetUser_groups() []*UserGroupsUser_groupsUserGroup { return v.User_groups }
+
+// UserGroupsUser_groupsUserGroup includes the requested fields of the GraphQL type UserGroup.
+type UserGroupsUser_groupsUserGroup struct {
+	Id      string                                                  `json:"id"`
+	Name    string                                                  `json:"name"`
+	Handle  string                                                  `json:"handle"`
+	Members []*UserGroupsUser_groupsUserGroupMembersUserGroupMember `json:"members"`
+}
+
+// GetId returns UserGroupsUser_groupsUserGroup.Id, and is useful for accessing the field via an interface.
+func (v *UserGroupsUser_groupsUserGroup) GetId() string { return v.Id }
+
+// GetName returns UserGroupsUser_groupsUserGroup.Name, and is useful for accessing the field via an interface.
+func (v *UserGroupsUser_groupsUserGroup) GetName() string { return v.Name }
+
+// GetHandle returns UserGroupsUser_groupsUserGroup.Handle, and is useful for accessing the field via an interface.
+func (v *UserGroupsUser_groupsUserGroup) GetHandle() string { return v.Handle }
+
+// GetMembers returns UserGroupsUser_groupsUserGroup.Members, and is useful for accessing the field via an interface.
+func (v *UserGroupsUser_groupsUserGroup) GetMembers() []*UserGroupsUser_groupsUserGroupMembersUserGroupMember {
+	return v.Members
+}
+
+// UserGroupsUser_groupsUserGroupMembersUserGroupMember includes the requested fields of the GraphQL type UserGroupMember.
+type UserGroupsUser_groupsUserGroupMembersUserGroupMember struct {
+	User_id    string `json:"user_id"`
+	First_name string `json:"first_name"`
+	Last_name  string `json:"last_name"`
+	Email      string `json:"email"`
+}
+
+// GetUser_id returns UserGroupsUser_groupsUserGroupMembersUserGroupMember.User_id, and is useful for accessing the field via an interface.
+func (v *UserGroupsUser_groupsUserGroupMembersUserGroupMember) GetUser_id() string { return v.User_id }
+
+// GetFirst_name returns UserGroupsUser_groupsUserGroupMembersUserGroupMember.First_name, and is useful for accessing the field via an interface.
+func (v *UserGroupsUser_groupsUserGroupMembersUserGroupMember) GetFirst_name() string {
+	return v.First_name
+}
+
+// GetLast_name returns UserGroupsUser_groupsUserGroupMembersUserGroupMember.Last_name, and is useful for accessing the field via an interface.
+func (v *UserGroupsUser_groupsUserGroupMembersUserGroupMember) GetLast_name() string {
+	return v.Last_name
+}
+
+// GetEmail returns UserGroupsUser_groupsUserGroupMembersUserGroupMember.Email, and is useful for accessing the field via an interface.
+func (v *UserGroupsUser_groupsUserGroupMembersUserGroupMember) GetEmail() string { return v.Email }
+
+// UsersListResponse is returned by UsersList on success.
+type UsersListResponse struct {
+	Users []*UsersListUsersUser `json:"users"`
+}
+
+// GetUsers returns UsersListResponse.Users, and is useful for accessing the field via an interface.
+func (v *UsersListResponse) GetUsers() []*UsersListUsersUser { return v.Users }
+
+// UsersListUsersUser includes the requested fields of the GraphQL type User.
+type UsersListUsersUser struct {
+	User_id          *string  `json:"user_id"`
+	Email            *string  `json:"email"`
+	Name             *string  `json:"name"`
+	Is_admin         *bool    `json:"is_admin"`
+	Num_transcripts  *float64 `json:"num_transcripts"`
+	Minutes_consumed *float64 `json:"minutes_consumed"`
+}
+
+// GetUser_id returns UsersListUsersUser.User_id, and is useful for accessing the field via an interface.
+func (v *UsersListUsersUser) GetUser_id() *string { return v.User_id }
+
+// GetEmail returns UsersListUsersUser.Email, and is useful for accessing the field via an interface.
+func (v *UsersListUsersUser) GetEmail() *string { return v.Email }
+
+// GetName returns UsersListUsersUser.Name, and is useful for accessing the field via an interface.
+func (v *UsersListUsersUser) GetName() *string { return v.Name }
+
+// GetIs_admin returns UsersListUsersUser.Is_admin, and is useful for accessing the field via an interface.
+func (v *UsersListUsersUser) GetIs_admin() *bool { return v.Is_admin }
+
+// GetNum_transcripts returns UsersListUsersUser.Num_transcripts, and is useful for accessing the field via an interface.
+func (v *UsersListUsersUser) GetNum_transcripts() *float64 { return v.Num_transcripts }
+
+// GetMinutes_consumed returns UsersListUsersUser.Minutes_consumed, and is useful for accessing the field via an interface.
+func (v *UsersListUsersUser) GetMinutes_consumed() *float64 { return v.Minutes_consumed }
+
 // WhoamiResponse is returned by Whoami on success.
 type WhoamiResponse struct {
 	User *WhoamiUser `json:"user"`
@@ -43,6 +1337,821 @@ func (v *WhoamiUser) GetNum_transcripts() *float64 { return v.Num_transcripts }
 
 // GetMinutes_consumed returns WhoamiUser.Minutes_consumed, and is useful for accessing the field via an interface.
 func (v *WhoamiUser) GetMinutes_consumed() *float64 { return v.Minutes_consumed }
+
+// __ActiveMeetingsInput is used internally by genqlient
+type __ActiveMeetingsInput struct {
+	States []MeetingState `json:"states"`
+}
+
+// GetStates returns __ActiveMeetingsInput.States, and is useful for accessing the field via an interface.
+func (v *__ActiveMeetingsInput) GetStates() []MeetingState { return v.States }
+
+// __AnalyticsInput is used internally by genqlient
+type __AnalyticsInput struct {
+	Start_time *string `json:"start_time"`
+	End_time   *string `json:"end_time"`
+}
+
+// GetStart_time returns __AnalyticsInput.Start_time, and is useful for accessing the field via an interface.
+func (v *__AnalyticsInput) GetStart_time() *string { return v.Start_time }
+
+// GetEnd_time returns __AnalyticsInput.End_time, and is useful for accessing the field via an interface.
+func (v *__AnalyticsInput) GetEnd_time() *string { return v.End_time }
+
+// __AppsInput is used internally by genqlient
+type __AppsInput struct {
+	App_id        *string  `json:"app_id"`
+	Transcript_id *string  `json:"transcript_id"`
+	Skip          *float64 `json:"skip"`
+	Limit         *float64 `json:"limit"`
+}
+
+// GetApp_id returns __AppsInput.App_id, and is useful for accessing the field via an interface.
+func (v *__AppsInput) GetApp_id() *string { return v.App_id }
+
+// GetTranscript_id returns __AppsInput.Transcript_id, and is useful for accessing the field via an interface.
+func (v *__AppsInput) GetTranscript_id() *string { return v.Transcript_id }
+
+// GetSkip returns __AppsInput.Skip, and is useful for accessing the field via an interface.
+func (v *__AppsInput) GetSkip() *float64 { return v.Skip }
+
+// GetLimit returns __AppsInput.Limit, and is useful for accessing the field via an interface.
+func (v *__AppsInput) GetLimit() *float64 { return v.Limit }
+
+// __AskFredThreadInput is used internally by genqlient
+type __AskFredThreadInput struct {
+	Id string `json:"id"`
+}
+
+// GetId returns __AskFredThreadInput.Id, and is useful for accessing the field via an interface.
+func (v *__AskFredThreadInput) GetId() string { return v.Id }
+
+// __AskFredThreadsInput is used internally by genqlient
+type __AskFredThreadsInput struct {
+	Transcript_id *string `json:"transcript_id"`
+}
+
+// GetTranscript_id returns __AskFredThreadsInput.Transcript_id, and is useful for accessing the field via an interface.
+func (v *__AskFredThreadsInput) GetTranscript_id() *string { return v.Transcript_id }
+
+// __BiteInput is used internally by genqlient
+type __BiteInput struct {
+	Id string `json:"id"`
+}
+
+// GetId returns __BiteInput.Id, and is useful for accessing the field via an interface.
+func (v *__BiteInput) GetId() string { return v.Id }
+
+// __BitesInput is used internally by genqlient
+type __BitesInput struct {
+	Mine          *bool   `json:"mine"`
+	Transcript_id *string `json:"transcript_id"`
+	Limit         *int    `json:"limit"`
+	Skip          *int    `json:"skip"`
+}
+
+// GetMine returns __BitesInput.Mine, and is useful for accessing the field via an interface.
+func (v *__BitesInput) GetMine() *bool { return v.Mine }
+
+// GetTranscript_id returns __BitesInput.Transcript_id, and is useful for accessing the field via an interface.
+func (v *__BitesInput) GetTranscript_id() *string { return v.Transcript_id }
+
+// GetLimit returns __BitesInput.Limit, and is useful for accessing the field via an interface.
+func (v *__BitesInput) GetLimit() *int { return v.Limit }
+
+// GetSkip returns __BitesInput.Skip, and is useful for accessing the field via an interface.
+func (v *__BitesInput) GetSkip() *int { return v.Skip }
+
+// __ChannelInput is used internally by genqlient
+type __ChannelInput struct {
+	Id string `json:"id"`
+}
+
+// GetId returns __ChannelInput.Id, and is useful for accessing the field via an interface.
+func (v *__ChannelInput) GetId() string { return v.Id }
+
+// __LiveActionItemsInput is used internally by genqlient
+type __LiveActionItemsInput struct {
+	Meeting_id string `json:"meeting_id"`
+}
+
+// GetMeeting_id returns __LiveActionItemsInput.Meeting_id, and is useful for accessing the field via an interface.
+func (v *__LiveActionItemsInput) GetMeeting_id() string { return v.Meeting_id }
+
+// __RuleExecutionsByMeetingInput is used internally by genqlient
+type __RuleExecutionsByMeetingInput struct {
+	Limit            *int    `json:"limit"`
+	Cursor           *string `json:"cursor"`
+	Logs_per_meeting *int    `json:"logs_per_meeting"`
+	Meeting_id       *string `json:"meeting_id"`
+}
+
+// GetLimit returns __RuleExecutionsByMeetingInput.Limit, and is useful for accessing the field via an interface.
+func (v *__RuleExecutionsByMeetingInput) GetLimit() *int { return v.Limit }
+
+// GetCursor returns __RuleExecutionsByMeetingInput.Cursor, and is useful for accessing the field via an interface.
+func (v *__RuleExecutionsByMeetingInput) GetCursor() *string { return v.Cursor }
+
+// GetLogs_per_meeting returns __RuleExecutionsByMeetingInput.Logs_per_meeting, and is useful for accessing the field via an interface.
+func (v *__RuleExecutionsByMeetingInput) GetLogs_per_meeting() *int { return v.Logs_per_meeting }
+
+// GetMeeting_id returns __RuleExecutionsByMeetingInput.Meeting_id, and is useful for accessing the field via an interface.
+func (v *__RuleExecutionsByMeetingInput) GetMeeting_id() *string { return v.Meeting_id }
+
+// __UserGroupsInput is used internally by genqlient
+type __UserGroupsInput struct {
+	Mine *bool `json:"mine"`
+}
+
+// GetMine returns __UserGroupsInput.Mine, and is useful for accessing the field via an interface.
+func (v *__UserGroupsInput) GetMine() *bool { return v.Mine }
+
+// The query executed by ActiveMeetings.
+const ActiveMeetings_Operation = `
+query ActiveMeetings ($states: [MeetingState!]) {
+	active_meetings(input: {states:$states}) {
+		id
+		title
+		organizer_email
+		meeting_link
+		start_time
+		end_time
+		privacy
+		state
+	}
+}
+`
+
+func ActiveMeetings(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	states []MeetingState,
+) (data_ *ActiveMeetingsResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "ActiveMeetings",
+		Query:  ActiveMeetings_Operation,
+		Variables: &__ActiveMeetingsInput{
+			States: states,
+		},
+	}
+
+	data_ = &ActiveMeetingsResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by Analytics.
+const Analytics_Operation = `
+query Analytics ($start_time: String, $end_time: String) {
+	analytics(start_time: $start_time, end_time: $end_time) {
+		team {
+			meeting {
+				count
+				count_diff_pct
+				duration
+				duration_diff_pct
+				average_count
+				average_count_diff_pct
+				average_duration
+				average_duration_diff_pct
+			}
+			conversation {
+				average_filler_words
+				average_filler_words_diff_pct
+				average_monologues_count
+				average_monologues_count_diff_pct
+				average_questions
+				average_questions_diff_pct
+				average_sentiments {
+					negative_pct
+					neutral_pct
+					positive_pct
+				}
+				average_silence_duration
+				average_silence_duration_diff_pct
+				average_talk_listen_ratio
+				average_words_per_minute
+				longest_monologue_duration_sec
+				longest_monologue_duration_diff_pct
+				total_filler_words
+				total_filler_words_diff_pct
+				total_meeting_notes_count
+				total_meetings_count
+				total_monologues_count
+				total_monologues_diff_pct
+				teammates_count
+				total_questions
+				total_questions_diff_pct
+				total_silence_duration
+				total_silence_duration_diff_pct
+			}
+		}
+		users {
+			user_id
+			user_name
+			user_email
+			meeting {
+				count
+				count_diff
+				count_diff_compared_to
+				count_diff_pct
+				duration
+				duration_diff
+				duration_diff_compared_to
+				duration_diff_pct
+			}
+			conversation {
+				talk_listen_pct
+				talk_listen_ratio
+				total_silence_duration
+				total_speak_duration
+				total_word_count
+				user_filler_words
+				user_longest_monologue_sec
+				user_monologues_count
+				user_questions
+				user_speak_duration
+				user_word_count
+				user_words_per_minute
+			}
+		}
+	}
+}
+`
+
+func Analytics(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	start_time *string,
+	end_time *string,
+) (data_ *AnalyticsResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "Analytics",
+		Query:  Analytics_Operation,
+		Variables: &__AnalyticsInput{
+			Start_time: start_time,
+			End_time:   end_time,
+		},
+	}
+
+	data_ = &AnalyticsResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by Apps.
+const Apps_Operation = `
+query Apps ($app_id: String, $transcript_id: String, $skip: Float, $limit: Float) {
+	apps(app_id: $app_id, transcript_id: $transcript_id, skip: $skip, limit: $limit) {
+		outputs {
+			transcript_id
+			user_id
+			app_id
+			created_at
+			title
+			prompt
+			response
+		}
+	}
+}
+`
+
+func Apps(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	app_id *string,
+	transcript_id *string,
+	skip *float64,
+	limit *float64,
+) (data_ *AppsResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "Apps",
+		Query:  Apps_Operation,
+		Variables: &__AppsInput{
+			App_id:        app_id,
+			Transcript_id: transcript_id,
+			Skip:          skip,
+			Limit:         limit,
+		},
+	}
+
+	data_ = &AppsResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by AskFredThread.
+const AskFredThread_Operation = `
+query AskFredThread ($id: String!) {
+	askfred_thread(id: $id) {
+		id
+		title
+		transcript_id
+		user_id
+		created_at
+		messages {
+			id
+			thread_id
+			query
+			answer
+			suggested_queries
+			status
+			created_at
+			updated_at
+		}
+	}
+}
+`
+
+func AskFredThread(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	id string,
+) (data_ *AskFredThreadResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "AskFredThread",
+		Query:  AskFredThread_Operation,
+		Variables: &__AskFredThreadInput{
+			Id: id,
+		},
+	}
+
+	data_ = &AskFredThreadResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by AskFredThreads.
+const AskFredThreads_Operation = `
+query AskFredThreads ($transcript_id: String) {
+	askfred_threads(transcript_id: $transcript_id) {
+		id
+		title
+		transcript_id
+		user_id
+		created_at
+	}
+}
+`
+
+func AskFredThreads(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	transcript_id *string,
+) (data_ *AskFredThreadsResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "AskFredThreads",
+		Query:  AskFredThreads_Operation,
+		Variables: &__AskFredThreadsInput{
+			Transcript_id: transcript_id,
+		},
+	}
+
+	data_ = &AskFredThreadsResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by Bite.
+const Bite_Operation = `
+query Bite ($id: ID!) {
+	bite(id: $id) {
+		id
+		name
+		transcript_id
+		user_id
+		start_time
+		end_time
+		created_at
+		status
+		summary
+		media_type
+		thumbnail
+		privacies
+		user {
+			id
+			name
+		}
+		captions {
+			index
+			speaker_name
+			start_time
+			end_time
+			text
+		}
+		sources {
+			src
+			type
+		}
+		created_from {
+			id
+			name
+			type
+			duration
+		}
+	}
+}
+`
+
+func Bite(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	id string,
+) (data_ *BiteResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "Bite",
+		Query:  Bite_Operation,
+		Variables: &__BiteInput{
+			Id: id,
+		},
+	}
+
+	data_ = &BiteResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by Bites.
+const Bites_Operation = `
+query Bites ($mine: Boolean, $transcript_id: ID, $limit: Int, $skip: Int) {
+	bites(mine: $mine, transcript_id: $transcript_id, limit: $limit, skip: $skip) {
+		id
+		name
+		transcript_id
+		user_id
+		start_time
+		end_time
+		created_at
+		status
+		summary
+		media_type
+		thumbnail
+		privacies
+		user {
+			id
+			name
+		}
+	}
+}
+`
+
+func Bites(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	mine *bool,
+	transcript_id *string,
+	limit *int,
+	skip *int,
+) (data_ *BitesResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "Bites",
+		Query:  Bites_Operation,
+		Variables: &__BitesInput{
+			Mine:          mine,
+			Transcript_id: transcript_id,
+			Limit:         limit,
+			Skip:          skip,
+		},
+	}
+
+	data_ = &BitesResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by Channel.
+const Channel_Operation = `
+query Channel ($id: ID!) {
+	channel(id: $id) {
+		id
+		created_at
+		updated_at
+		created_by
+		is_private
+		title
+		members {
+			user_id
+			email
+			name
+		}
+	}
+}
+`
+
+func Channel(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	id string,
+) (data_ *ChannelResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "Channel",
+		Query:  Channel_Operation,
+		Variables: &__ChannelInput{
+			Id: id,
+		},
+	}
+
+	data_ = &ChannelResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by Channels.
+const Channels_Operation = `
+query Channels {
+	channels {
+		id
+		created_at
+		updated_at
+		created_by
+		is_private
+		title
+		members {
+			user_id
+			email
+			name
+		}
+	}
+}
+`
+
+func Channels(
+	ctx_ context.Context,
+	client_ graphql.Client,
+) (data_ *ChannelsResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "Channels",
+		Query:  Channels_Operation,
+	}
+
+	data_ = &ChannelsResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by Contacts.
+const Contacts_Operation = `
+query Contacts {
+	contacts {
+		email
+		name
+		picture
+		last_meeting_date
+	}
+}
+`
+
+func Contacts(
+	ctx_ context.Context,
+	client_ graphql.Client,
+) (data_ *ContactsResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "Contacts",
+		Query:  Contacts_Operation,
+	}
+
+	data_ = &ContactsResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by LiveActionItems.
+const LiveActionItems_Operation = `
+query LiveActionItems ($meeting_id: ID!) {
+	live_action_items(meeting_id: $meeting_id) {
+		name
+		action_item
+	}
+}
+`
+
+func LiveActionItems(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	meeting_id string,
+) (data_ *LiveActionItemsResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "LiveActionItems",
+		Query:  LiveActionItems_Operation,
+		Variables: &__LiveActionItemsInput{
+			Meeting_id: meeting_id,
+		},
+	}
+
+	data_ = &LiveActionItemsResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by RuleExecutionsByMeeting.
+const RuleExecutionsByMeeting_Operation = `
+query RuleExecutionsByMeeting ($limit: Int, $cursor: String, $logs_per_meeting: Int, $meeting_id: String) {
+	rule_executions_by_meeting(limit: $limit, cursor: $cursor, logs_per_meeting: $logs_per_meeting, filters: {meeting_id:$meeting_id}) {
+		has_more
+		next_cursor
+		meetings {
+			meeting_id
+			meeting {
+				id
+				title
+				organizer_email
+			}
+			executions {
+				meeting_id
+				extension_id
+				extension_title
+				stopped_at
+				user_name
+			}
+		}
+	}
+}
+`
+
+func RuleExecutionsByMeeting(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	limit *int,
+	cursor *string,
+	logs_per_meeting *int,
+	meeting_id *string,
+) (data_ *RuleExecutionsByMeetingResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "RuleExecutionsByMeeting",
+		Query:  RuleExecutionsByMeeting_Operation,
+		Variables: &__RuleExecutionsByMeetingInput{
+			Limit:            limit,
+			Cursor:           cursor,
+			Logs_per_meeting: logs_per_meeting,
+			Meeting_id:       meeting_id,
+		},
+	}
+
+	data_ = &RuleExecutionsByMeetingResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by UserGroups.
+const UserGroups_Operation = `
+query UserGroups ($mine: Boolean) {
+	user_groups(mine: $mine) {
+		id
+		name
+		handle
+		members {
+			user_id
+			first_name
+			last_name
+			email
+		}
+	}
+}
+`
+
+func UserGroups(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	mine *bool,
+) (data_ *UserGroupsResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "UserGroups",
+		Query:  UserGroups_Operation,
+		Variables: &__UserGroupsInput{
+			Mine: mine,
+		},
+	}
+
+	data_ = &UserGroupsResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by UsersList.
+const UsersList_Operation = `
+query UsersList {
+	users {
+		user_id
+		email
+		name
+		is_admin
+		num_transcripts
+		minutes_consumed
+	}
+}
+`
+
+func UsersList(
+	ctx_ context.Context,
+	client_ graphql.Client,
+) (data_ *UsersListResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "UsersList",
+		Query:  UsersList_Operation,
+	}
+
+	data_ = &UsersListResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
 
 // The query executed by Whoami.
 const Whoami_Operation = `

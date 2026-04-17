@@ -1,0 +1,13 @@
+query UserGroups($mine: Boolean) {
+  user_groups(mine: $mine) {
+    id
+    name
+    handle
+    members {
+      user_id
+      first_name
+      last_name
+      email
+    }
+  }
+}

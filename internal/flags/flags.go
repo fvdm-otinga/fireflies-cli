@@ -38,3 +38,43 @@ func Bind(cmd *cobra.Command) *Shared {
 	f.BoolVar(&s.DryRun, "dry-run", false, "Print the GraphQL operation without executing")
 	return s
 }
+
+// FromCmd reads the shared flag values from a command that has already had
+// Bind called (either on itself or an ancestor via PersistentFlags).
+func FromCmd(cmd *cobra.Command) *Shared {
+	s := &Shared{}
+	get := func(name string) string {
+		v, _ := cmd.Flags().GetString(name)
+		if v == "" {
+			v, _ = cmd.InheritedFlags().GetString(name)
+		}
+		return v
+	}
+	getBool := func(name string) bool {
+		v, err := cmd.Flags().GetBool(name)
+		if err != nil {
+			v, _ = cmd.InheritedFlags().GetBool(name)
+		}
+		return v
+	}
+	getInt := func(name string) int {
+		v, err := cmd.Flags().GetInt(name)
+		if err != nil {
+			v, _ = cmd.InheritedFlags().GetInt(name)
+		}
+		return v
+	}
+	s.Profile = get("profile")
+	s.JSON = getBool("json")
+	s.JQ = get("jq")
+	s.Output = get("output")
+	s.Fields = get("fields")
+	s.Limit = getInt("limit")
+	s.Skip = getInt("skip")
+	s.Transcript = get("transcript")
+	s.Since = get("since")
+	s.Until = get("until")
+	s.Yes = getBool("yes")
+	s.DryRun = getBool("dry-run")
+	return s
+}

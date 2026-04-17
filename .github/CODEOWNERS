@@ -1,0 +1,6 @@
+* @fvdm-otinga
+
+# Contract is frozen; changes require owner approval.
+/internal/contract/          @fvdm-otinga
+/internal/graphql/schema.*   @fvdm-otinga
+/docs/interface-contract.md  @fvdm-otinga

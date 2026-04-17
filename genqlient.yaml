@@ -1,0 +1,12 @@
+schema: internal/graphql/schema.graphql
+operations:
+  - internal/graphql/queries/*.graphql
+generated: internal/graphql/generated.go
+package: graphql
+use_struct_references: true
+bindings:
+  DateTime:
+    type: string
+  ID:
+    type: string
+optional: pointer

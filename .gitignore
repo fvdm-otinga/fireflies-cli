@@ -1,0 +1,25 @@
+# Binaries
+/fireflies
+/dist/
+/bin/
+*.test
+*.out
+
+# Go caches
+/vendor/
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Env
+.env
+.env.local
+
+# goreleaser
+/dist/
+
+# Spotlight
+.metadata_never_index

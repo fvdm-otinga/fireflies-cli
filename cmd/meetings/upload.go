@@ -2,12 +2,14 @@ package meetings
 
 import (
 	"context"
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/spf13/cobra"
 
@@ -16,6 +18,7 @@ import (
 	ferr "github.com/fvdm-otinga/fireflies-cli/internal/errors"
 	"github.com/fvdm-otinga/fireflies-cli/internal/flags"
 	ffgql "github.com/fvdm-otinga/fireflies-cli/internal/graphql"
+	"github.com/fvdm-otinga/fireflies-cli/internal/netguard"
 	"github.com/fvdm-otinga/fireflies-cli/internal/output"
 )
 
@@ -221,6 +224,11 @@ func uploadLocalFile(ctx context.Context, c *client.Client, filePath, title stri
 	}
 	uploadURL := urlResp.CreateUploadUrl.Upload_url
 	meetingID := urlResp.CreateUploadUrl.Meeting_id
+
+	// SSRF guard: validate the signed upload URL before we trust it.
+	if _, err := netguard.ValidateUploadURL(uploadURL); err != nil {
+		return ferr.General(err.Error())
+	}
 	_, _ = fmt.Fprintf(w, "Uploading %s (%d bytes) to meeting %s...\n", filePath, fileSize, meetingID)
 
 	// Step 2: PUT file to S3.
@@ -237,7 +245,18 @@ func uploadLocalFile(ctx context.Context, c *client.Client, filePath, title stri
 	putReq.ContentLength = int64(fileSize)
 	putReq.Header.Set("Content-Type", contentType)
 
-	s3Client := &http.Client{}
+	// Hardened client for the S3 PUT: enforce TLS 1.2+, a 30-minute ceiling,
+	// and refuse to follow redirects (a redirect could point at an internal
+	// host that slipped past ValidateUploadURL).
+	transport := http.DefaultTransport.(*http.Transport).Clone()
+	transport.TLSClientConfig = &tls.Config{MinVersion: tls.VersionTLS12}
+	s3Client := &http.Client{
+		Timeout:   30 * time.Minute,
+		Transport: transport,
+		CheckRedirect: func(req *http.Request, via []*http.Request) error {
+			return http.ErrUseLastResponse
+		},
+	}
 	putResp, err := s3Client.Do(putReq)
 	if err != nil {
 		return ferr.General(fmt.Sprintf("S3 PUT failed: %v", err))

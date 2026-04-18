@@ -4,16 +4,38 @@ package realtime
 
 import (
 	"context"
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"net/url"
 	"strings"
 	"time"
 
 	"github.com/gorilla/websocket"
+
+	ferr "github.com/fvdm-otinga/fireflies-cli/internal/errors"
 )
 
 const DefaultEndpoint = "wss://api.fireflies.ai/ws/realtime"
+
+// maxWSMessageBytes caps a single WebSocket message at 1 MiB. A hostile or
+// malfunctioning server cannot pump arbitrarily large frames into memory.
+const maxWSMessageBytes = 1 << 20
+
+// wsReadTimeout is the per-message read deadline; a silent/stalled connection
+// will trip this and force a reconnect through the Subscribe backoff loop.
+const wsReadTimeout = 2 * time.Minute
+
+// newDialer constructs the WebSocket dialer used by connect(). It is a
+// package-level variable so tests can substitute a dialer that skips TLS
+// verification against httptest TLS servers.
+var newDialer = func() *websocket.Dialer {
+	return &websocket.Dialer{
+		TLSClientConfig:  &tls.Config{MinVersion: tls.VersionTLS12},
+		HandshakeTimeout: 30 * time.Second,
+	}
+}
 
 // Event is a decoded Socket.IO event delivered to the handler.
 type Event struct {
@@ -69,14 +91,38 @@ func (c *Client) Subscribe(ctx context.Context, meetingID string, handler func(E
 // connect establishes one WS session and reads events until the connection
 // drops or ctx is cancelled.
 func (c *Client) connect(ctx context.Context, meetingID string, handler func(Event)) error {
+	// Reject plaintext ws:// — the API key travels in an Authorization
+	// header and must never cross the wire unencrypted.
+	u, err := url.Parse(c.endpoint)
+	if err != nil {
+		return ferr.Usage(fmt.Sprintf("invalid realtime endpoint %q: %v", c.endpoint, err))
+	}
+	if u.Scheme != "wss" {
+		return ferr.Usage(fmt.Sprintf(
+			"realtime endpoint must use wss:// (got %q); API key would be sent in clear",
+			c.endpoint))
+	}
+
 	headers := http.Header{}
 	headers.Set("Authorization", "Bearer "+c.apiKey)
 
-	conn, _, err := websocket.DefaultDialer.DialContext(ctx, c.endpoint, headers)
+	dialer := newDialer()
+	conn, _, err := dialer.DialContext(ctx, c.endpoint, headers)
 	if err != nil {
 		return fmt.Errorf("websocket dial: %w", err)
 	}
 	defer conn.Close() //nolint:errcheck // WS close
+
+	// Hard cap on a single inbound frame.
+	conn.SetReadLimit(maxWSMessageBytes)
+
+	// The server sends Engine.IO pings ("2"); treat any message as activity
+	// and extend the read deadline. The explicit PongHandler covers native
+	// WS pongs if the server ever sends them.
+	_ = conn.SetReadDeadline(time.Now().Add(wsReadTimeout))
+	conn.SetPongHandler(func(string) error {
+		return conn.SetReadDeadline(time.Now().Add(wsReadTimeout))
+	})
 
 	// Close the WS connection when ctx is done.
 	go func() {
@@ -110,6 +156,9 @@ func (c *Client) connect(ctx context.Context, meetingID string, handler func(Eve
 		if ctx.Err() != nil {
 			return nil
 		}
+		// Refresh the read deadline for every message; a stalled server
+		// will trip this and the Subscribe loop will reconnect.
+		_ = conn.SetReadDeadline(time.Now().Add(wsReadTimeout))
 		_, msg, err := conn.ReadMessage()
 		if err != nil {
 			if ctx.Err() != nil {

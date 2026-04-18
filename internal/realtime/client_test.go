@@ -2,6 +2,7 @@ package realtime
 
 import (
 	"context"
+	"crypto/tls"
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
@@ -35,7 +36,7 @@ func TestSubscribe_DispatchEvents(t *testing.T) {
 	var mu sync.Mutex
 	done := make(chan struct{})
 
-	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		conn, err := upgrader.Upgrade(w, r, nil)
 		if err != nil {
 			t.Errorf("upgrade: %v", err)
@@ -92,8 +93,18 @@ func TestSubscribe_DispatchEvents(t *testing.T) {
 	}))
 	defer server.Close()
 
-	// Convert http:// → ws://
-	wsURL := "ws" + strings.TrimPrefix(server.URL, "http")
+	// Convert https:// → wss:// so the client's scheme check passes.
+	wsURL := "wss" + strings.TrimPrefix(server.URL, "https")
+
+	// Swap the package dialer for one that trusts the httptest TLS cert.
+	origDialer := newDialer
+	newDialer = func() *websocket.Dialer {
+		return &websocket.Dialer{
+			TLSClientConfig:  &tls.Config{InsecureSkipVerify: true, MinVersion: tls.VersionTLS12}, //nolint:gosec // test only
+			HandshakeTimeout: 30 * time.Second,
+		}
+	}
+	t.Cleanup(func() { newDialer = origDialer })
 
 	c := New("testkey", wsURL)
 

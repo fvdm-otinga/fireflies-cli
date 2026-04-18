@@ -5,6 +5,7 @@ package client
 import (
 	"bytes"
 	"context"
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -20,6 +21,16 @@ import (
 )
 
 const DefaultEndpoint = "https://api.fireflies.ai/graphql"
+
+// maxResponseBytes caps the size of a GraphQL response we will read into
+// memory. 50 MiB is generous for real payloads but prevents a hostile or
+// malfunctioning endpoint from exhausting memory.
+const maxResponseBytes = 50 << 20
+
+// maxRetryAfter bounds the delay we will honour from a Retry-After header.
+// A malicious or misconfigured server could otherwise wedge the CLI for
+// arbitrarily long.
+const maxRetryAfter = 5 * time.Minute
 
 // Client wraps a Fireflies GraphQL endpoint with auth + rate-limit handling.
 type Client struct {
@@ -88,7 +99,25 @@ func NewWithTransport(p config.Profile, transport http.RoundTripper) *Client {
 	for op, lim := range opLimits {
 		buckets[op] = newBucket(lim.capacity, lim.window)
 	}
-	httpClient := &http.Client{Timeout: 60 * time.Second}
+	// Default transport enforces TLS 1.2 minimum. Tests may inject their
+	// own RoundTripper which overrides this.
+	var defaultTransport http.RoundTripper
+	if base, ok := http.DefaultTransport.(*http.Transport); ok {
+		tr := base.Clone()
+		if tr.TLSClientConfig == nil {
+			tr.TLSClientConfig = &tls.Config{MinVersion: tls.VersionTLS12}
+		} else {
+			tr.TLSClientConfig = tr.TLSClientConfig.Clone()
+			tr.TLSClientConfig.MinVersion = tls.VersionTLS12
+		}
+		defaultTransport = tr
+	} else {
+		defaultTransport = http.DefaultTransport
+	}
+	httpClient := &http.Client{
+		Timeout:   60 * time.Second,
+		Transport: defaultTransport,
+	}
 	if transport != nil {
 		httpClient.Transport = transport
 	}
@@ -131,7 +160,7 @@ func (c *Client) MakeRequest(ctx context.Context, req *graphql.Request, resp *gr
 			lastErr = err
 			continue
 		}
-		b, rerr := io.ReadAll(httpResp.Body)
+		b, rerr := io.ReadAll(io.LimitReader(httpResp.Body, maxResponseBytes))
 		_ = httpResp.Body.Close()
 		if rerr != nil {
 			lastErr = rerr
@@ -170,19 +199,20 @@ func (c *Client) MakeRequest(ctx context.Context, req *graphql.Request, resp *gr
 }
 
 func parseRetryAfter(h string, def time.Duration) time.Duration {
-	if h == "" {
-		return def
-	}
-	if n, err := strconv.Atoi(h); err == nil {
-		return time.Duration(n) * time.Second
-	}
-	if t, err := http.ParseTime(h); err == nil {
-		d := time.Until(t)
-		if d > 0 {
-			return d
+	d := def
+	if h != "" {
+		if n, err := strconv.Atoi(h); err == nil {
+			d = time.Duration(n) * time.Second
+		} else if t, err := http.ParseTime(h); err == nil {
+			if until := time.Until(t); until > 0 {
+				d = until
+			}
 		}
 	}
-	return def
+	if d > maxRetryAfter {
+		d = maxRetryAfter
+	}
+	return d
 }
 
 func shortBody(b []byte) string {

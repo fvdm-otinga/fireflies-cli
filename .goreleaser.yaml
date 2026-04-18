@@ -86,8 +86,6 @@ release:
   prerelease: auto
   name_template: "{{.ProjectName}} {{.Tag}}"
 
-# homebrew_casks replaces the deprecated `brews` in goreleaser v2.
-# The directory is set to Formula/ (standard homebrew tap layout for CLI tools).
 homebrew_casks:
   - name: fireflies
     ids:
@@ -96,7 +94,7 @@ homebrew_casks:
       owner: fvdm-otinga
       name: homebrew-tap
       token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
-    directory: Formula
+    directory: Casks
     homepage: "https://github.com/fvdm-otinga/fireflies-cli"
     description: "Token-efficient CLI for the Fireflies.ai GraphQL API"
     license: "MIT"

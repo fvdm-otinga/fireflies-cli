@@ -10,10 +10,20 @@ responses that use **60–80% fewer tokens** than the equivalent MCP tool calls.
 
 ## Install
 
+### One-liner (interactive wizard, macOS / Linux)
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/fvdm-otinga/fireflies-cli/main/scripts/install.sh | bash
+```
+
+Detects OS/arch, verifies the SHA-256 checksum, installs to `~/.local/bin` (or a
+prefix you pick), and optionally runs `fireflies auth login` plus shell
+completions. Non-interactive mode: `… | bash -s -- --yes`.
+
 ### Homebrew (macOS / Linux)
 
 ```sh
-brew install fvdm-otinga/tap/fireflies
+brew install --cask fvdm-otinga/tap/fireflies
 ```
 
 ### Go install

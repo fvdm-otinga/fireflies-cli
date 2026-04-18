@@ -69,7 +69,7 @@ for cmd in curl tar shasum; do
 done
 
 if [ -z "$VERSION" ]; then
-  dim "resolving latest release…"
+  dim "resolving latest release..."
   VERSION=$(curl -fsSL "https://api.github.com/repos/${REPO}/releases/latest" \
     | grep '"tag_name"' | head -n1 | sed -E 's/.*"([^"]+)".*/\1/')
   [ -n "$VERSION" ] || err "could not resolve latest version"
@@ -91,7 +91,7 @@ mkdir -p "$PREFIX" || err "cannot create $PREFIX"
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
 
-dim "downloading $ARCHIVE…"
+dim "downloading $ARCHIVE ..."
 curl -fsSL "$URL_BASE/$ARCHIVE" -o "$tmp/$ARCHIVE" || err "download failed"
 curl -fsSL "$URL_BASE/checksums.txt" -o "$tmp/checksums.txt" || err "checksum download failed"
 

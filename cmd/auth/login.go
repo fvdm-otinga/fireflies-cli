@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/spf13/cobra"
+	"golang.org/x/term"
 
 	"github.com/fvdm-otinga/fireflies-cli/internal/client"
 	"github.com/fvdm-otinga/fireflies-cli/internal/config"
@@ -77,16 +78,23 @@ file mode 0600 under the given profile (default: "default").`,
 }
 
 // readSecretLine reads a line from stdin without terminal echo when possible.
-// Falls back to buffered scan (e.g. piped input / tests).
+// On a TTY, it uses golang.org/x/term.ReadPassword to suppress echo so the
+// API key never appears on-screen or in scrollback. For piped input (scripts
+// / CI), it falls back to a single-line buffered scan — stdin is not a
+// terminal so there's no echo to suppress.
 func readSecretLine() (string, error) {
-	// Attempt golang.org/x/term-style disabling of echo. We do it via a
-	// platform-agnostic approach: read from /dev/tty if available, else stdin.
-	f := os.Stdin
-	if tty, err := os.OpenFile("/dev/tty", os.O_RDWR, 0); err == nil {
-		f = tty
-		defer tty.Close() //nolint:errcheck // best-effort TTY close
+	fd := int(os.Stdin.Fd())
+	if term.IsTerminal(fd) {
+		b, err := term.ReadPassword(fd)
+		if err != nil {
+			return "", err
+		}
+		// ReadPassword swallows the Enter keystroke's echo; emit a newline
+		// so subsequent output doesn't glue onto the prompt line.
+		fmt.Fprintln(os.Stderr)
+		return string(b), nil
 	}
-	scanner := bufio.NewScanner(f)
+	scanner := bufio.NewScanner(os.Stdin)
 	if scanner.Scan() {
 		return scanner.Text(), nil
 	}

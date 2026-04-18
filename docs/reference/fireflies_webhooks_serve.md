@@ -14,7 +14,10 @@ Routes:
   POST /webhooks/v2  — Fireflies webhook V2
   GET  /health       — Health check (200 ok)
 
-The webhook secret must be set via --secret-env (env var name) or --secret.
+The webhook secret is read from the FIREFLIES_WEBHOOK_SECRET env var by default,
+or (with --secret-stdin) from a single line on stdin. Use --secret-env <NAME>
+to read from a differently-named env var. Passing the secret as a command-line
+flag is not supported (it would leak via the process listing).
 
 ```
 fireflies webhooks serve [flags]
@@ -25,8 +28,8 @@ fireflies webhooks serve [flags]
 ```
   -h, --help                help for serve
       --port int            Port to listen on (default 8080)
-      --secret string       Webhook secret value (use --secret-env in production)
-      --secret-env string   Name of env var holding the webhook secret
+      --secret-env string   Name of env var holding the webhook secret (defaults to FIREFLIES_WEBHOOK_SECRET)
+      --secret-stdin        Read the webhook secret as a single line from stdin
 ```
 
 ### Options inherited from parent commands

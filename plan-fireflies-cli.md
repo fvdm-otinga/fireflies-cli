@@ -206,7 +206,7 @@ All destructive ops require `--yes` or an interactive confirm. All mutations sup
 3. `cmd/live/add.go` — `addToLiveMeeting` (rate 3/20min).
 4. `cmd/live/soundbite.go` — `createLiveSoundbite`.
 5. `cmd/live/action-item.go` — `createLiveActionItem`.
-6. `cmd/webhooks/serve.go` — `fireflies webhooks serve --port 8080 --secret <env>` HTTP receiver, V1 + V2 routes, HMAC-SHA256 via `hmac.Equal` (constant-time), emits verified events as NDJSON on stdout.
+6. `cmd/webhooks/serve.go` — `fireflies webhooks serve --port 8080` HTTP receiver (secret via `FIREFLIES_WEBHOOK_SECRET` env or `--secret-stdin`), V1 + V2 routes, HMAC-SHA256 via `hmac.Equal` (constant-time), emits verified events as NDJSON on stdout. Hardened with 1 MiB body cap, server timeouts, and panic-recovery middleware.
 
 ### Team Release (1 agent) — branch `release/infra`
 

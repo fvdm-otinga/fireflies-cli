@@ -142,6 +142,6 @@ fireflies meetings upload https://example.com/meeting.mp4
 # Stream realtime transcript events
 fireflies realtime tail <meeting-id>
 
-# Receive webhooks locally
-fireflies webhooks serve --port 8080 --secret "$WEBHOOK_SECRET"
+# Receive webhooks locally (secret read from FIREFLIES_WEBHOOK_SECRET)
+FIREFLIES_WEBHOOK_SECRET="$WEBHOOK_SECRET" fireflies webhooks serve --port 8080
 ```
